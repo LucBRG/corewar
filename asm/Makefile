@@ -12,7 +12,7 @@
 
 NAME = asm
 CC = gcc
-CFLAGS = -Wall -Wextra -fsanitize=address 
+CFLAGS = -Wall -Wextra
 SRC_NAME =	$(sort main.c parsing.c)
 
 LIB_PATH = ../libft/

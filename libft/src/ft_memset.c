@@ -16,14 +16,12 @@ void		*ft_memset(void *b, int c, size_t len)
 {
 	size_t	i;
 	char	*b_copy;
-	char	c_copy;
 
 	i = 0;
 	b_copy = (char *)b;
-	c_copy = (unsigned char)c;
 	while (i < len)
 	{
-		b_copy[i] = c_copy;
+		b_copy[i] = c;
 		i++;
 	}
 	return (b);

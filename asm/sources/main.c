@@ -48,6 +48,5 @@ int		main(int ac, char **av)
 	parsing_asm(env, file);
 	//write_in();
 	free_struct(env);
-	ft_printf("jusqu'au bout du monde\n");
 	return (0);
 }

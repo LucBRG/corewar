@@ -21,49 +21,45 @@ static void	init_header(header_t *header)
 
 int	parsing_asm(t_asm *env, t_file *file)
 {
+	(void)env;
 	char		str[BUF_SZ];
 	header_t	*header;
 	int			nu;
 	int			i;
 
 	nu = 0;
-	header = (header_t*)malloc(sizeof(header_t*));
+	header = (header_t*)malloc(sizeof(*header));
 	if (header == NULL)
 		exit(EXIT_FAILURE);
 	init_header(header);
 	ft_bzero(str, BUF_SZ);
 	while (header->prog_name[0] == '\0' || header->comment[0] == '\0')
 	{
-		ft_printf("KO\n");
 		my_fgets(str, BUF_SZ, file);
 		if (!str[0]) {
 			ft_printf("EXIT\n");
 			exit(EXIT_FAILURE);
 		}
-		ft_printf("OK\n");
 		nu = corewar_strchr(str, '#');
 		if (nu != -1) 
 			str[nu] = 0;
 
-		ft_printf("\"%s\"\n", str);	
 		i = 0;
 		while (str[i] && ft_is_space(str[i]))
 			i++;
 
 		ft_printf("\"%s\"\n", str + i);	
-		if (!header->prog_name[0] && !ft_strncmp(str + i, ".name", 5))
+		if (!header->prog_name[0] && !ft_strncmp(str + i, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
 		{
-			//ft_strcpy(header->prog_name, "name");
-			ft_printf("found .name!\n\n");
+			ft_strcpy(header->prog_name, "name");
 		}
-		else if (header->comment[0] == 0 && !ft_strncmp(str + i, ".comment", 8))
+		else if (!header->comment[0] && !ft_strncmp(str + i, COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING)))
 		{
-			//ft_strcpy(header->comment, "comment");
-			ft_printf("found .comment!\n\n");
+			ft_strcpy(header->comment, "comment");
 		}
 		else
 		{
-			ft_printf("Au revoir\n");
+			ft_printf("ERROR\n");
 			return (0);
 		}
 	}
