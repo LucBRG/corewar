@@ -20,7 +20,8 @@
 
 typedef	struct	s_asm
 {
-	char	*str;
+	int		nb_line;
+	char	**str;
 }				t_asm;
 
 typedef struct	s_parse

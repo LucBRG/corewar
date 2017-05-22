@@ -28,22 +28,43 @@ static void	free_struct(t_asm *env)
 	free(env);
 }
 
+void	show_err(int id, int line)
+{
+	if (id == 1)
+		ft_putstr_fd("Usage : ./asm [filename.s]\n", 2);
+	else if (id == 2)
+		ft_putstr_fd("File doesn't exist.\n", 2);
+	else if (id == 3)
+	{
+		ft_putstr_fd("Syntax error: line ", 2);
+		ft_putnbr_fd(line, 2);
+		ft_putendl_fd(".", 2);
+	}
+	else if (id == 4)
+	{
+		ft_putstr_fd("Label doesn't exist: line ", 2);
+		ft_putnbr_fd(line, 2);
+		ft_putendl_fd(".", 2);
+	}
+	else if (id == 5)
+	{
+		ft_putstr_fd("Bad arguments: line ", 2);
+		ft_putnbr_fd(line, 2);
+		ft_putendl_fd(".", 2);
+	}
+	exit(EXIT_FAILURE);
+}
+
 int		main(int ac, char **av)
 {
 	t_asm	*env;
 	t_file	*file;
 
 	if (ac != 2)
-	{
-		ft_printf("Usage : ./asm [filename.s]\n");
-		exit(EXIT_FAILURE);
-	}
+		show_err(1, 0);
 	file = my_fopen(av[1]);
 	if (file->fd == -1 || !ft_strstr(av[1], ".s"))
-	{
-		ft_printf("File doesn't exist.\n");
-		exit(EXIT_FAILURE);
-	}
+		show_err(2, 0);
 	init_struct(&env);
 	parsing_asm(env, file);
 	//write_in();

@@ -29,7 +29,7 @@ char	*my_fgets(char *str, int max, t_file *file)
 		max--;
 	}
 	*ptr = '\0';
-	if (c == EOF)
+	if (c == EOF && !str[0])
 		return (NULL);
 	return (ptr);
 }

@@ -34,6 +34,45 @@ int	parsing_asm(t_asm *env, t_file *file)
 		exit(EXIT_FAILURE);
 	init_header(header);
 	ft_bzero(str, BUF_SZ);
+
+	env->nb_line = 0;
+	while (my_fgets(str, BUF_SZ, file))
+	{
+		ft_printf("%s\n",str);
+		env->nb_line++;
+	}
+
+	/*printf("<\nthere is %d line\n>\n", env->nb_line);
+
+	env->str = (char**)malloc(sizeof(char*) * env->nb_line);
+	env->str[env->nb_line] = 0;
+	if (!env->str)
+	{
+		ft_printf("error \n");
+		exit(EXIT_FAILURE);
+	}
+	
+	lseek(file->fd, 0, SEEK_SET);
+
+	int i;
+	
+	i = 0;
+	while (my_fgets(str, BUF_SZ, file))
+	{
+		env->str[i++] = ft_strdup(str);
+	}
+*/
+/*	i = 0;
+	while (env->str[i])
+	{
+		ft_printf("|%s|\n", env->str[i++]);
+	}
+*/
+
+
+
+
+	/*
 	while (!header->prog_name[0] || !header->comment[0])
 	{
 		my_fgets(str, BUF_SZ, file);
@@ -49,6 +88,11 @@ int	parsing_asm(t_asm *env, t_file *file)
 		space = 0;
 		while (str[space] && ft_is_space(str[space]))
 			space++;
+		if (!str[space])
+		{
+			line++;
+			continue;
+		}
 
 		ft_printf("|%s|\n", str + space);	
 		if (!header->prog_name[0] && !ft_strncmp(str + space, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
@@ -66,5 +110,6 @@ int	parsing_asm(t_asm *env, t_file *file)
 		}
 		line++;
 	}
+	*/
 	return (0);
 }
