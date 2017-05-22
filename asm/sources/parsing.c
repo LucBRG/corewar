@@ -25,44 +25,46 @@ int	parsing_asm(t_asm *env, t_file *file)
 	char		str[BUF_SZ];
 	header_t	*header;
 	int			nu;
-	int			i;
+	int			space;
+	int			line;
 
-	nu = 0;
+	line = 1;
 	header = (header_t*)malloc(sizeof(*header));
 	if (header == NULL)
 		exit(EXIT_FAILURE);
 	init_header(header);
 	ft_bzero(str, BUF_SZ);
-	while (header->prog_name[0] == '\0' || header->comment[0] == '\0')
+	while (!header->prog_name[0] || !header->comment[0])
 	{
 		my_fgets(str, BUF_SZ, file);
-		if (!str[0]) {
-			ft_printf("EXIT\n");
+		if (!str[0]) 
+		{
+			ft_printf("Error: must have a prog_name and a comment.\n");
 			exit(EXIT_FAILURE);
 		}
 		nu = corewar_strchr(str, '#');
 		if (nu != -1) 
 			str[nu] = 0;
 
-		i = 0;
-		while (str[i] && ft_is_space(str[i]))
-			i++;
+		space = 0;
+		while (str[space] && ft_is_space(str[space]))
+			space++;
 
-		ft_printf("\"%s\"\n", str + i);	
-		if (!header->prog_name[0] && !ft_strncmp(str + i, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
+		ft_printf("|%s|\n", str + space);	
+		if (!header->prog_name[0] && !ft_strncmp(str + space, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
 		{
 			ft_strcpy(header->prog_name, "name");
 		}
-		else if (!header->comment[0] && !ft_strncmp(str + i, COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING)))
+		else if (!header->comment[0] && !ft_strncmp(str + space, COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING)))
 		{
 			ft_strcpy(header->comment, "comment");
 		}
 		else
 		{
-			ft_printf("ERROR\n");
+			ft_printf("Error: syntax error line %d.\n", line);
 			return (0);
 		}
+		line++;
 	}
-	ft_printf("FIN\n");
 	return (0);
 }

@@ -35,13 +35,13 @@ int		main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		ft_printf("usage : ./asm [filename.s]\n");
+		ft_printf("Usage : ./asm [filename.s]\n");
 		exit(EXIT_FAILURE);
 	}
 	file = my_fopen(av[1]);
 	if (file->fd == -1 || !ft_strstr(av[1], ".s"))
 	{
-		ft_printf("exite pas\n");
+		ft_printf("File doesn't exist.\n");
 		exit(EXIT_FAILURE);
 	}
 	init_struct(&env);
