@@ -24,12 +24,7 @@ typedef	struct	s_asm
 	char	**str;
 }				t_asm;
 
-typedef struct	s_parse
-{
-	int		name;
-	int		comment;
-}				t_parse;
-
-int	parsing_asm(t_asm *env, t_file *file);
+int		parsing_asm(t_asm *env, t_file *file);
+void	show_err(int id, int line);
 
 #endif

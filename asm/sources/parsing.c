@@ -13,103 +13,87 @@
 #include "op.h"
 #include "asm.h"
 
-static void	init_header(header_t *header)
+static void	init_parse(header_t *header, t_asm *env)
 {
 	ft_bzero(header->prog_name, PROG_NAME_LENGTH);
 	ft_bzero(header->comment, COMMENT_LENGTH);
+	env->nb_line = 0;
+}
+
+static void	fill_parsing(t_asm *env, t_file *file)
+{
+	int		i;
+	char	str[BUF_SZ];
+
+	i = 0;
+	while (my_fgets(str, BUF_SZ, file))
+		env->nb_line++;
+	lseek(file->fd, 0, SEEK_SET);
+	env->str = (char**)malloc(sizeof(char*) * env->nb_line);
+	while (my_fgets(str, BUF_SZ, file))
+		env->str[i++] = ft_strdup(str);
+	
+}
+
+static void	copy_header(char *dst, char *src)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (src[i] != '"')
+		i++;
+	i++;
+	while (src[i] != '"')
+		dst[j++] = src[i++];
+}
+
+static void	parse_header(header_t *header, t_asm *env)
+{
+	int	i;
+	int	nu;
+	int	space;
+
+	i = 0;
+	while (!header->prog_name[0] || !header->comment[0])
+	{
+		nu = corewar_strchr(env->str[i], '#');
+		if (nu != -1) 
+			env->str[nu] = 0;
+		space = 0;
+		while (env->str[i][space] && ft_is_space(env->str[i][space]))
+			space++;
+		if (!env->str[i][space])
+			;
+		else if (!header->prog_name[0] && !ft_strncmp(env->str[i] + space, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
+			copy_header(header->prog_name, env->str[i]);
+		else if (!header->comment[0] && !ft_strncmp(env->str[i] + space, COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING)))
+			copy_header(header->comment, env->str[i]);
+		else
+			show_err(3, 0);
+		i++;
+	}
 }
 
 int	parsing_asm(t_asm *env, t_file *file)
 {
-	(void)env;
 	char		str[BUF_SZ];
 	header_t	*header;
-	int			nu;
-	int			space;
-	int			line;
 
-	line = 1;
 	header = (header_t*)malloc(sizeof(*header));
 	if (header == NULL)
 		exit(EXIT_FAILURE);
-	init_header(header);
+	init_parse(header, env);
 	ft_bzero(str, BUF_SZ);
-
-	env->nb_line = 0;
-	while (my_fgets(str, BUF_SZ, file))
-	{
-		ft_printf("%s\n",str);
-		env->nb_line++;
-	}
-
-	/*printf("<\nthere is %d line\n>\n", env->nb_line);
-
-	env->str = (char**)malloc(sizeof(char*) * env->nb_line);
-	env->str[env->nb_line] = 0;
+	fill_parsing(env, file);
 	if (!env->str)
 	{
 		ft_printf("error \n");
 		exit(EXIT_FAILURE);
 	}
-	
-	lseek(file->fd, 0, SEEK_SET);
-
-	int i;
-	
-	i = 0;
-	while (my_fgets(str, BUF_SZ, file))
-	{
-		env->str[i++] = ft_strdup(str);
-	}
-*/
-/*	i = 0;
-	while (env->str[i])
-	{
-		ft_printf("|%s|\n", env->str[i++]);
-	}
-*/
-
-
-
-
-	/*
-	while (!header->prog_name[0] || !header->comment[0])
-	{
-		my_fgets(str, BUF_SZ, file);
-		if (!str[0]) 
-		{
-			ft_printf("Error: must have a prog_name and a comment.\n");
-			exit(EXIT_FAILURE);
-		}
-		nu = corewar_strchr(str, '#');
-		if (nu != -1) 
-			str[nu] = 0;
-
-		space = 0;
-		while (str[space] && ft_is_space(str[space]))
-			space++;
-		if (!str[space])
-		{
-			line++;
-			continue;
-		}
-
-		ft_printf("|%s|\n", str + space);	
-		if (!header->prog_name[0] && !ft_strncmp(str + space, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
-		{
-			ft_strcpy(header->prog_name, "name");
-		}
-		else if (!header->comment[0] && !ft_strncmp(str + space, COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING)))
-		{
-			ft_strcpy(header->comment, "comment");
-		}
-		else
-		{
-			ft_printf("Error: syntax error line %d.\n", line);
-			return (0);
-		}
-		line++;
-	}
-	*/
+	parse_header(header, env);
+	ft_printf("name = %s\ncomment = %s\n", header->prog_name, header->comment);
+	//parse_instruction(env);
 	return (0);
 }
