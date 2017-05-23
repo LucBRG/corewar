@@ -22,7 +22,9 @@ static void	free_struct(t_asm *env)
 
 void	show_err(int id, int line)
 {
-	if (id == 1)
+	if (!id)
+		ft_putstr_fd("Malloc error.\n", 2);
+	else if (id == 1)
 		ft_putstr_fd("Usage : ./asm [filename.s]\n", 2);
 	else if (id == 2)
 		ft_putstr_fd("File doesn't exist.\n", 2);
