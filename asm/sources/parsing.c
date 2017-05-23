@@ -77,6 +77,8 @@ static void	parse_header(header_t *header, t_asm *env)
 			show_err(3, env->i);
 		env->i++;
 	}
+	if (!header->prog_name[0] || !header->comment[0])
+		show_err(3, -1);
 }
 
 int	parsing_asm(t_asm *env, t_file *file)

@@ -44,6 +44,8 @@ void	show_err(int id, int line)
 		ft_putnbr_fd(line + 1, 2);
 		ft_putendl_fd(".", 2);
 	}
+	else if (id == 6)
+		ft_putstr_fd("Need .name and .comment attribute.\n", 2);
 	exit(EXIT_FAILURE);
 }
 
