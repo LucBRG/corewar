@@ -76,6 +76,6 @@ re: fclean all
 
 norme:
 	@clear
-	@make norme -C ./libft
-	@norminette ./src/*.c
+	@make norme -C ../libft
+	@norminette ./sources/*.c
 	@norminette ./includes/*.h

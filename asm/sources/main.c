@@ -13,14 +13,6 @@
 #include "op.h"
 #include "asm.h"
 
-static void	init_struct(t_asm **env)
-{
-	*env = (t_asm*)malloc(sizeof(t_asm*));
-	if (*env == NULL)
-		exit(EXIT_FAILURE);
-	(*env)->str = NULL;
-}
-
 static void	free_struct(t_asm *env)
 {
 	if (env->str)
@@ -37,19 +29,19 @@ void	show_err(int id, int line)
 	else if (id == 3)
 	{
 		ft_putstr_fd("Syntax error: line ", 2);
-		ft_putnbr_fd(line, 2);
+		ft_putnbr_fd(line + 1, 2);
 		ft_putendl_fd(".", 2);
 	}
 	else if (id == 4)
 	{
 		ft_putstr_fd("Label doesn't exist: line ", 2);
-		ft_putnbr_fd(line, 2);
+		ft_putnbr_fd(line + 1, 2);
 		ft_putendl_fd(".", 2);
 	}
 	else if (id == 5)
 	{
 		ft_putstr_fd("Bad arguments: line ", 2);
-		ft_putnbr_fd(line, 2);
+		ft_putnbr_fd(line + 1, 2);
 		ft_putendl_fd(".", 2);
 	}
 	exit(EXIT_FAILURE);
@@ -64,8 +56,11 @@ int		main(int ac, char **av)
 		show_err(1, 0);
 	file = my_fopen(av[1]);
 	if (file->fd == -1 || !ft_strstr(av[1], ".s"))
-		show_err(2, 0);
-	init_struct(&env);
+		show_err(2, 0);	
+	env = (t_asm*)malloc(sizeof(t_asm));
+	if (env == NULL)
+		exit(EXIT_FAILURE);
+	env->str = NULL;
 	parsing_asm(env, file);
 	//write_in();
 	free_struct(env);

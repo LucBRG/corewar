@@ -32,58 +32,50 @@ static void	fill_parsing(t_asm *env, t_file *file)
 	env->str = (char**)malloc(sizeof(char*) * env->nb_line);
 	while (my_fgets(str, BUF_SZ, file))
 		env->str[i++] = ft_strdup(str);
-	
 }
-/*
-	.name ""valid name"
-	.comment "valid comment"
-*/
-static void	copy_header(char *dst, char *src)
+
+static void	copy_header(char *dst, t_asm *env, int i)
 {
-	int	i;
 	int	j;
 
-	i = 0;
 	j = 0;
-	while (src[i] != '"')
+	while (ft_is_space(env->str[env->i][i]))
 		i++;
+	if (env->str[env->i][i] != '"')
+		show_err(3, env->i);
 	i++;
-	while (src[i] != '"')
-		dst[j++] = src[i++];
-
-	while (ft_is_space(src[++i]))
-		;
-	if (src[i]){
-		ft_printf("error\n");
-		exit(EXIT_FAILURE);
-	}
+	while (env->str[env->i][i] != '"')
+		dst[j++] = env->str[env->i][i++];
+	i++;
+	while (ft_is_space(env->str[env->i][i]))
+		i++;
+	if (env->str[env->i][i])
+		show_err(3, env->i);
 }
-
 
 static void	parse_header(header_t *header, t_asm *env)
 {
-	int	i;
 	int	nu;
 	int	space;
 
-	i = 0;
-	while (i < env->nb_line && (!header->prog_name[0] || !header->comment[0]))
+	env->i = 0;
+	while (env->i < env->nb_line && (!header->prog_name[0] || !header->comment[0]))
 	{
-		nu = cor_strchr(env->str[i], '#');
+		nu = cor_strchr(env->str[env->i], '#');
 		if (nu != -1) 
-			env->str[i][nu] = 0;
+			env->str[env->i][nu] = 0;
 		space = 0;
-		while (env->str[i][space] && ft_is_space(env->str[i][space]))
+		while (env->str[env->i][space] && ft_is_space(env->str[env->i][space]))
 			space++;
-		if (!env->str[i][space])
+		if (!env->str[env->i][space])
 			;
-		else if (!header->prog_name[0] && !ft_strncmp(env->str[i] + space, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
-			copy_header(header->prog_name, env->str[i]);
-		else if (!header->comment[0] && !ft_strncmp(env->str[i] + space, COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING)))
-			copy_header(header->comment, env->str[i]);
+		else if (!header->prog_name[0] && !ft_strncmp(env->str[env->i] + space, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
+			copy_header(header->prog_name, env, space + ft_strlen(NAME_CMD_STRING));
+		else if (!header->comment[0] && !ft_strncmp(env->str[env->i] + space, COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING)))
+			copy_header(header->comment, env, space + ft_strlen(COMMENT_CMD_STRING));
 		else
-			show_err(3, 0);
-		i++;
+			show_err(3, env->i);
+		env->i++;
 	}
 }
 
@@ -104,7 +96,7 @@ int	parsing_asm(t_asm *env, t_file *file)
 		exit(EXIT_FAILURE);
 	}
 	parse_header(header, env);
-	ft_printf("name = %s\ncomment = %s\n", header->prog_name, header->comment);
+	ft_printf("\n\nName:\t\t|%s|\nComment:\t|%s|\n", header->prog_name, header->comment);
 	//parse_instruction(env);
 	return (0);
 }

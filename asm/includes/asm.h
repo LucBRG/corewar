@@ -22,6 +22,7 @@ typedef	struct	s_asm
 {
 	int		nb_line;
 	char	**str;
+	int		i;
 }				t_asm;
 
 int		cor_strchr(const char *s, int c);
