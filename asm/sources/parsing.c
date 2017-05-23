@@ -34,7 +34,10 @@ static void	fill_parsing(t_asm *env, t_file *file)
 		env->str[i++] = ft_strdup(str);
 	
 }
-
+/*
+	.name ""valid name"
+	.comment "valid comment"
+*/
 static void	copy_header(char *dst, char *src)
 {
 	int	i;
