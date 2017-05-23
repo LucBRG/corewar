@@ -37,7 +37,7 @@ SRC_NAME =	$(sort ft_memset.c ft_bzero.c ft_memccpy.c ft_memcpy.c \
 		di_conv.c o_conv.c u_conv.c x_conv.c c_conv.c utils.c b_conv.c \
 		ft_strchrindex.c my_fgets.c my_fopen.c my_fclose.c my_fgetc.c \
 		get_next_line.c my_strtoull.c my_strtoll.c my_strtoul.c my_strtol.c \
-		my_strtouint.c my_strtoint.c ft_strchr2.c)
+		my_strtouint.c my_strtoint.c)
 
 SRC_PATH = ./src/
 OBJ_PATH = ./obj/

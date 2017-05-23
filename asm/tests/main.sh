@@ -7,6 +7,12 @@ GREEN='\e[32m'
 CYAN='\e[36m'
 DEFAULT='\e[39m'
 
+if [ ! -f ../asm ]; then
+	echo "Make project"
+	make -C ..
+	echo ""; echo ""
+fi
+
 for FILENAME in $(find . -name "test_*.s")
 do
 	printf "Execute $FILENAME\n"

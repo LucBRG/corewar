@@ -1,2 +1,2 @@
-.nam "valid name"
+.nam ""valid name"
 .commen "valid comment"

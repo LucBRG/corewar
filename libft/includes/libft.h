@@ -127,7 +127,6 @@ void			ft_putnwstr(wint_t *str, int nb);
 /*
 **Fonctions _str
 */
-int				corewar_strchr(const char *s, int c);
 
 char			*ft_strcat(char *s1, const char *s2);
 char			*ft_strchr(const char *s, int c);

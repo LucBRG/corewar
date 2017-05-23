@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.h                                              :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdeglain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/17 14:01:20 by mdeglain          #+#    #+#             */
-/*   Updated: 2017/05/22 11:14:07 by mdeglain         ###   ########.fr       */
+/*   Created: 2017/05/17 14:33:53 by mdeglain          #+#    #+#             */
+/*   Updated: 2017/05/22 12:18:35 by mdeglain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASM_H
-# define ASM_H
+#include "op.h"
+#include "asm.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include "../../libft/includes/libft.h"
-
-typedef	struct	s_asm
+int	cor_strchr(const char *s, int c)
 {
-	int		nb_line;
-	char	**str;
-}				t_asm;
+	int		i;
+	int		is_quote;
 
-int		cor_strchr(const char *s, int c);
-int		parsing_asm(t_asm *env, t_file *file);
-void	show_err(int id, int line);
-
-#endif
+	i = 0;
+	is_quote = 0;
+	while (s[i])
+	{
+		if (s[i] == '"')
+			is_quote = !is_quote;
+		if (s[i] == c && !is_quote)
+			return (i);
+		i++;
+	}
+	return (-1);
+}

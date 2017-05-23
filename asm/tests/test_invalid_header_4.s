@@ -1,2 +1,1 @@
-.name ""valid name"
-.comment "valid comment"
+.ename "eeee#"	 	 	 	 			f

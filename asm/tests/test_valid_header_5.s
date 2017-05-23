@@ -1,2 +1,2 @@
-.comment "valid comment" #ok gros
-.name "valid #name#"
+.comment 				"valid comment" #ok gros
+.name    "valid #name#"

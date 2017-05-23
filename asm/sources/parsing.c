@@ -50,7 +50,15 @@ static void	copy_header(char *dst, char *src)
 	i++;
 	while (src[i] != '"')
 		dst[j++] = src[i++];
+
+	while (ft_is_space(src[++i]))
+		;
+	if (src[i]){
+		ft_printf("error\n");
+		exit(EXIT_FAILURE);
+	}
 }
+
 
 static void	parse_header(header_t *header, t_asm *env)
 {
@@ -59,11 +67,11 @@ static void	parse_header(header_t *header, t_asm *env)
 	int	space;
 
 	i = 0;
-	while (!header->prog_name[0] || !header->comment[0])
+	while (i < env->nb_line && (!header->prog_name[0] || !header->comment[0]))
 	{
-		nu = corewar_strchr(env->str[i], '#');
+		nu = cor_strchr(env->str[i], '#');
 		if (nu != -1) 
-			env->str[nu] = 0;
+			env->str[i][nu] = 0;
 		space = 0;
 		while (env->str[i][space] && ft_is_space(env->str[i][space]))
 			space++;
