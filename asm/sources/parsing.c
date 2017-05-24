@@ -13,6 +13,29 @@
 #include "op.h"
 #include "asm.h"
 
+char 		*give_line(char *str)
+{
+	int		space;
+	int		comment;
+	int		str_len;
+	int		dst_len;
+	char	*dst;
+
+	space = 0;
+	comment = cor_strchr(str, '#');
+	str_len = ft_strlen(str);
+	while (str[space] && ft_is_space(str[space]))
+		space++;
+	dst_len = (comment != -1) ? (comment - space) : (str_len - space);
+	if (dst_len != str_len)
+	{
+		dst = ft_strnew(dst_len);
+		ft_strncpy(dst, &str[space], dst_len);
+		return (dst);
+	}
+	return (ft_strdup(str));
+}
+
 static void	init_parse(t_header *header, t_asm *env)
 {
 	ft_bzero(header->prog_name, PROG_NAME_LENGTH);
@@ -33,7 +56,10 @@ static void	fill_parsing(t_asm *env, t_file *file)
 	if (!env->str)
 		show_err(0, -1);
 	while (my_fgets(str, BUF_SZ, file))
-		env->str[i++] = ft_strdup(str);
+	{
+		env->str[i] = give_line(str);
+		i++;
+	}
 }
 
 static void	copy_header(char *dst, t_asm *env, int i)
@@ -55,37 +81,12 @@ static void	copy_header(char *dst, t_asm *env, int i)
 		show_err(3, env->i);
 }
 
-char 		*give_line(t_asm *env)
-{
-	int		space;
-	int		comment;
-	int		str_len;
-	int		dst_len;
-	char	*dst;
-
-	space = 0;
-	comment = cor_strchr(env->str[env->i], '#');
-	str_len = ft_strlen(env->str[env->i]);
-	while (env->str[env->i][space] && ft_is_space(env->str[env->i][space]))
-		space++;
-	dst_len = (comment != -1) ? (comment - space) : (str_len - space);
-	if (dst_len != str_len)
-	{
-		dst = ft_strnew(dst_len);
-		ft_strncpy(dst, &env->str[env->i][space], dst_len);
-		free(env->str[env->i]);
-		return (dst);
-	}
-	return (env->str[env->i]);
-}
-
 static void	parse_header(t_header *header, t_asm *env)
 {
 	env->i = 0;
 	while (env->i < env->nb_line
 		&& (!header->prog_name[0] || !header->comment[0]))
 	{
-		env->str[env->i] = give_line(env);
 		if (!env->str[env->i][0])
 			;
 		else if (!header->prog_name[0] && !ft_strncmp(env->str[env->i],
@@ -106,7 +107,11 @@ static void	parse_header(t_header *header, t_asm *env)
 
 void		parse_instruction(t_asm *env)
 {
-	(void)env;
+	while (env->i < env->nb_line)
+	{
+		printf("%s\n", env->str[env->i]);
+		env->i++;
+	}
 	return ;
 }
 

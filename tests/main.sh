@@ -2,7 +2,6 @@
 
 NB_ERROR=0
 NB=0
-
 RED='\e[31m'
 GREEN='\e[32m'
 CYAN='\e[36m'
@@ -19,7 +18,7 @@ do
 	NB_=1
 	IFS='='
 	for test in $(cat $FILENAME); do
-		printf "Execute $FILENAME #$NB_\n"
+		printf "Execute $FILENAME #$NB_ \t"
 		NB=$(($NB+1))
 		NB_=$(($NB_+1))
 
@@ -27,21 +26,24 @@ do
 
 		printf $RED
 			if [[ $FILENAME =~ "_asm_" ]]; then
-				../asm/asm .hidden.s 2> error 1> /dev/null
+				../asm/asm .hidden.s 2> error 1> result
 			else
-				../vm/corewar .hidden.s 2> error 1> /dev/null
+				../vm/corewar .hidden.s 2> error 1> result
 			fi
 			RESULT=$?
 		printf $DEFAULT
 
 		if [ $RESULT -eq 139 ]; then
 			NB_ERROR=$((NB_ERROR+1))
+			printf "$CYAN"
+			echo "$(cat result |grep "Segmentation")"
+			printf "$DEFAULT"
 		else
 			if [[ $FILENAME =~ "_valid_" ]]; then
 			    if [ $RESULT == 0 ]; then
 			    	printf "${GREEN}SUCCESS ${DEFAULT}\n"
 			    else
-					printf "${RED}ERROR: Le programme CRASH\n"
+					printf "${RED}ERROR: Le programme CRASH${DEFAULT}\n"
 					NB_ERROR=$((NB_ERROR+1))
 			    fi
 			else
@@ -53,16 +55,14 @@ do
 			    fi
 			fi
 		fi
-		printf "${CYAN}$(cat error |grep "Segmentation") ${DEFAULT}\n"
+
+		rm -f .hidden.s error result	
 	done
 done
 
-echo ""
 
 if [ $NB_ERROR -eq 0 ]; then
-    printf "${GREEN}ALL ($NB) TESTS PASSED ${DEFAULT}\n"
+    printf "\n${GREEN}ALL ($NB) TESTS PASSED ${DEFAULT}\n"
 else
-    printf "${RED}DANGER - $NB_ERROR ERRORS ${DEFAULT}\n"
+    printf "\n${RED}DANGER - $NB_ERROR ERRORS ${DEFAULT}\n"
 fi
-
-rm -f .hidden.s error
