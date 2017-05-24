@@ -9,7 +9,6 @@
 /*   Updated: 2017/05/22 11:14:07 by mdeglain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #ifndef ASM_H
 # define ASM_H
 
@@ -21,9 +20,9 @@
 typedef	struct		s_arg
 {
 	char			*name;
-	int				op_code;
-	int				special;
-	int				ocp;
+	unsigned char	op_code;
+	unsigned char	special;
+	unsigned char	ocp;
 	struct s_arg	*ref;
 	struct s_arg	*next;
 	struct s_arg	*prec;
@@ -31,11 +30,25 @@ typedef	struct		s_arg
 
 typedef	struct		s_asm
 {
-	int				nb_line;
+	unsigned int	nb_line;
 	char			**str;
-	int				i;
+	unsigned int	i;
+	unsigned int	j;
 	struct s_arg	*args;
+
 }					t_asm;
+
+typedef	struct		s_op
+{
+	unsigned char	name[6];
+	unsigned char	n_args;
+	unsigned char	args[3];
+	unsigned char	op_code;
+	unsigned int	n_cycle;
+	unsigned char	desc[256];
+	unsigned char	ocp;
+	unsigned char	carry;
+}					t_op;
 
 int					cor_strchr(const char *s, int c);
 int					parsing_asm(t_asm *env, t_file *file);
@@ -44,5 +57,16 @@ void				show_err(int id, int line);
 t_arg				*arg_create(void);
 void				arg_delete(t_arg **head);
 void				arg_add(t_arg **head, t_arg *arg);
+
+extern t_op	g_op_tab[17];
+
+#define RED     "\x1b[31m"
+#define GREEN   "\x1b[32m"
+#define YELLOW  "\x1b[33m"
+#define BLUE    "\x1b[34m"
+#define MAGENTA "\x1b[35m"
+#define CYAN    "\x1b[36m"
+#define RESET   "\x1b[0m"
+
 
 #endif

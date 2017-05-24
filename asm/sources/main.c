@@ -42,11 +42,17 @@ void		show_err(int id, int line)
 	}
 	else if (id == 5)
 	{
-		ft_putstr_fd("Bad arguments: line ", 2);
+		ft_putstr_fd("Instruction doesn't exist: line ", 2);
 		ft_putnbr_fd(line + 1, 2);
 		ft_putendl_fd(".", 2);
 	}
 	else if (id == 6)
+	{
+		ft_putstr_fd("Bad arguments: line ", 2);
+		ft_putnbr_fd(line + 1, 2);
+		ft_putendl_fd(".", 2);
+	}
+	else if (id == 7)
 		ft_putstr_fd("Need .name and .comment attribute.\n", 2);
 	exit(EXIT_FAILURE);
 }

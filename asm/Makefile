@@ -13,7 +13,7 @@
 NAME = asm
 CC = gcc
 CFLAGS = -Wall -Wextra
-SRC_NAME =	$(sort main.c parsing.c utils.c args.c)
+SRC_NAME =	$(sort op.c main.c parsing.c utils.c args.c)
 
 LIB_PATH = ../libft/
 LIB_NAME = libft.a

@@ -43,6 +43,8 @@ static char		*ft_nextstr(char **str, char c)
 
 	while (**str == c)
 		(*str)++;
+	while (ft_is_space(**str))
+		(*str)++;
 	end = ft_strchr(*str, c);
 	if (end == NULL)
 		len = ft_strlen(*str);

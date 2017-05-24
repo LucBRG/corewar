@@ -105,14 +105,104 @@ static void	parse_header(t_header *header, t_asm *env)
 		show_err(3, -1);
 }
 
+int		is_in(const char *str, char letter)
+{
+	while (*str)
+	{
+		if (*str == letter)
+			return (1);
+		str++;
+	}
+	return (0);
+}
+
+void		jump_space(t_asm *env)
+{
+	while (ft_is_space(env->str[env->i][env->j]))
+		env->j++;
+}
+
+void		find_lab(t_asm *env)
+{
+	t_arg	*arg;
+
+	env->j = 0;
+	while (!ft_is_space(env->str[env->i][env->j]) && env->str[env->i][env->j] != LABEL_CHAR)
+	{
+		if (!is_in(LABEL_CHARS, env->str[env->i][env->j]))
+			show_err(3, env->i);
+		env->j++;
+	}
+	if (env->j && env->str[env->i][env->j] == LABEL_CHAR)
+	{
+		arg = arg_create();
+		arg->name = ft_strnew(env->j);
+		arg->special |= T_LAB; 
+		ft_strncpy(arg->name, &env->str[env->i][0], env->j);
+		arg_add(&env->args, arg);
+		//printf("Label |%s|\n", arg->name);
+		env->j++;
+		jump_space(env);
+	}
+	else
+		env->j = 0;
+}
+
+void		find_ins(t_asm *env)
+{
+	int		i;
+	size_t	len;
+	t_arg	*arg;
+
+	i = 15;
+	while (i >= 0)
+	{
+		len = ft_strlen((const char*)g_op_tab[i].name);
+		if (!ft_strncmp((const char*)g_op_tab[i].name, &env->str[env->i][env->j], len)
+			&& ft_is_space(env->str[env->i][env->j + len]))
+		{
+			//printf("Instruction: %s\n", g_op_tab[i].name);
+			arg = arg_create();
+			arg->op_code = g_op_tab[i].op_code;
+			arg->special |= T_INSTRU;
+			arg_add(&env->args, arg);
+			env->j += len;
+			return ;
+		}
+		i--;
+	}
+	show_err(5, env->i);
+}
+
+void		find_par(t_asm *env)
+{
+	t_arg	*arg;
+	(void)arg;
+
+	jump_space(env);
+
+	char	**split;
+	split = ft_strsplit(&env->str[env->i][env->j], ',');
+	while (*split)
+	{
+		printf("|%s|\n", *split);
+		split++;
+	}
+	printf("\n");
+}
+
 void		parse_instruction(t_asm *env)
 {
 	while (env->i < env->nb_line)
 	{
-		printf("%s\n", env->str[env->i]);
+		if (env->str[env->i][0])
+		{
+			find_lab(env);
+			find_ins(env);
+			find_par(env);
+		}
 		env->i++;
 	}
-	return ;
 }
 
 int			parsing_asm(t_asm *env, t_file *file)
@@ -127,8 +217,30 @@ int			parsing_asm(t_asm *env, t_file *file)
 	ft_bzero(str, BUF_SZ);
 	fill_parsing(env, file);
 	parse_header(header, env);
-	ft_printf("\n|DEBUG|\n================================\nName:\t\t|%s|\nComment:\t|%s|\n",
-		header->prog_name, header->comment);
 	parse_instruction(env);
+
+	printf("\n\n");
+
+	t_arg	*lst;
+	int 	n;
+
+	lst = env->args;
+	n = -1;
+	while (lst)
+	{
+		printf("%d\t", ++n);
+
+		if (lst->name)
+		{
+			printf(RED"LAB"RESET"\t%s", lst->name);
+		}
+		else if (lst->op_code)
+		{
+			printf(CYAN"INS"RESET"\t%s", g_op_tab[lst->op_code - 1].name);
+		} 
+
+		printf("\n");
+		lst = lst->next;
+	}
 	return (0);
 }
