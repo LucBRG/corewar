@@ -34,6 +34,7 @@ typedef	struct		s_asm
 	int				nb_line;
 	char			**str;
 	int				i;
+	struct s_arg	*args;
 }					t_asm;
 
 int					cor_strchr(const char *s, int c);

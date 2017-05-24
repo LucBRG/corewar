@@ -65,6 +65,7 @@ int			main(int ac, char **av)
 	if (env == NULL)
 		exit(EXIT_FAILURE);
 	env->str = NULL;
+	env->args = NULL;
 	parsing_asm(env, file);
 	free_struct(env);
 	return (0);

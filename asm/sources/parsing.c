@@ -13,7 +13,7 @@
 #include "op.h"
 #include "asm.h"
 
-static void	init_parse(header_t *header, t_asm *env)
+static void	init_parse(t_header *header, t_asm *env)
 {
 	ft_bzero(header->prog_name, PROG_NAME_LENGTH);
 	ft_bzero(header->comment, COMMENT_LENGTH);
@@ -55,31 +55,47 @@ static void	copy_header(char *dst, t_asm *env, int i)
 		show_err(3, env->i);
 }
 
-static void	parse_header(header_t *header, t_asm *env)
+char 		*give_line(t_asm *env)
 {
-	int	nu;
-	int	space;
+	int		space;
+	int		comment;
+	int		str_len;
+	int		dst_len;
+	char	*dst;
 
+	space = 0;
+	comment = cor_strchr(env->str[env->i], '#');
+	str_len = ft_strlen(env->str[env->i]);
+	while (env->str[env->i][space] && ft_is_space(env->str[env->i][space]))
+		space++;
+	dst_len = (comment != -1) ? (comment - space) : (str_len - space);
+	if (dst_len != str_len)
+	{
+		dst = ft_strnew(dst_len);
+		ft_strncpy(dst, &env->str[env->i][space], dst_len);
+		free(env->str[env->i]);
+		return (dst);
+	}
+	return (env->str[env->i]);
+}
+
+static void	parse_header(t_header *header, t_asm *env)
+{
 	env->i = 0;
 	while (env->i < env->nb_line
 		&& (!header->prog_name[0] || !header->comment[0]))
 	{
-		nu = cor_strchr(env->str[env->i], '#');
-		if (nu != -1)
-			env->str[env->i][nu] = 0;
-		space = 0;
-		while (env->str[env->i][space] && ft_is_space(env->str[env->i][space]))
-			space++;
-		if (!env->str[env->i][space])
+		env->str[env->i] = give_line(env);
+		if (!env->str[env->i][0])
 			;
-		else if (!header->prog_name[0] && !ft_strncmp(env->str[env->i] + space,
+		else if (!header->prog_name[0] && !ft_strncmp(env->str[env->i],
 			NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
 			copy_header(header->prog_name, env,
-				space + ft_strlen(NAME_CMD_STRING));
-		else if (!header->comment[0] && !ft_strncmp(env->str[env->i] + space,
+				ft_strlen(NAME_CMD_STRING));
+		else if (!header->comment[0] && !ft_strncmp(env->str[env->i],
 			COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING)))
 			copy_header(header->comment, env,
-				space + ft_strlen(COMMENT_CMD_STRING));
+				ft_strlen(COMMENT_CMD_STRING));
 		else
 			show_err(3, env->i);
 		env->i++;
@@ -88,29 +104,26 @@ static void	parse_header(header_t *header, t_asm *env)
 		show_err(3, -1);
 }
 
-t_arg		*parse_instruction(t_asm *env)
+void		parse_instruction(t_asm *env)
 {
-	t_arg	*args;
-
-	args = NULL;
-	return (args);
+	(void)env;
+	return ;
 }
 
 int			parsing_asm(t_asm *env, t_file *file)
 {
 	char		str[BUF_SZ];
-	header_t	*header;
-	t_arg		*args;
+	t_header	*header;
 
-	header = (header_t*)malloc(sizeof(*header));
+	header = (t_header*)malloc(sizeof(*header));
 	if (header == NULL)
 		exit(EXIT_FAILURE);
 	init_parse(header, env);
 	ft_bzero(str, BUF_SZ);
 	fill_parsing(env, file);
 	parse_header(header, env);
-	ft_printf("\n\nName:\t\t|%s|\nComment:\t|%s|\n",
+	ft_printf("\n|DEBUG|\n================================\nName:\t\t|%s|\nComment:\t|%s|\n",
 		header->prog_name, header->comment);
-	args = parse_instruction(env);
+	parse_instruction(env);
 	return (0);
 }
