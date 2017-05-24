@@ -20,7 +20,7 @@ static void	free_struct(t_asm *env)
 	free(env);
 }
 
-void	show_err(int id, int line)
+void		show_err(int id, int line)
 {
 	if (!id)
 		ft_putstr_fd("Malloc error.\n", 2);
@@ -51,7 +51,7 @@ void	show_err(int id, int line)
 	exit(EXIT_FAILURE);
 }
 
-int		main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	t_asm	*env;
 	t_file	*file;
@@ -60,13 +60,12 @@ int		main(int ac, char **av)
 		show_err(1, 0);
 	file = my_fopen(av[1]);
 	if (file->fd == -1 || !ft_strstr(av[1], ".s"))
-		show_err(2, 0);	
+		show_err(2, 0);
 	env = (t_asm*)malloc(sizeof(t_asm));
 	if (env == NULL)
 		exit(EXIT_FAILURE);
 	env->str = NULL;
 	parsing_asm(env, file);
-	//write_in();
 	free_struct(env);
 	return (0);
 }

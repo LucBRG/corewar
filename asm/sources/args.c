@@ -13,7 +13,7 @@
 #include "op.h"
 #include "asm.h"
 
-t_arg	*arg_create()
+t_arg	*arg_create(void)
 {
 	t_arg	*arg;
 

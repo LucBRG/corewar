@@ -18,37 +18,30 @@
 # include <fcntl.h>
 # include "../../libft/includes/libft.h"
 
-typedef	struct	s_arg
+typedef	struct		s_arg
 {
 	char			*name;
-	int 			op_code;
-	int 			special;
+	int				op_code;
+	int				special;
 	int				ocp;
 	struct s_arg	*ref;
 	struct s_arg	*next;
 	struct s_arg	*prec;
-	/*
-		#SPE_LABEL
-		#SPE_INSTR 		{sur 1 		octet}
-		#SPE_REG		{sur 1 		octet}
-		#SPE_DIR		{sur 2 ou 4 octets}
-		#SPE_IND		{sur 2 		octets}
-	*/
-}				t_arg;
+}					t_arg;
 
-typedef	struct	s_asm
+typedef	struct		s_asm
 {
-	int		nb_line;
-	char	**str;
-	int		i;
-}				t_asm;
+	int				nb_line;
+	char			**str;
+	int				i;
+}					t_asm;
 
-int		cor_strchr(const char *s, int c);
-int		parsing_asm(t_asm *env, t_file *file);
-void	show_err(int id, int line);
+int					cor_strchr(const char *s, int c);
+int					parsing_asm(t_asm *env, t_file *file);
+void				show_err(int id, int line);
 
-t_arg	*arg_create();
-void	arg_delete(t_arg **head);
-void	arg_add(t_arg **head, t_arg *arg);
+t_arg				*arg_create(void);
+void				arg_delete(t_arg **head);
+void				arg_add(t_arg **head, t_arg *arg);
 
 #endif
