@@ -30,3 +30,20 @@ int	cor_strchr(const char *s, int c)
 	}
 	return (-1);
 }
+
+int		is_in(const char *str, char letter)
+{
+	while (*str)
+	{
+		if (*str == letter)
+			return (1);
+		str++;
+	}
+	return (0);
+}
+
+void	jump_space(t_asm *env)
+{
+	while (ft_is_space(env->str[env->i][env->j]))
+		env->j++;
+}

@@ -12,12 +12,22 @@
 
 #include "libft.h"
 
-void	ft_strsplit_free(char **str)
+void		ft_strsplit_free(char **split)
 {
-	int i;
+	int		i;
 
-	i = -1;
-	while (str[++i])
-		free(str[i]);
-	free(str);
+	i = 0;
+	if (split == NULL)
+		return ;
+	i = ft_strsplit_len(split) - 1;
+	if (i > 0)
+	{
+		while (i >= 0)
+		{
+			free(split[i]);
+			i--;
+		}
+		free(split);
+		split = NULL;
+	}
 }

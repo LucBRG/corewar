@@ -13,7 +13,14 @@
 #include "op.h"
 #include "asm.h"
 
-char 		*give_line(char *str)
+static void	init_parse(t_header *header, t_asm *env)
+{
+	ft_bzero(header->prog_name, PROG_NAME_LENGTH);
+	ft_bzero(header->comment, COMMENT_LENGTH);
+	env->nb_line = 0;
+}
+
+static char	*give_line(char *str)
 {
 	int		space;
 	int		comment;
@@ -36,13 +43,6 @@ char 		*give_line(char *str)
 	return (ft_strdup(str));
 }
 
-static void	init_parse(t_header *header, t_asm *env)
-{
-	ft_bzero(header->prog_name, PROG_NAME_LENGTH);
-	ft_bzero(header->comment, COMMENT_LENGTH);
-	env->nb_line = 0;
-}
-
 static void	fill_parsing(t_asm *env, t_file *file)
 {
 	int		i;
@@ -60,25 +60,6 @@ static void	fill_parsing(t_asm *env, t_file *file)
 		env->str[i] = give_line(str);
 		i++;
 	}
-}
-
-static void	copy_header(char *dst, t_asm *env, int i)
-{
-	int	j;
-
-	j = 0;
-	while (ft_is_space(env->str[env->i][i]))
-		i++;
-	if (env->str[env->i][i] != '"')
-		show_err(3, env->i);
-	i++;
-	while (env->str[env->i][i] != '"')
-		dst[j++] = env->str[env->i][i++];
-	i++;
-	while (ft_is_space(env->str[env->i][i]))
-		i++;
-	if (env->str[env->i][i])
-		show_err(3, env->i);
 }
 
 static void	parse_header(t_header *header, t_asm *env)
@@ -105,106 +86,6 @@ static void	parse_header(t_header *header, t_asm *env)
 		show_err(3, -1);
 }
 
-int		is_in(const char *str, char letter)
-{
-	while (*str)
-	{
-		if (*str == letter)
-			return (1);
-		str++;
-	}
-	return (0);
-}
-
-void		jump_space(t_asm *env)
-{
-	while (ft_is_space(env->str[env->i][env->j]))
-		env->j++;
-}
-
-void		find_lab(t_asm *env)
-{
-	t_arg	*arg;
-
-	env->j = 0;
-	while (!ft_is_space(env->str[env->i][env->j]) && env->str[env->i][env->j] != LABEL_CHAR)
-	{
-		if (!is_in(LABEL_CHARS, env->str[env->i][env->j]))
-			show_err(3, env->i);
-		env->j++;
-	}
-	if (env->j && env->str[env->i][env->j] == LABEL_CHAR)
-	{
-		arg = arg_create();
-		arg->name = ft_strnew(env->j);
-		arg->special |= T_LAB; 
-		ft_strncpy(arg->name, &env->str[env->i][0], env->j);
-		arg_add(&env->args, arg);
-		//printf("Label |%s|\n", arg->name);
-		env->j++;
-		jump_space(env);
-	}
-	else
-		env->j = 0;
-}
-
-void		find_ins(t_asm *env)
-{
-	int		i;
-	size_t	len;
-	t_arg	*arg;
-
-	i = 15;
-	while (i >= 0)
-	{
-		len = ft_strlen((const char*)g_op_tab[i].name);
-		if (!ft_strncmp((const char*)g_op_tab[i].name, &env->str[env->i][env->j], len)
-			&& ft_is_space(env->str[env->i][env->j + len]))
-		{
-			//printf("Instruction: %s\n", g_op_tab[i].name);
-			arg = arg_create();
-			arg->op_code = g_op_tab[i].op_code;
-			arg->special |= T_INSTRU;
-			arg_add(&env->args, arg);
-			env->j += len;
-			return ;
-		}
-		i--;
-	}
-	show_err(5, env->i);
-}
-
-void		find_par(t_asm *env)
-{
-	t_arg	*arg;
-	(void)arg;
-
-	jump_space(env);
-
-	char	**split;
-	split = ft_strsplit(&env->str[env->i][env->j], ',');
-	while (*split)
-	{
-		printf("|%s|\n", *split);
-		split++;
-	}
-	printf("\n");
-}
-
-void		parse_instruction(t_asm *env)
-{
-	while (env->i < env->nb_line)
-	{
-		if (env->str[env->i][0])
-		{
-			find_lab(env);
-			find_ins(env);
-			find_par(env);
-		}
-		env->i++;
-	}
-}
-
 int			parsing_asm(t_asm *env, t_file *file)
 {
 	char		str[BUF_SZ];
@@ -219,7 +100,7 @@ int			parsing_asm(t_asm *env, t_file *file)
 	parse_header(header, env);
 	parse_instruction(env);
 
-	printf("\n\n");
+// =============================================================================
 
 	t_arg	*lst;
 	int 	n;
@@ -230,17 +111,29 @@ int			parsing_asm(t_asm *env, t_file *file)
 	{
 		printf("%d\t", ++n);
 
-		if (lst->name)
+		if (lst->name && !lst->octet)
 		{
-			printf(RED"LAB"RESET"\t%s", lst->name);
+			printf(RED"LAB"RESET"\t%s\n", lst->name);
+		}
+		else if (lst->name && lst->octet)
+		{
+			printf("TYPE = \t%s\n", (lst->special > 3) ? "indirect" : (lst->special == 1) ? "registre" : "direct");
 		}
 		else if (lst->op_code)
 		{
-			printf(CYAN"INS"RESET"\t%s", g_op_tab[lst->op_code - 1].name);
+			printf(CYAN"INS"RESET"\t%d\n", lst->op_code);
 		} 
 
-		printf("\n");
+		printf("");
 		lst = lst->next;
 	}
+
+// =============================================================================
+
 	return (0);
 }
+
+
+
+
+

@@ -23,6 +23,8 @@ typedef	struct		s_arg
 	unsigned char	op_code;
 	unsigned char	special;
 	unsigned char	ocp;
+	unsigned char	n_args;
+	unsigned char	octet;
 	struct s_arg	*ref;
 	struct s_arg	*next;
 	struct s_arg	*prec;
@@ -35,6 +37,7 @@ typedef	struct		s_asm
 	unsigned int	i;
 	unsigned int	j;
 	struct s_arg	*args;
+	unsigned char	oct_line;
 
 }					t_asm;
 
@@ -50,13 +53,26 @@ typedef	struct		s_op
 	unsigned char	carry;
 }					t_op;
 
+
+
+
 int					cor_strchr(const char *s, int c);
 int					parsing_asm(t_asm *env, t_file *file);
 void				show_err(int id, int line);
-
 t_arg				*arg_create(void);
 void				arg_delete(t_arg **head);
 void				arg_add(t_arg **head, t_arg *arg);
+void				find_par(t_asm *env, unsigned char n_args);
+int					find_ins(t_asm *env);
+void				find_lab(t_asm *env);
+void				copy_header(char *dst, t_asm *env, int i);
+void				parse_instruction(t_asm *env);
+int					is_in(const char *str, char letter);
+void				jump_space(t_asm *env);
+void				verif_name(t_asm *env, t_arg *arg);
+
+
+
 
 extern t_op	g_op_tab[17];
 

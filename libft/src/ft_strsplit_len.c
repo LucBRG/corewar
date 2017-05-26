@@ -12,16 +12,15 @@
 
 #include "libft.h"
 
-int	ft_strsplit_len(char **str)
+int	ft_strsplit_len(char **split)
 {
-	int i;
-	int n;
+	int		size;
 
-	if (!str)
-		return (0);
-	i = -1;
-	n = 0;
-	while (str[++i])
-		++n;
-	return (n);
+	size = 0;
+	if (split == NULL)
+		return (-1);
+	else
+		while (split[size] != NULL)
+			size++;
+	return (size);
 }
