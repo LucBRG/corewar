@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdeglain <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdeglain <mdeglain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 13:54:47 by mdeglain          #+#    #+#             */
-/*   Updated: 2017/05/17 14:53:30 by mdeglain         ###   ########.fr       */
+/*   Updated: 2017/05/29 12:01:00 by mdeglain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_arg	*arg_create(void)
 	arg->ref = NULL;
 	arg->next = NULL;
 	arg->prec = NULL;
+	arg->tot_octets = 0;
 	return (arg);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mdeglain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 16:11:15 by mdeglain          #+#    #+#             */
-/*   Updated: 2017/05/26 16:11:17 by mdeglain         ###   ########.fr       */
+/*   Updated: 2017/05/29 10:39:13 by mdeglain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	verif_reg(t_asm *env, char *str)
 
 static void	verif_dir(t_asm *env, char *str)
 {
-	if (*(++str) == ':')
+	if (*str == ':')
 	{
 		while (*(++str) && !ft_is_space(*str))
 			if (!is_in(LABEL_CHARS, *str))

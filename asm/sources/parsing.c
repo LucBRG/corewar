@@ -3,15 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdeglain <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdeglain <mdeglain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 14:33:53 by mdeglain          #+#    #+#             */
-/*   Updated: 2017/05/22 12:18:35 by mdeglain         ###   ########.fr       */
+/*   Updated: 2017/05/30 16:51:38 by mdeglain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "op.h"
 #include "asm.h"
+
+int	verif_exist(t_arg *lst, char *str)
+{
+	printf(">> %s\n", &str[1]);
+	while (lst)
+	{
+		printf("-- %s\n", lst->name);
+		if ((lst->special & T_LAB) && ft_strcmp(lst->name, &(str[1])) == 0)
+		{
+			printf("ici\n");
+			return (1);
+		}
+		lst = lst->next;
+	}
+	show_err(3, 0);
+	return (0);
+}
+
+void		label_exist(t_asm *env)
+{
+	t_arg	*lst;
+	t_arg	*tmp;
+
+	lst = env->args;
+	tmp = env->args;
+	while (lst)
+	{
+		if (!(lst->special & T_LAB) && ft_strchr(lst->name, LABEL_CHAR))
+		{
+			if (verif_exist(tmp, lst->name))
+			{
+				printf(GREEN"LABEL TROUVÉ\n"RESET);
+				return ;
+			}
+			printf("PAS TROUVÉ\n");
+		}
+		lst = lst->next;
+	}
+}
 
 static void	init_parse(t_header *header, t_asm *env)
 {
@@ -99,6 +138,7 @@ int			parsing_asm(t_asm *env, t_file *file)
 	fill_parsing(env, file);
 	parse_header(header, env);
 	parse_instruction(env);
+	label_exist(env);
 
 // =============================================================================
 
