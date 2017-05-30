@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 14:05:38 by dbischof          #+#    #+#             */
-/*   Updated: 2017/05/30 14:07:20 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/05/30 16:42:54 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int main(int ac, char **av)
 {
-	char	*bot;
+	t_bot	*bot;
 
 	if (ac > 1)
-		bot = open_bot(av[1]);
+		bot = creabot(av[1]);
+	// printf("%s\n", bot);
 	return (0);
 }
