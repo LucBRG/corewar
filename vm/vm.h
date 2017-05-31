@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 15:19:29 by dbischof          #+#    #+#             */
-/*   Updated: 2017/05/31 14:19:35 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/05/31 15:30:50 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 typedef struct		s_bot
 {
+	int				id;
 	char			*name;
 	char			*comment;
 	unsigned char	*instructions;
