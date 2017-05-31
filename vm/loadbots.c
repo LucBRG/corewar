@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   loadbots.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/30 14:05:38 by dbischof          #+#    #+#             */
-/*   Updated: 2017/05/31 14:22:32 by dbischof         ###   ########.fr       */
+/*   Created: 2017/05/31 14:14:51 by dbischof          #+#    #+#             */
+/*   Updated: 2017/05/31 14:23:36 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int main(int ac, char **av)
+t_bots	loadbots(int ac, char **av)
 {
 	int		i;
+	t_bot	*tmp;
 	t_bots	bots;
 
-	i = -1;
-	bots = loadbots(ac, av);
-	printf("nb bots: %d\n", bots.nb);
-	while (++i < bots.nb)
-		displaybot(&bots.bots[i]);
-	return (0);
+	i = 0;
+	bots.nb = 0;
+	while (++i < ac)
+	{
+		if ((tmp = creabot(av[i])))
+		{
+			bots.bots[bots.nb] = *tmp;
+			bots.nb++;
+		}
+	}
+	return (bots);
 }

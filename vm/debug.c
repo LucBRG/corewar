@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 18:22:36 by dbischof          #+#    #+#             */
-/*   Updated: 2017/05/30 18:46:58 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/05/31 14:12:08 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,12 @@ void	debug(unsigned char *s, int len)
 
 void	displaybot(t_bot *bot)
 {
-	printf("name\t\t: %s\ncomment\t\t: %s\ninstructions\t: %d\n",
-		bot->name, bot->comment, bot->nb_instructions);
-	hexa(bot->instructions, bot->nb_instructions, 0);
+	if (!bot)
+		printf("error bot\n");
+	else
+	{
+		printf("name\t\t: %s\ncomment\t\t: %s\ninstructions\t: %d\n",
+			bot->name, bot->comment, bot->nb_instructions);
+		hexa(bot->instructions, bot->nb_instructions, 0);
+	}
 }
