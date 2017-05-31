@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 14:05:38 by dbischof          #+#    #+#             */
-/*   Updated: 2017/05/31 14:22:32 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/05/31 14:54:13 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ int main(int ac, char **av)
 	bots = loadbots(ac, av);
 	printf("nb bots: %d\n", bots.nb);
 	while (++i < bots.nb)
-		displaybot(&bots.bots[i]);
+		displaybot(bots.bots[i]);
 	return (0);
 }

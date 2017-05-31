@@ -31,7 +31,7 @@ typedef struct		s_bot
 typedef struct		s_bots
 {
 	int				nb;
-	t_bot			bots[4];
+	t_bot			*bots[4];
 }					t_bots;
 
 int		open_bot(char *path, unsigned char **bot);
