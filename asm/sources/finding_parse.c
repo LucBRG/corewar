@@ -94,6 +94,8 @@ int		find_ins(t_asm *env, t_arg *ref_inst)
 
 	i = 16;
 	arg = NULL;
+	if (env->str[env->i][env->j] == '\0')
+		return (0);
 	while (--i >= 0)
 	{
 		len = ft_strlen((const char*)g_op_tab[i].name);
@@ -104,7 +106,7 @@ int		find_ins(t_asm *env, t_arg *ref_inst)
 			arg = fill_arg(arg, env, i, len);
 			ref_inst = arg;
 			if (g_op_tab[i].has_ocp == 1)
-				ref_inst += 1;
+				ref_inst->tot_octets += 1;
 			return (arg->n_args);
 		}
 	}

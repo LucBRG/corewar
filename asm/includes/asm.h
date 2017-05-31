@@ -34,6 +34,7 @@ typedef	struct		s_arg
 
 typedef	struct		s_asm
 {
+	int				header_len;
 	unsigned int	nb_line;
 	char			**str;
 	unsigned int	i;
@@ -72,6 +73,10 @@ void				parse_instruction(t_asm *env);
 int					is_in(const char *str, char letter);
 void				jump_space(t_asm *env);
 void				verif_name(t_asm *env, t_arg *arg);
+int					cor_strlen(char *str);
+int					verif_exist(t_arg *lst, char *str);
+void				label_exist(t_asm *env);
+void				good_order(t_asm *env);
 
 
 

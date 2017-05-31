@@ -14,7 +14,7 @@ NAME = asm
 CC = gcc
 CFLAGS = -Wall -Wextra
 SRC_NAME =	$(sort op.c main.c parsing.c utils.c args.c finding_parse.c \
-			parsing2.c verif_args.c)
+			parsing2.c verif_args.c parsing3.c)
 
 LIB_PATH = ../libft/
 LIB_NAME = libft.a

@@ -67,7 +67,7 @@ static void	verif_ind(t_asm *env, char *str)
 	{
 		if (*str != '-' && !ft_isdigit(*str))
 			show_err(3, env->i);
-		while (*str && !ft_is_space(*str))
+		while (*(++str) && !ft_is_space(*str))
 			if (!ft_isdigit(*str))
 				show_err(3, env->i);
 	}

@@ -13,6 +13,21 @@
 #include "op.h"
 #include "asm.h"
 
+int	cor_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (ft_is_space(*str))
+		str++;
+	while (!ft_is_space(*str) && *str != LABEL_CHAR && *str)
+	{
+		i++;
+		str++;
+	}
+	return (i);
+}
+
 int	cor_strchr(const char *s, int c)
 {
 	int		i;

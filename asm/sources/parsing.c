@@ -13,45 +13,6 @@
 #include "op.h"
 #include "asm.h"
 
-int	verif_exist(t_arg *lst, char *str)
-{
-	printf(">> %s\n", &str[1]);
-	while (lst)
-	{
-		printf("-- %s\n", lst->name);
-		if ((lst->special & T_LAB) && ft_strcmp(lst->name, &(str[1])) == 0)
-		{
-			printf("ici\n");
-			return (1);
-		}
-		lst = lst->next;
-	}
-	show_err(3, 0);
-	return (0);
-}
-
-void		label_exist(t_asm *env)
-{
-	t_arg	*lst;
-	t_arg	*tmp;
-
-	lst = env->args;
-	tmp = env->args;
-	while (lst)
-	{
-		if (!(lst->special & T_LAB) && ft_strchr(lst->name, LABEL_CHAR))
-		{
-			if (verif_exist(tmp, lst->name))
-			{
-				printf(GREEN"LABEL TROUVÉ\n"RESET);
-				return ;
-			}
-			printf("PAS TROUVÉ\n");
-		}
-		lst = lst->next;
-	}
-}
-
 static void	init_parse(t_header *header, t_asm *env)
 {
 	ft_bzero(header->prog_name, PROG_NAME_LENGTH);
@@ -104,6 +65,7 @@ static void	fill_parsing(t_asm *env, t_file *file)
 static void	parse_header(t_header *header, t_asm *env)
 {
 	env->i = 0;
+	env->header_len = 0;
 	while (env->i < env->nb_line
 		&& (!header->prog_name[0] || !header->comment[0]))
 	{
@@ -120,6 +82,7 @@ static void	parse_header(t_header *header, t_asm *env)
 		else
 			show_err(3, env->i);
 		env->i++;
+		env->header_len++;
 	}
 	if (!header->prog_name[0] || !header->comment[0])
 		show_err(3, -1);
@@ -139,6 +102,7 @@ int			parsing_asm(t_asm *env, t_file *file)
 	parse_header(header, env);
 	parse_instruction(env);
 	label_exist(env);
+	good_order(env);
 
 // =============================================================================
 
@@ -162,9 +126,7 @@ int			parsing_asm(t_asm *env, t_file *file)
 		else if (lst->op_code)
 		{
 			printf(CYAN"INS"RESET"\t%d\n", lst->op_code);
-		} 
-
-		printf("");
+		}
 		lst = lst->next;
 	}
 
