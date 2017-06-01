@@ -6,11 +6,12 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 14:05:38 by dbischof          #+#    #+#             */
-/*   Updated: 2017/05/31 14:54:13 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/05/31 16:44:28 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+#include "vm_battle.h"
 
 int main(int ac, char **av)
 {
