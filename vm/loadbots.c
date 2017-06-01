@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 14:14:51 by dbischof          #+#    #+#             */
-/*   Updated: 2017/05/31 15:01:52 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/01 09:27:30 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ t_bots	loadbots(int ac, char **av)
 	{
 		if ((tmp = creabot(av[i])))
 		{
-			bots.bots[bots.nb] = tmp;
+			bots.tab[bots.nb] = tmp;
+			bots.tab[bots.nb]->id = i;
 			bots.nb++;
 		}
 	}
