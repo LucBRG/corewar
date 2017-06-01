@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 15:19:29 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/01 10:23:04 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/01 16:36:07 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <stdio.h>
 # include "libft.h"
 # include "op.h"
+
+typedef char[REG_SIZE] 	nb;
 
 typedef struct		s_bot
 {
@@ -37,7 +39,7 @@ typedef struct		s_bots
 
 typedef struct		s_process
 {
-	char			registre[REG_NUMBER * REG_SIZE];
+	unsigned char	registre[REG_NUMBER][REG_SIZE];
 	char			*pc;
 	char			carry;
 	t_bot			*bot;
