@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 18:22:36 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/01 11:03:24 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/01 15:14:14 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,15 @@ void	displaybot(t_bot *bot)
 		hexa(bot->instructions, bot->nb_instructions, 0);
 		printf("\n");
 	}
+}
+
+void	displayprocess(t_list *elem)
+{
+	t_process *process;
+
+	if (!elem)
+		return ;
+	process = (t_process*)elem->content;
+	printf("pc\t: %d\n", process->pc);
+	displaybot(process->bot);
 }

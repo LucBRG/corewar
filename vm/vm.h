@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 15:19:29 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/01 11:07:38 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/01 14:44:58 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,15 @@ typedef struct	s_bots
 
 typedef struct	s_process
 {
-	char		registre[REG_NUMBER * REG_SIZE];
-	char		*pc;
+	uc			registre[REG_NUMBER * REG_SIZE];
+	int			pc;
 	char		carry;
 	t_bot		*bot;
 }				t_process;
 
 typedef struct	s_battle
 {
-	char		memory[MEM_SIZE];
+	uc			memory[MEM_SIZE];
 	t_process	*cur_process;
 	t_bots		bots;
 	t_list		*process;
@@ -56,13 +56,15 @@ typedef struct	s_battle
 int				open_bot(char *path, uc **bot);
 t_bot			*creabot(char *path);
 t_bots			loadbots(int ac, char **av);
-int				loadmemory(t_battle *b);
+t_list			*loadmemory(t_battle *b);
 uc				*getmemory(t_battle *b, int index, uc *buff, int len);
 int				setmemory(t_battle *b, int index, uc *s, int len);
+t_process		newprocess(t_bot *bot, int pc);
 
 void			debug(uc *s, int len);
 void			displaybot(t_bot *bot);
 void			hexa(uc *s, int len, int color);
+void			displayprocess(t_list *elem);
 
 void			sti(t_battle *battle, int reg, int ind1, int ind2);
 void			and_ft(t_battle *battle, int param1, int param2, int *reg);

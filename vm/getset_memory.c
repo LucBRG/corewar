@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/01 10:24:55 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/01 12:00:48 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/01 14:01:34 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int			setmemory(t_battle *b, int index, uc *s, int len)
 	int i;
 
 	i = -1;
-	printf("index\t: %d\nlen\t: %d\nmem\t: %d\n", index, len, mod(index, MEM_SIZE));
+	// printf("index\t: %d\nlen\t: %d\nmem\t: %d\n", index, len, mod(index, MEM_SIZE));
 	if (!b || !s || len <= 0 || MEM_SIZE <= 0)
 		return (0);
 	while (++i < len)

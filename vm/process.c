@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/30 14:05:38 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/01 15:13:14 by dbischof         ###   ########.fr       */
+/*   Created: 2017/06/01 14:02:24 by dbischof          #+#    #+#             */
+/*   Updated: 2017/06/01 15:12:24 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int main(int ac, char **av)
+t_process newprocess(t_bot *bot, int pc)
 {
-	int		i;
-	t_battle b;
+	t_process process;
 
-	i = -1;
-	b.bots = loadbots(ac, av);
-	b.process = loadmemory(&b);
-	hexa(b.memory, MEM_SIZE, 0);
-	printf("\n");
-	ft_lstiter(b.process, displayprocess);
-	return (0);
+	process.pc = pc;
+	process.bot = bot;
+	process.carry = 0;
+	ft_bzero(process.registre, REG_NUMBER * REG_SIZE);
+	return (process);
 }
