@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 14:00:54 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/01 14:41:16 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/01 16:48:29 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,25 @@ int		open_bot(char *path, unsigned char **bot)
 	return (ret);
 }
 
-int		chartoint(unsigned char *t)
+int		chartoint(unsigned char *t, int len)
 {
-	return ((t[0] << 24) | (t[1] << 16) | (t[2] << 8) | t[3]);
+	int i;
+	int tmp;
+
+	i = -1;
+	tmp = 0;
+	while (++i < len && i < 4)
+		tmp |= t[i] << ((3 * 8) - (i * 8));
+	return (tmp);
 }
 
 int		checkpoint_valid(unsigned char *bot, int len)
 {
-	if (chartoint(bot + NB_MAGIK) == COREWAR_EXEC_MAGIC
-		&& !chartoint(bot + OC_NULL_1)
-		&& !chartoint(bot + OC_NULL_2)
-		&& chartoint(bot + NB_INST) == len - INST
-		&& chartoint(bot + NB_INST) < CHAMP_MAX_SIZE)
+	if (chartoint(bot + NB_MAGIK, 4) == COREWAR_EXEC_MAGIC
+		&& !chartoint(bot + OC_NULL_1, 4)
+		&& !chartoint(bot + OC_NULL_2, 4)
+		&& chartoint(bot + NB_INST, 4) == len - INST
+		&& chartoint(bot + NB_INST, 4) < CHAMP_MAX_SIZE)
 		return (1);
 	return (0);
 }
@@ -82,7 +89,7 @@ t_bot	*creabot(char *path)
 		return (NULL);
 	bot = newbot();
 	ft_memcpy(bot->name, (bot_brut + NAME), PROG_NAME_LENGTH);
-	bot->nb_instructions = chartoint(bot_brut + NB_INST);
+	bot->nb_instructions = chartoint(bot_brut + NB_INST, 4);
 	ft_memcpy(bot->comment, (bot_brut + COMMENT), COMMENT_LENGTH);
 	bot->instructions = (unsigned char*)malloc(bot->nb_instructions);
 	ft_memcpy(bot->instructions, (bot_brut + INST), bot->nb_instructions);

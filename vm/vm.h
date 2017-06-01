@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 15:19:29 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/01 14:44:58 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/01 16:48:58 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ t_list			*loadmemory(t_battle *b);
 uc				*getmemory(t_battle *b, int index, uc *buff, int len);
 int				setmemory(t_battle *b, int index, uc *s, int len);
 t_process		newprocess(t_bot *bot, int pc);
+int				chartoint(unsigned char *t, int len);
 
 void			debug(uc *s, int len);
 void			displaybot(t_bot *bot);
