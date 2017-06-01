@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 14:00:54 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/01 16:48:29 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/01 17:13:07 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int		chartoint(unsigned char *t, int len)
 
 	i = -1;
 	tmp = 0;
-	while (++i < len && i < 4)
-		tmp |= t[i] << ((3 * 8) - (i * 8));
+	while (++i < len && i < sizeof(int))
+		tmp |= t[i] << (((len - 1) * 8) - (i * 8));
 	return (tmp);
 }
 
