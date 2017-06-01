@@ -86,7 +86,7 @@ static t_arg	*fill_arg(t_arg *arg, t_asm *env, int i, int len)
 	env->oct_line = g_op_tab[i].op_code;
 	return (arg);
 }
-int		find_ins(t_asm *env, t_arg *ref_inst)
+int		find_ins(t_asm *env, t_arg **ref_inst)
 {
 	int		i;
 	size_t	len;
@@ -104,9 +104,10 @@ int		find_ins(t_asm *env, t_arg *ref_inst)
 			&& ft_is_space(env->str[env->i][env->j + len]))
 		{
 			arg = fill_arg(arg, env, i, len);
-			ref_inst = arg;
+			*ref_inst = arg;
+			(*ref_inst)->tot_octets = 1;
 			if (g_op_tab[i].has_ocp == 1)
-				ref_inst->tot_octets += 1;
+				(*ref_inst)->tot_octets += 1;
 			return (arg->n_args);
 		}
 	}

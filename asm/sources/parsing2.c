@@ -65,17 +65,17 @@ void		copy_header(char *dst, t_asm *env, int i)
 void		parse_instruction(t_asm *env)
 {
 	int		n_args;
-	t_arg	ref_inst;
+	t_arg	*ref_inst;
+	ref_inst = NULL;
 
 	while (env->i < env->nb_line)
 	{
 		env->oct_line = 0;
-		ref_inst.tot_octets = 1;
 		if (env->str[env->i][0])
 		{
 			find_lab(env);
 			if ((n_args = find_ins(env, &ref_inst)) != 0)
-				find_par(env, n_args, &ref_inst);
+				find_par(env, n_args, ref_inst);
 		}
 		env->i++;
 	}

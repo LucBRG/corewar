@@ -66,7 +66,7 @@ t_arg				*arg_create(void);
 void				arg_delete(t_arg **head);
 void				arg_add(t_arg **head, t_arg *arg);
 void				find_par(t_asm *env, unsigned char n_args, t_arg *ref_inst);
-int					find_ins(t_asm *env, t_arg *ref_inst);
+int					find_ins(t_asm *env, t_arg **ref_inst);
 void				find_lab(t_asm *env);
 void				copy_header(char *dst, t_asm *env, int i);
 void				parse_instruction(t_asm *env);

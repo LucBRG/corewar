@@ -125,7 +125,7 @@ int			parsing_asm(t_asm *env, t_file *file)
 		}
 		else if (lst->op_code)
 		{
-			printf(CYAN"INS"RESET"\t%d\n", lst->op_code);
+			printf(CYAN"INS"RESET"\t%s %d\n", g_op_tab[lst->op_code - 1].name, lst->tot_octets);
 		}
 		lst = lst->next;
 	}
