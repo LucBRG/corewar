@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2017/06/01 09:34:51 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/01 12:09:56 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 
 #define MAX_ARGS_NUMBER			4
 #define MAX_PLAYERS				4
-#define MEM_SIZE				(4*1024)
+#define MEM_SIZE				64
 #define IDX_MOD					(MEM_SIZE / 8)
 #define CHAMP_MAX_SIZE			(MEM_SIZE / 6)
 

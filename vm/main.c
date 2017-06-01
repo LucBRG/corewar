@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 14:05:38 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/01 09:32:26 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/01 11:59:46 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ int main(int ac, char **av)
 	while (++i < b.bots.nb)
 		displaybot(b.bots.tab[i]);
 	printf("%d\n", loadmemory(&b));
+	hexa(b.memory, MEM_SIZE, 0);
 	return (0);
 }

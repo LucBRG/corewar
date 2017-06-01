@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 16:53:41 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/01 10:28:18 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/01 12:10:22 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,25 @@
 int	loadmemory(t_battle *b)
 {
 	int	i;
+	int j;
 	int	total;
 	int space;
 
 	i = -1;
 	total = 0;
+	if (!b || !b->bots.nb)
+		return (0);
+	bzero(b->memory, MEM_SIZE);
 	while (++i < b->bots.nb)
 		total += b->bots.tab[i]->nb_instructions;
 	space = (MEM_SIZE - total) / b->bots.nb;
 	i = -1;
+	j = 0;
 	while (++i < b->bots.nb)
-		set_memory(b, (0), b->bots.tab[i]->instructions,
-			b->bots.tab[i]->nb_instructions);
-	return (space);
+	{
+		setmemory(b, (j + i * space),
+			b->bots.tab[i]->instructions, b->bots.tab[i]->nb_instructions);
+		j += b->bots.tab[i]->nb_instructions;
+	}
+	return (1);
 }
