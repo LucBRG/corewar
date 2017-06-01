@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loadbots.c                                         :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/31 14:14:51 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/01 11:03:16 by dbischof         ###   ########.fr       */
+/*   Created: 2017/05/30 14:05:38 by dbischof          #+#    #+#             */
+/*   Updated: 2017/06/01 15:13:14 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-t_bots	loadbots(int ac, char **av)
+int main(int ac, char **av)
 {
 	int		i;
-	t_bot	*tmp;
-	t_bots	bots;
+	t_battle b;
 
-	i = 0;
-	bots.nb = 0;
-	while (++i < ac && bots.nb < MAX_PLAYERS)
-	{
-		if ((tmp = creabot(av[i])))
-		{
-			bots.tab[bots.nb] = tmp;
-			bots.tab[bots.nb]->id = i;
-			bots.nb++;
-		}
-	}
-	return (bots);
+	i = -1;
+	b.bots = loadbots(ac, av);
+	b.process = loadmemory(&b);
+	hexa(b.memory, MEM_SIZE, 0);
+	printf("\n");
+	ft_lstiter(b.process, displayprocess);
+	return (0);
 }

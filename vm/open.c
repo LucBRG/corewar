@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 14:00:54 by dbischof          #+#    #+#             */
-/*   Updated: 2017/05/31 14:26:35 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/01 14:41:16 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ int		checkpoint_valid(unsigned char *bot, int len)
 	if (chartoint(bot + NB_MAGIK) == COREWAR_EXEC_MAGIC
 		&& !chartoint(bot + OC_NULL_1)
 		&& !chartoint(bot + OC_NULL_2)
-		&& chartoint(bot + NB_INST) == len - INST)
+		&& chartoint(bot + NB_INST) == len - INST
+		&& chartoint(bot + NB_INST) < CHAMP_MAX_SIZE)
 		return (1);
 	return (0);
 }

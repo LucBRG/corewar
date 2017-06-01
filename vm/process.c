@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loadbots.c                                         :+:      :+:    :+:   */
+/*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/31 14:14:51 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/01 11:03:16 by dbischof         ###   ########.fr       */
+/*   Created: 2017/06/01 14:02:24 by dbischof          #+#    #+#             */
+/*   Updated: 2017/06/01 15:16:11 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-t_bots	loadbots(int ac, char **av)
+t_process newprocess(t_bot *bot, int pc)
 {
-	int		i;
-	t_bot	*tmp;
-	t_bots	bots;
+	t_process process;
 
-	i = 0;
-	bots.nb = 0;
-	while (++i < ac && bots.nb < MAX_PLAYERS)
-	{
-		if ((tmp = creabot(av[i])))
-		{
-			bots.tab[bots.nb] = tmp;
-			bots.tab[bots.nb]->id = i;
-			bots.nb++;
-		}
-	}
-	return (bots);
+	process.pc = pc;
+	process.bot = bot;
+	process.carry = 0;
+	ft_bzero(process.registre, REG_NUMBER * REG_SIZE);
+	return (process);
 }
