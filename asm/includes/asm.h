@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include "op.h"
 # include "../../libft/includes/libft.h"
 
 typedef	struct		s_arg
@@ -40,6 +41,8 @@ typedef	struct		s_asm
 	unsigned int	i;
 	unsigned int	j;
 	struct s_arg	*args;
+	char			prog_name[PROG_NAME_LENGTH + 1];
+	char			comment[COMMENT_LENGTH + 1];
 	unsigned char	oct_line;
 
 }					t_asm;
@@ -77,6 +80,7 @@ int					cor_strlen(char *str);
 int					verif_exist(t_arg *lst, char *str);
 void				label_exist(t_asm *env);
 void				good_order(t_asm *env);
+void    			translate(t_asm *env, char *str);
 
 
 
@@ -90,6 +94,5 @@ extern t_op	g_op_tab[17];
 #define MAGENTA "\x1b[35m"
 #define CYAN    "\x1b[36m"
 #define RESET   "\x1b[0m"
-
 
 #endif

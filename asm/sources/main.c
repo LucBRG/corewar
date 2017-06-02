@@ -6,13 +6,11 @@
 /*   By: mdeglain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 13:54:47 by mdeglain          #+#    #+#             */
-/*   Updated: 2017/05/17 14:53:30 by mdeglain         ###   ########.fr       */
+/*   Updated: 2017/06/02 11:56:17 by mdeglain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "op.h"
 #include "asm.h"
-#include <limits.h>
 
 static void	free_struct(t_asm *env)
 {
@@ -85,6 +83,7 @@ int			main(int ac, char **av)
 	env->str = NULL;
 	env->args = NULL;
 	parsing_asm(env, file);
+	translate(env, av[1]);
 	free_struct(env);
 	return (0);
 }
