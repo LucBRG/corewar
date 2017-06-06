@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 15:19:29 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/01 17:02:40 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/06/06 15:29:23 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include <stdio.h>
 # include "libft.h"
 # include "op.h"
+
+# define REGISTRE(x) battle->cur_process->registre[x]
 
 typedef unsigned char uc;
 
@@ -43,7 +45,7 @@ typedef struct	s_bots
 
 typedef struct	s_process
 {
-	uc			registre[REG_NUMBER * REG_SIZE];
+	int			registre[REG_NUMBER];
 	int			pc;
 	char		carry;
 	t_bot		*bot;
@@ -72,7 +74,7 @@ void			hexa(uc *s, int len, int color);
 void			displayprocess(t_list *elem);
 
 void			sti(t_battle *battle, int reg, int ind1, int ind2);
-void			and_ft(t_battle *battle, int param1, int param2, int *reg);
-void			or_ft(t_battle *battle, int param1, int param2, int *reg);
+void			and_ft(t_battle *battle, int param1, int param2, int reg);
+void			or_ft(t_battle *battle, int param1, int param2, int reg);
 
 #endif
