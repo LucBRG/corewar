@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/06 15:31:12 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/06 15:31:55 by tferrari         ###   ########.fr       */
+/*   Created: 2017/06/06 17:49:29 by dbischof          #+#    #+#             */
+/*   Updated: 2017/06/06 17:49:45 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct	s_process
 	int			registre[REG_NUMBER];
 	int			pc;
 	int			live;
+	int			dead;
 	char		carry;
 	t_bot		*bot;
 }				t_process;
@@ -69,6 +70,8 @@ t_process		newprocess(t_bot *bot, int pc);
 int				chartoint(unsigned char *t, int len);
 char			*inttochar(int *i);
 int				mod(int a, int b);
+t_battle		*initbattle(int ac, char **av);
+t_process		*battle_launch(t_battle *battle);
 
 void			debug(uc *s, int len);
 void			displaybot(t_bot *bot);

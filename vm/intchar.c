@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 15:17:38 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/06 15:18:51 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/06 17:48:36 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,18 @@
 
 char	*inttochar(int *i)
 {
-	char tmp[5];
+	int j;
+	int tmp;
 
-	ft_bzero(tmp, 5);
-	ft_memcpy(tmp, (char*)i, 4);
-	ft_memcpy((char*)i, ft_strrev(tmp), 4);
+	j = -1;
+	tmp = 0;
+	while (++j < sizeof(int))
+	{
+		tmp = tmp << 8;
+		tmp |= (0xff & *i);
+		*i = *i >> 8;
+	}
+	*i = tmp;
 	return ((char*)i);
 }
 
