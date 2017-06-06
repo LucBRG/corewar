@@ -6,17 +6,16 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 15:54:47 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/06 17:46:51 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/06 18:07:54 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-#define PC		battle->cur_process->pc
 #define INST	battle->memory[PC]
-#define OCP		battle->memory[PC + 1]
-#define PARAMS	battle->memory[PC + 2]
-#define PARAM(n)(OCP >> ((3 - n) * 2) & 0b11)
+#define OCP			battle->memory[PC + 1]
+#define PARAMS		battle->memory[PC + 2]
+#define PARAM(n)	(OCP >> ((3 - n) * 2) & 0b11)
 
 void	test(t_battle *b, int p1, int p2, int p3)
 {
