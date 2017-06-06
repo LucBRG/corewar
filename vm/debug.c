@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 18:22:36 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/06 12:11:51 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/06 18:40:52 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	displaybot(t_bot *bot)
 		printf("error bot\n");
 	else
 	{
-		printf("id\t\t: %d\nname\t\t: %s\ncomment\t\t: %s\ninstructions\t: %d\n",
-			bot->id, bot->name, bot->comment, bot->nb_instructions);
+		printf("id\t\t: %d\nlive\t\t: %d\nname\t\t: %s\ncomment\t\t: %s\ninstructions\t: %d\n",
+			bot->id, bot->live, bot->name, bot->comment, bot->nb_instructions);
 		hexa(bot->instructions, bot->nb_instructions, 0);
 		printf("\n");
 	}
