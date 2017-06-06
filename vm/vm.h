@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/30 15:19:29 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/06 15:19:11 by dbischof         ###   ########.fr       */
+/*   Created: 2017/06/06 15:31:12 by tferrari          #+#    #+#             */
+/*   Updated: 2017/06/06 15:31:55 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <stdio.h>
 # include "libft.h"
 # include "op.h"
+
+# define REGISTRE(x) battle->cur_process->registre[x]
 
 typedef unsigned char 	uc;
 typedef struct s_battle	t_battle;
@@ -74,7 +76,7 @@ void			hexa(uc *s, int len, int color);
 void			displayprocess(t_list *elem);
 
 void			sti(t_battle *battle, int reg, int ind1, int ind2);
-void			and_ft(t_battle *battle, int param1, int param2, int *reg);
-void			or_ft(t_battle *battle, int param1, int param2, int *reg);
+void			and_ft(t_battle *battle, int param1, int param2, int reg);
+void			or_ft(t_battle *battle, int param1, int param2, int reg);
 
 #endif
