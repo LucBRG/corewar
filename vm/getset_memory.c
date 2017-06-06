@@ -6,13 +6,13 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/01 10:24:55 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/01 14:01:34 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/06 09:52:59 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static int	mod(int a, int b)
+int	mod(int a, int b)
 {
 	int ret;
 

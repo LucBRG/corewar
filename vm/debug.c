@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 18:22:36 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/01 15:14:14 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/06 09:58:17 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,7 @@ void	displayprocess(t_list *elem)
 		return ;
 	process = (t_process*)elem->content;
 	printf("pc\t: %d\n", process->pc);
+	hexa((uc*)process->registre, REG_NUMBER * REG_SIZE, 0);
+	printf("\n");
 	displaybot(process->bot);
 }

@@ -6,13 +6,12 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 14:00:54 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/01 17:13:07 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/06 09:48:47 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-#define MIN_BOT		4
 #define BUFFER		10000
 #define NB_MAGIK	(0)
 #define NAME		(4)
@@ -21,6 +20,7 @@
 #define COMMENT		(12 + PROG_NAME_LENGTH)
 #define OC_NULL_2	(12 + PROG_NAME_LENGTH + COMMENT_LENGTH)
 #define INST		(16 + PROG_NAME_LENGTH + COMMENT_LENGTH)
+#define MIN_BOT		INST + 1
 
 int		open_bot(char *path, unsigned char **bot)
 {
@@ -84,9 +84,9 @@ t_bot	*creabot(char *path)
 
 	bot_brut = NULL;
 	length = open_bot(path, &bot_brut);
-	// debug(bot_brut, length);
 	if (!bot_brut || length <= MIN_BOT || !checkpoint_valid(bot_brut, length))
 		return (NULL);
+	// debug(bot_brut, length);
 	bot = newbot();
 	ft_memcpy(bot->name, (bot_brut + NAME), PROG_NAME_LENGTH);
 	bot->nb_instructions = chartoint(bot_brut + NB_INST, 4);
