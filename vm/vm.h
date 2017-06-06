@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/06 18:42:50 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/06 18:43:18 by dbischof         ###   ########.fr       */
+/*   Created: 2017/06/06 18:46:22 by tferrari          #+#    #+#             */
+/*   Updated: 2017/06/06 18:46:23 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ void			sti(t_battle *battle, int reg, int ind1, int ind2);
 void			and_ft(t_battle *battle, int param1, int param2, int reg);
 void			or_ft(t_battle *battle, int param1, int param2, int reg);
 void			xor_ft(t_battle *battle, int param1, int param2, int reg);
-void			add(int reg1, int reg2, int reg3);
-void			sub(int reg1, int reg2, int reg3);
+void			add(t_battle *battle, int reg1, int reg2, int reg3);
+void			sub(t_battle *battle, int reg1, int reg2, int reg3);
+void			live(t_battle *battle, int id, int a, int b);
 
 #endif
