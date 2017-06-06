@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 15:19:29 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/06 09:55:40 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/06 15:19:11 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@
 # include "libft.h"
 # include "op.h"
 
-typedef unsigned char uc;
+typedef unsigned char 	uc;
+typedef struct s_battle	t_battle;
+typedef void (*t_listfunc[16])(t_battle *b, int p1, int p2, int p3);
 
 typedef struct	s_bot
 {
@@ -41,6 +43,7 @@ typedef struct	s_process
 {
 	int			registre[REG_NUMBER];
 	int			pc;
+	int			live;
 	char		carry;
 	t_bot		*bot;
 }				t_process;
@@ -51,6 +54,7 @@ typedef struct	s_battle
 	t_process	*cur_process;
 	t_bots		bots;
 	t_list		*process;
+	t_listfunc	func;
 }				t_battle;
 
 int				open_bot(char *path, uc **bot);
@@ -61,6 +65,7 @@ uc				*getmemory(t_battle *b, int index, uc *buff, int len);
 int				setmemory(t_battle *b, int index, uc *s, int len);
 t_process		newprocess(t_bot *bot, int pc);
 int				chartoint(unsigned char *t, int len);
+char			*inttochar(int *i);
 int				mod(int a, int b);
 
 void			debug(uc *s, int len);

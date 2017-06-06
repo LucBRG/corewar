@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sti.c                                              :+:      :+:    :+:   */
+/*   intchar.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/30 16:43:13 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/06 11:18:00 by dbischof         ###   ########.fr       */
+/*   Created: 2017/06/06 15:17:38 by dbischof          #+#    #+#             */
+/*   Updated: 2017/06/06 15:18:51 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm_battle.h"
+#include "vm.h"
 
-void		sti(t_battle *battle, int reg, int ind1, int ind2)
+char	*inttochar(int *i)
 {
-		// int ret;
-		//
-		// ret = ind1 + ind2;
-		// if ((battle->cur_men + ret) < 30)
-		// 	battle->cur_men += ret;
-		// else
-		// 	battle->cur_men += ret % 30 - 30;
-		// battle->memory[battle->cur_men] = reg;
-		return ;
+	char tmp[5];
+
+	ft_bzero(tmp, 5);
+	ft_memcpy(tmp, (char*)i, 4);
+	ft_memcpy((char*)i, ft_strrev(tmp), 4);
+	return ((char*)i);
+}
+
+int		chartoint(unsigned char *t, int len)
+{
+	int i;
+	int tmp;
+
+	i = -1;
+	tmp = 0;
+	while (++i < len && i < sizeof(int))
+		tmp |= t[i] << (((len - 1) * 8) - (i * 8));
+	return (tmp);
 }

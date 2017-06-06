@@ -40,18 +40,6 @@ int		open_bot(char *path, unsigned char **bot)
 	return (ret);
 }
 
-int		chartoint(unsigned char *t, int len)
-{
-	int i;
-	int tmp;
-
-	i = -1;
-	tmp = 0;
-	while (++i < len && i < sizeof(int))
-		tmp |= t[i] << (((len - 1) * 8) - (i * 8));
-	return (tmp);
-}
-
 int		checkpoint_valid(unsigned char *bot, int len)
 {
 	if (chartoint(bot + NB_MAGIK, 4) == COREWAR_EXEC_MAGIC
