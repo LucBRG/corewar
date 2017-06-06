@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 15:19:29 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/06 15:19:11 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/06 16:35:07 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct	s_process
 	int			registre[REG_NUMBER];
 	int			pc;
 	int			live;
+	int			dead;
 	char		carry;
 	t_bot		*bot;
 }				t_process;
@@ -67,6 +68,8 @@ t_process		newprocess(t_bot *bot, int pc);
 int				chartoint(unsigned char *t, int len);
 char			*inttochar(int *i);
 int				mod(int a, int b);
+t_battle		*initbattle(int ac, char **av);
+t_process		*battle_launch(t_battle *battle);
 
 void			debug(uc *s, int len);
 void			displaybot(t_bot *bot);
