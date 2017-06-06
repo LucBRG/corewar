@@ -6,11 +6,11 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 10:21:41 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/31 17:01:08 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/06/06 16:08:51 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm_battle.h"
+#include "vm.h"
 
 void			fork_ft(t_battle *battle, int param1, int param2, int reg)
 {

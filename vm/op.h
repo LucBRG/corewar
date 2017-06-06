@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/06 15:33:04 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/06 15:33:07 by tferrari         ###   ########.fr       */
+/*   Created: 2017/06/06 16:25:27 by tferrari          #+#    #+#             */
+/*   Updated: 2017/06/06 16:44:10 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@
 ** Toutes les tailles sont en octets.
 ** On part du principe qu'un int fait 32 bits. Est-ce vrai chez vous ?
 */
-#ifndef OP_H
-# define OP_H
-
 
 #define IND_SIZE				2
 #define REG_SIZE				4
@@ -33,7 +30,7 @@
 
 #define MAX_ARGS_NUMBER			4
 #define MAX_PLAYERS				4
-#define MEM_SIZE				(1024*4)
+#define MEM_SIZE				(30)
 #define IDX_MOD					(MEM_SIZE / 8)
 #define CHAMP_MAX_SIZE			(MEM_SIZE / 6)
 

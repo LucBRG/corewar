@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 15:31:12 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/06 15:31:55 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/06/06 17:51:41 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,8 @@ void			displayprocess(t_list *elem);
 void			sti(t_battle *battle, int reg, int ind1, int ind2);
 void			and_ft(t_battle *battle, int param1, int param2, int reg);
 void			or_ft(t_battle *battle, int param1, int param2, int reg);
+void			xor_ft(t_battle *battle, int param1, int param2, int reg);
+void			add(int reg1, int reg2, int reg3);
+void			sub(int reg1, int reg2, int reg3);
 
 #endif
