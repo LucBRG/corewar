@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 14:00:54 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/06 09:48:47 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/06 18:33:51 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ t_bot	*newbot(void)
 	t_bot *bot;
 
 	bot = (t_bot*)malloc(sizeof(t_bot));
+	bot->live = 0;
 	bot->name = ft_strnew(PROG_NAME_LENGTH);
 	bot->comment = ft_strnew(COMMENT_LENGTH);
 	bot->instructions = NULL;

@@ -6,17 +6,16 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 15:54:47 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/06 17:46:51 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/06 18:13:28 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-#define PC		battle->cur_process->pc
-#define INST	battle->memory[PC]
-#define OCP		battle->memory[PC + 1]
-#define PARAMS	battle->memory[PC + 2]
-#define PARAM(n)(OCP >> ((3 - n) * 2) & 0b11)
+#define INST		battle->memory[PC]
+#define OCP			battle->memory[PC + 1]
+#define PARAMS		battle->memory[PC + 2]
+#define PARAM(n)	(OCP >> ((3 - n) * 2) & 0b11)
 
 void	test(t_battle *b, int p1, int p2, int p3)
 {
@@ -42,7 +41,8 @@ void	load_func(t_battle *battle)
 		p3 = 0;
 	}
 	// printf("params\t: %X\t%d\t%d\t%d\n", INST, PARAM(0), PARAM(1), PARAM(2));
-	battle->func[INST - 1](battle, p1, p2, p3);
+	if (INST > 0 && INST <= 16)
+		battle->func[INST - 1](battle, p1, p2, p3);
 }
 
 int			verif_live(t_battle *battle)
@@ -58,11 +58,11 @@ int			verif_live(t_battle *battle)
 		process = (t_process*)elem->content;
 		if (!process->dead)
 		{
-			total += process->live;
-			if (!process->live)
+			total += process->bot->live;
+			if (!process->bot->live)
 				process->dead = 1;
 			else
-				process->live = 0;
+				process->bot->live = 0;
 		}
 		elem = elem->next;
 	}
