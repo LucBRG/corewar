@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 17:49:29 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/06 17:49:45 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/06 18:11:56 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 # include "libft.h"
 # include "op.h"
 
-# define REGISTRE(x) battle->cur_process->registre[x]
+# define REGISTRE(x)	battle->cur_process->registre[x]
+# define PC				battle->cur_process->pc
 
 typedef unsigned char 	uc;
 typedef struct s_battle	t_battle;
@@ -29,6 +30,7 @@ typedef void (*t_listfunc[16])(t_battle *b, int p1, int p2, int p3);
 typedef struct	s_bot
 {
 	int			id;
+	int			live;
 	char		*name;
 	char		*comment;
 	uc			*instructions;
@@ -45,7 +47,6 @@ typedef struct	s_process
 {
 	int			registre[REG_NUMBER];
 	int			pc;
-	int			live;
 	int			dead;
 	char		carry;
 	t_bot		*bot;
