@@ -118,7 +118,7 @@ t_process	*battle_launch(t_battle *battle)
 			if (!((t_process*)elem->content)->dead)
 			{
 				battle->cur_process = (t_process*)elem->content;
-				battle->cur_process->pc += load_func(battle);
+				PC = (PC + load_func(battle)) % MEM_SIZE;
 			}
 			elem = elem->next;
 		}
