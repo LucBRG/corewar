@@ -12,16 +12,40 @@
 
 #include "asm.h"
 
-static int	ocp(t_arg *lst)
+static char	ocp_f(t_arg *lst)
 {
-	:
+	int		i;
+	unsigned char	c;
+	int		op_code;
+
+	i = 0;
+	c = 0;
+	op_code = lst->op_code;
+	lst = lst->next;
+	while (i++ < g_op_tab[op_code - 1].n_args)
+	{
+		if (lst->special & T_REG)
+			c |= 1;
+		else if (lst->special & T_DIR)
+			c |= 2;
+		else if (lst->special & T_IND)
+			c |= 3;
+		c <<= 2;
+		lst = lst->next;
+	}
+	while (i++ < 4)
+		c <<= 2;
+	return (c);
 }
 
 void	write_inst(t_arg *lst, int fd)
 {
-	int ocp;
+	char ocp;
 
 	ocp = 0;
-	if (lst->ocp == 1)
-		ocp = ocp(lst);
+	if (g_op_tab[lst->op_code - 1].has_ocp)
+		ocp = ocp_f(lst);
+	ft_putchar_fd(lst->op_code, fd);
+	if (g_op_tab[lst->op_code - 1].has_ocp)
+		ft_putchar_fd(ocp, fd);
 }

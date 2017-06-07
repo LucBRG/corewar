@@ -12,22 +12,46 @@
 
 #include "asm.h"
 
-void	write_header(t_asm *env, int fd)
+static void	write_comment(t_asm *env, int fd)
 {
-	int i;
-	int	nb;
+	int				i;
+	unsigned char	c;
+
+	i = 0;
+	while (env->comment[i])
+		write(fd, &(env->comment[i++]), 1);
+	c = '\0';
+	while (i++ < COMMENT_LENGTH)
+		write(fd, &c, 1);
+}
+
+static void		write_header(t_asm *env, int fd)
+{
+	int 			i;
+	int				nb;
+	unsigned char	c;
+
 
 	i = 3;
 	nb = COREWAR_EXEC_MAGIC;
 	while (i > 0)
 	{
-		ft_putstr_fd(ft_base(nb / ft_power(256, i), 16, "0123456789abcdef"), fd);
+		c = nb / ft_power(256, i);
 		nb = nb % ft_power(256, i);
+		write(fd, &c, 1);
 		i--;
 	}
-	ft_putstr_fd(ft_base(nb % 256, 16, "0123456789abcdef"), fd);
+	c = nb % ft_power(256, i);
+	write(fd, &c, 1);
+	i = 0;
+	while (env->prog_name[i])
+		write(fd, &(env->prog_name[i++]), 1);
+	c = '\0';
+	while (i++ < PROG_NAME_LENGTH - 4)
+		write(fd, &c, 1);
+	write_comment(env, fd);
 }
-/*
+
 void	write_core(t_asm *env, int fd)
 {
 	t_arg	*lst;
@@ -35,29 +59,29 @@ void	write_core(t_asm *env, int fd)
 	lst = env->args;
 	while (lst)
 	{
-		if (lst->special & T_INST)
+		if (lst->special & T_INSTRU)
 			write_inst(lst, fd);
-		else if (lst->special & T_REG)
+		/*else if (lst->special & T_REG)
 			write_reg(lst, fd);
 		else if (lst->special & T_DIR)
 			write_dir(lst, fd);
 		else if (lst->special & T_IND)
-			write_ind(lst, fd);
+			write_ind(lst, fd);*/
 		lst = lst->next;
 	}
 }
-*/
-void	translate(t_asm *env, char *str)
+
+void		translate(t_asm *env, char *str)
 {
-	int		fd;
-	char	*name;
-	int		len;
+	int				fd;
+	char			*name;
+	int				len;
 
 	len = ft_strlen(str);
 	name = (char*)malloc(sizeof(*name) * (len + 2));
 	name = ft_strncpy(name, str, len - 1);
 	name  = ft_strcat(name, "cor");
-	fd = open(name, O_WRONLY | O_CREAT, 0666);
+	fd = open(name, O_WRONLY | O_CREAT | O_APPEND, 0666);
 	write_header(env, fd);
-	//write_core(env, fd);
+	write_core(env, fd);
 }

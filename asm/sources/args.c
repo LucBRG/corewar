@@ -23,7 +23,6 @@ t_arg	*arg_create(void)
 	arg->op_code = 0;
 	arg->octet = 0;
 	arg->special = 0;
-	arg->ocp = 0;
 	arg->ref = NULL;
 	arg->next = NULL;
 	arg->prec = NULL;

@@ -78,9 +78,7 @@ static t_arg	*fill_arg(t_arg *arg, t_asm *env, int i, int len)
 {
 	arg = arg_create();
 	arg->op_code = g_op_tab[i].op_code;
-	arg->special |= T_INSTRU;
-	arg->n_args = g_op_tab[i].n_args;
-	arg_add(&env->args, arg);
+	arg->special |= T_INSTRU;	arg_add(&env->args, arg);
 	env->j += len;
 	env->oct_line = g_op_tab[i].op_code;
 	return (arg);
@@ -107,7 +105,7 @@ int		find_ins(t_asm *env, t_arg **ref_inst)
 			(*ref_inst)->tot_octets = 1;
 			if (g_op_tab[i].has_ocp == 1)
 				(*ref_inst)->tot_octets += 1;
-			return (arg->n_args);
+			return (g_op_tab[i].n_args);
 		}
 	}
 	show_err(5, env->i);

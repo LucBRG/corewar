@@ -24,8 +24,6 @@ typedef	struct		s_arg
 	char			*name;
 	unsigned char	op_code;
 	unsigned char	special;
-	unsigned char	ocp;
-	unsigned char	n_args;
 	unsigned char	octet;
 	unsigned char	tot_octets;
 	struct s_arg	*ref;
@@ -81,6 +79,7 @@ int					verif_exist(t_arg *lst, char *str);
 void				label_exist(t_asm *env);
 void				good_order(t_asm *env);
 void    			translate(t_asm *env, char *str);
+void				write_inst(t_arg *lst, int fd);
 
 
 

@@ -12,10 +12,8 @@
 
 #include "asm.h"
 
-static void	init_parse(t_header *header, t_asm *env)
+static void	init_parse(t_asm *env)
 {
-	ft_bzero(header->prog_name, PROG_NAME_LENGTH);
-	ft_bzero(header->comment, COMMENT_LENGTH);
 	env->nb_line = 0;
 }
 
@@ -61,44 +59,40 @@ static void	fill_parsing(t_asm *env, t_file *file)
 	}
 }
 
-static void	parse_header(t_header *header, t_asm *env)
+static void	parse_header(t_asm *env)
 {
 	env->i = 0;
 	env->header_len = 0;
 	while (env->i < env->nb_line
-		&& (!header->prog_name[0] || !header->comment[0]))
+		&& (!env->prog_name[0] || !env->comment[0]))
 	{
 		if (!env->str[env->i][0])
 			;
-		else if (!header->prog_name[0] && !ft_strncmp(env->str[env->i],
+		else if (!env->prog_name[0] && !ft_strncmp(env->str[env->i],
 			NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
-			copy_header(header->prog_name, env,
+			copy_header(env->prog_name, env,
 				ft_strlen(NAME_CMD_STRING));
-		else if (!header->comment[0] && !ft_strncmp(env->str[env->i],
+		else if (!env->comment[0] && !ft_strncmp(env->str[env->i],
 			COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING)))
-			copy_header(header->comment, env,
+			copy_header(env->comment, env,
 				ft_strlen(COMMENT_CMD_STRING));
 		else
 			show_err(3, env->i);
 		env->i++;
 		env->header_len++;
 	}
-	if (!header->prog_name[0] || !header->comment[0])
+	if (!env->prog_name[0] || !env->comment[0])
 		show_err(3, -1);
 }
 
 int			parsing_asm(t_asm *env, t_file *file)
 {
 	char		str[BUF_SZ];
-	t_header	*header;
 
-	header = (t_header*)malloc(sizeof(*header));
-	if (header == NULL)
-		exit(EXIT_FAILURE);
-	init_parse(header, env);
+	init_parse(env);
 	ft_bzero(str, BUF_SZ);
 	fill_parsing(env, file);
-	parse_header(header, env);
+	parse_header(env);
 	parse_instruction(env);
 	label_exist(env);
 	good_order(env);

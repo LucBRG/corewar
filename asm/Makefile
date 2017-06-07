@@ -6,7 +6,7 @@
 #    By: mdeglain <mdeglain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 11:02:03 by mdeglain          #+#    #+#              #
-#    Updated: 2017/05/22 11:59:24 by mdeglain         ###   ########.fr        #
+#    Updated: 2017/06/07 09:41:41 by mdeglain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = asm
 CC = gcc
 CFLAGS = -Wall -Wextra
 SRC_NAME =	$(sort op.c main.c parsing.c utils.c args.c finding_parse.c \
-			parsing2.c verif_args.c parsing3.c translate.c)
+			parsing2.c verif_args.c parsing3.c translate.c write_everything.c)
 
 LIB_PATH = ../libft/
 LIB_NAME = libft.a
@@ -49,6 +49,7 @@ WHITE = \e[1;37m
 .PHONY: all libft clean fclean re norme
 
 all: libft $(NAME)
+	rm test.cor
 
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) $(LIB) $(OBJ) -o $@
