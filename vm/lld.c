@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lload.c                                            :+:      :+:    :+:   */
+/*   lld.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 10:39:26 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/07 10:41:31 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/06/07 15:34:23 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void			lload(t_battle *battle, int param, int reg, int a)
+void			lld(t_battle *battle, int param, int reg, int a)
 {
 	REGISTRE(reg + a) = param;
 }

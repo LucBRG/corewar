@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 12:10:53 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/07 15:23:50 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/06/07 15:37:52 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void			st(t_battle *battle, int reg, int param, int a)
 {
+	uc	str[4];
+
 	reg += a;
 	str = (uc *)inttochar(&reg);
-	setmemory(battle, ret, str, 4);
+	setmemory(battle, (PC + ret) % MEM_SIZE, str, 4);
 }
