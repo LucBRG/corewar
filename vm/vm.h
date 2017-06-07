@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 18:46:22 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/06 18:46:23 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/06/07 11:04:39 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@
 
 # define REGISTRE(x)	battle->cur_process->registre[x]
 # define PC				battle->cur_process->pc
+# define MAX(a, b)		((a > b) ? a : b)
+
+enum{NOTHING, LIVE, LD, ST, ADD, SUB, AND, OR, XOR, ZJMP, LDI, STI, FORK, LLD,
+	LLDI, LFORK, AFF};
 
 typedef unsigned char 	uc;
 typedef struct s_battle	t_battle;

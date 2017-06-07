@@ -6,14 +6,14 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 14:00:54 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/06 18:33:51 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/07 11:50:42 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
 #define BUFFER		10000
-#define NB_MAGIK	(0)
+#define NB_MAG	(0)
 #define NAME		(4)
 #define OC_NULL_1	(4 + PROG_NAME_LENGTH)
 #define NB_INST		(8 + PROG_NAME_LENGTH)
@@ -21,6 +21,14 @@
 #define OC_NULL_2	(12 + PROG_NAME_LENGTH + COMMENT_LENGTH)
 #define INST		(16 + PROG_NAME_LENGTH + COMMENT_LENGTH)
 #define MIN_BOT		INST + 1
+#define ERR_BOT		(1<<0)
+#define ERR_MAG		(1<<1)
+#define ERR_OC1		(1<<2)
+#define ERR_OC2		(1<<3)
+#define ERR_INT		(1<<4)
+#define ERR_SIZ		(1<<5)
+#define ERR_LEN		(1<<6)
+#define NB_ERR		7
 
 int		open_bot(char *path, unsigned char **bot)
 {
@@ -40,15 +48,44 @@ int		open_bot(char *path, unsigned char **bot)
 	return (ret);
 }
 
-int		checkpoint_valid(unsigned char *bot, int len)
+int		check_error(unsigned char *bot, int len)
 {
-	if (chartoint(bot + NB_MAGIK, 4) == COREWAR_EXEC_MAGIC
-		&& !chartoint(bot + OC_NULL_1, 4)
-		&& !chartoint(bot + OC_NULL_2, 4)
-		&& chartoint(bot + NB_INST, 4) == len - INST
-		&& chartoint(bot + NB_INST, 4) < CHAMP_MAX_SIZE)
-		return (1);
-	return (0);
+	int error;
+
+	error = 0;
+	error |= (bot) ? 0 : ERR_BOT;
+	error |= (chartoint(bot + NB_MAG, 4) == COREWAR_EXEC_MAGIC) ? 0 : ERR_MAG;
+	error |= (!chartoint(bot + OC_NULL_1, 4)) ? 0 : ERR_OC1;
+	error |= (!chartoint(bot + OC_NULL_2, 4)) ? 0 : ERR_OC2;
+	error |= (chartoint(bot + NB_INST, 4) == len - INST) ? 0 : ERR_INT;
+	error |= (chartoint(bot + NB_INST, 4) <= CHAMP_MAX_SIZE) ? 0 : ERR_SIZ;
+	error |= (len > MIN_BOT) ? 0 : ERR_LEN;
+	return (error);
+}
+
+int		print_error(int err)
+{
+	static char	*error[NB_ERR] = {
+		"no bot",
+		"num magic",
+		"octet null 1",
+		"octet null 2",
+		"num instructions",
+		"size max",
+		"size min"
+	};
+	int			i;
+	int			tmp;
+
+	i = -1;
+	tmp = err;
+	while (++i < NB_ERR)
+	{
+		if (tmp & 1)
+			printf("error: %s\n", error[i]);
+		tmp = tmp >> 1;
+	}
+	return (err);
 }
 
 t_bot	*newbot(void)
@@ -73,9 +110,8 @@ t_bot	*creabot(char *path)
 
 	bot_brut = NULL;
 	length = open_bot(path, &bot_brut);
-	if (!bot_brut || length <= MIN_BOT || !checkpoint_valid(bot_brut, length))
+	if (print_error(check_error(bot_brut, length)))
 		return (NULL);
-	// debug(bot_brut, length);
 	bot = newbot();
 	ft_memcpy(bot->name, (bot_brut + NAME), PROG_NAME_LENGTH);
 	bot->nb_instructions = chartoint(bot_brut + NB_INST, 4);

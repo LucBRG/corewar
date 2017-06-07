@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   battle.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 18:47:23 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/06 18:47:25 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/06/07 14:15:48 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,35 @@ void	test(t_battle *b, int p1, int p2, int p3)
 	// printf("id : %d\t params : %d %d %d\n", b->cur_process->bot->id, p1, p2, p3);
 }
 
-void	load_func(t_battle *battle)
+int		load_func(t_battle *battle)
 {
-	int p1;
-	int p2;
-	int p3;
+	int pc;
+	int params[3];
+	int sizep[3];
 
-	if (INST != 1)
-	{
-		p1 = chartoint(&PARAMS, PARAM(0));
-		p2 = chartoint(&PARAMS + PARAM(0), PARAM(1));
-		p3 = chartoint(&PARAMS + PARAM(0) + PARAM(1), PARAM(2));
-	}
-	else
-	{
-		p1 = chartoint(&PARAMS, 4);
-		p2 = 0;
-		p3 = 0;
-	}
-	// printf("params\t: %X\t%d\t%d\t%d\n", INST, PARAM(0), PARAM(1), PARAM(2));
+	pc = PC;
+	ft_bzero(params, sizeof(int) * 3);
+	ft_bzero(sizep, sizeof(int) * 3);
 	if (INST > 0 && INST <= 16)
-		battle->func[INST - 1](battle, p1, p2, p3);
+	{
+		if (INST == AFF)
+			sizep[0] = T_REG;
+		else if (INST == LIVE || INST == ZJMP || INST == FORK || INST == LFORK)
+			sizep[0] = T_DIR;
+		else
+		{
+			sizep[0] = PARAM(0);
+			sizep[1] = PARAM(1);
+			sizep[2] = PARAM(2);
+		}
+		params[0] = chartoint(&PARAMS, sizep[0]);
+		params[1] = chartoint(&PARAMS + sizep[0], sizep[1]);
+		params[2] = chartoint(&PARAMS + sizep[0] + sizep[1], sizep[2]);
+		battle->func[INST - 1](battle, params[0], params[1], params[2]);
+	}
+	// printf("params\t: %d\t%d\t%d\t%d\n", INST, params[0], params[1], params[2]);
+	// printf("sizep\t: %d\t%d\t%d\t%d\n", MAX((sizep[0] + sizep[1] + sizep[2]), 1), sizep[0], sizep[1], sizep[2]);
+	return ((pc == PC) ? MAX((sizep[0] + sizep[1] + sizep[2]), 1) : 0);
 }
 
 int			verif_live(t_battle *battle)
@@ -60,7 +68,10 @@ int			verif_live(t_battle *battle)
 		{
 			total += process->bot->live;
 			if (!process->bot->live)
+			{
+				printf("mise a mort de %d(%s)\n", process->bot->id, process->bot->name);
 				process->dead = 1;
+			}
 			else
 				process->bot->live = 0;
 		}
@@ -107,13 +118,14 @@ t_process	*battle_launch(t_battle *battle)
 			if (!((t_process*)elem->content)->dead)
 			{
 				battle->cur_process = (t_process*)elem->content;
-				load_func(battle);
+				battle->cur_process->pc += load_func(battle);
 			}
 			elem = elem->next;
 		}
 		if (!rulescycle(battle, &loop, &cycle))
 			return (battle->cur_process);
 		loop++;
+		// return (NULL);// a supprimer
 	}
 	return (NULL);
 }

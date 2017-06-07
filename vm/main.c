@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 17:51:29 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/06 18:46:33 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/06/07 11:06:56 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 int			main(int ac, char **av)
 {
-	int		i;
-	t_battle *b;
+	int			i;
+	t_process	*win;
+	t_battle	*b;
 
 	i = -1;
 	b = initbattle(ac, av);
-	// hexa(b->memory, MEM_SIZE, 0);
-	printf("\n");
 	ft_lstiter(b->process, displayprocess);
-	printf("id gagnant\t: %d\n", battle_launch(b)->bot->id);
+	printf("\nFIGHT\t%d\n\n", b->bots.nb);
+	win = battle_launch(b);
+	if (win)
+		printf("le joueur %d(%s) a gagne\n", win->bot->id, win->bot->name);
 	return (0);
 }
