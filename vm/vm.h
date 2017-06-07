@@ -95,7 +95,7 @@ void			load(t_battle *battle, int param, int reg, int a);
 void			ldi(t_battle *battle, int ind1, int ind2, int reg);
 void			lldi(t_battle *battle, int ind1, int ind2, int reg);
 void			aff(t_battle *battle, int reg, int a, int b);
-void			st(t_battle *reg, int reg, int param, int a);
+void			st(t_battle *battle, int reg, int param, int a);
 void			zjmp(t_battle *battle, int ind, int a, int b);
 void			fork(t_battle *battle, int param1, int param2, int reg);
 void			lfork(t_battle *battle, int param1, int param2, int reg);
