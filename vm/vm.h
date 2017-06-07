@@ -27,7 +27,7 @@
 enum{NOTHING, LIVE, LD, ST, ADD, SUB, AND, OR, XOR, ZJMP, LDI, STI, FORK, LLD,
 	LLDI, LFORK, AFF};
 
-typedef unsigned char 	uc;
+typedef unsigned char	uc;
 typedef struct s_battle	t_battle;
 typedef void (*t_listfunc[16])(t_battle *b, int p1, int p2, int p3);
 

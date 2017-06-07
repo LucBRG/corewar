@@ -30,7 +30,8 @@ t_list		*addprocess(t_list **list, t_bot *bot, int pc)
 	t_list		*tmp;
 
 	process = newprocess(bot, pc);
-	tmp = ft_lstnew(&process, sizeof(process));
+	if (!(tmp = ft_lstnew(&process, sizeof(process))))
+		return (NULL);
 	if (!*list)
 		*list = tmp;
 	else
