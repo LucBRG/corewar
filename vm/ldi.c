@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fork.c                                             :+:      :+:    :+:   */
+/*   ldi.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/31 10:21:41 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/07 15:13:04 by tferrari         ###   ########.fr       */
+/*   Created: 2017/06/07 10:43:46 by tferrari          #+#    #+#             */
+/*   Updated: 2017/06/07 11:36:42 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void			fork(t_battle *battle, int ind, int a, int b)
+void			ldi(t_battle *battle, int ind1, int ind2, int reg)
 {
-	addprocess(&battle->process, battle->cur_process->bot,
-	(PC + (ind + a + b) % IDX_MOD) % MEM_SIZE);
+	int	ret;
+	uc	str[4];
+
+	ret = ind1 + ind2;
+	REGISTRE(reg % IDX_MOD) = chartoint(getmemory(battle, ret, str, 4), 4);
 }

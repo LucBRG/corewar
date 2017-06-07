@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fork.c                                             :+:      :+:    :+:   */
+/*   aff.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/31 10:21:41 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/07 15:13:04 by tferrari         ###   ########.fr       */
+/*   Created: 2017/06/07 11:37:47 by tferrari          #+#    #+#             */
+/*   Updated: 2017/06/07 11:43:57 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void			fork(t_battle *battle, int ind, int a, int b)
+void			aff(t_battle *battle, int reg, int a, int b)
 {
-	addprocess(&battle->process, battle->cur_process->bot,
-	(PC + (ind + a + b) % IDX_MOD) % MEM_SIZE);
+	reg += a + b;
+	ft_printf("%c\n", REGISTRE(reg) % 256);
 }
