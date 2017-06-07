@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 15:32:11 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/06 17:47:40 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/06/07 15:37:08 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ void		sti(t_battle *battle, int reg, int ind1, int ind2)
 		ret = ind1 + ind2;
 		reg = REGISTRE(reg);
 		str = (uc *)inttochar(&reg);
-		setmemory(battle, ret, str, 4);
+		setmemory(battle, (PC + ret) % MEM_SIZE, str, 4);
 }
