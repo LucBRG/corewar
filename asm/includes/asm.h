@@ -69,7 +69,7 @@ void				arg_add(t_arg **head, t_arg *arg);
 void				find_par(t_asm *env, unsigned char n_args, t_arg *ref_inst);
 int					find_ins(t_asm *env, t_arg **ref_inst);
 void				find_lab(t_asm *env);
-void				copy_header(char *dst, t_asm *env, int i);
+void				copy_header(char *dst, t_asm *env, int i, int id);
 void				parse_instruction(t_asm *env);
 int					is_in(const char *str, char letter);
 void				jump_space(t_asm *env);
@@ -80,6 +80,9 @@ void				label_exist(t_asm *env);
 void				good_order(t_asm *env);
 void    			translate(t_asm *env, char *str);
 void				write_inst(t_arg *lst, int fd);
+void				write_reg(t_arg *lst, int fd);
+void				write_dir(t_arg *lst, int fd, int line, t_asm *env);
+void				write_ind(t_arg *lst, int fd, int line, t_asm *env);
 
 
 

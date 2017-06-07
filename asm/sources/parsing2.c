@@ -12,6 +12,24 @@
 
 #include "asm.h"
 
+static void	check_len(int len, int line, int id)
+{
+	if (id == 1 && len > PROG_NAME_LENGTH)
+	{
+		ft_putstr_fd("Name lenght too big: line ", 2);
+		ft_putnbr_fd(line + 1, 2);
+		ft_putendl_fd(".", 2);
+		exit(EXIT_FAILURE);
+	}
+	else if (id == 2 && len > COMMENT_LENGTH)
+	{
+		ft_putstr_fd("Comment lenght too big: line ", 2);
+		ft_putnbr_fd(line + 1, 2);
+		ft_putendl_fd(".", 2);
+		exit(EXIT_FAILURE);
+	}
+}
+
 int	verif_exist(t_arg *lst, char *str)
 {
 	while (lst)
@@ -42,18 +60,24 @@ void		label_exist(t_asm *env)
 	}
 }
 
-void		copy_header(char *dst, t_asm *env, int i)
+void		copy_header(char *dst, t_asm *env, int i, int id)
 {
 	int	j;
+	int k;
 
 	j = 0;
+	k = 0;
 	while (ft_is_space(env->str[env->i][i]))
 		i++;
 	if (env->str[env->i][i] != '"')
 		show_err(3, env->i);
 	i++;
 	while (env->str[env->i][i] != '"')
+	{
+		k++;
 		dst[j++] = env->str[env->i][i++];
+	}
+	check_len(k, env->i, id);
 	i++;
 	while (ft_is_space(env->str[env->i][i]))
 		i++;

@@ -32,7 +32,7 @@
 ** DEFINE
 */
 
-# define BUF_SZ 1024
+# define BUF_SZ 10192
 # define FLAG_SHARP 1
 # define FLAG_ZERO 2
 # define FLAG_MINUS 4

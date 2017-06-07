@@ -49,3 +49,30 @@ void	write_inst(t_arg *lst, int fd)
 	if (g_op_tab[lst->op_code - 1].has_ocp)
 		ft_putchar_fd(ocp, fd);
 }
+
+void	write_reg(t_arg *lst, int fd)
+{
+	char	nb;
+
+	nb = ft_atoi(&(lst->name[1]));
+	ft_putchar_fd(nb, fd);
+}
+
+void	write_ind(t_arg *lst, int fd, int line, t_asm *env)
+{
+	unsigned short	nb;
+	int				i;
+	unsigned char	c;
+
+	i = 2;
+	nb = ft_atoi(lst->name);
+	while (i > 0)
+	{
+		c = nb / ft_power(256, i);
+		nb = nb % ft_power(256, i);
+		write(fd, &c, 1);
+		i--;
+	}
+	c = nb % ft_power(256, i);
+	write(fd, &c, 1);
+}
