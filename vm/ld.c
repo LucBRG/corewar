@@ -6,13 +6,13 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 10:36:31 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/07 10:38:57 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/06/07 15:29:43 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void			load(t_battle *battle, int param, int reg, int a)
+void			ld(t_battle *battle, int param, int reg, int a)
 {
 	REGISTRE(reg + a) = param % IDX_MOD;
 }

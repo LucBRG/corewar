@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 15:18:33 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/07 15:18:35 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/06/07 15:29:30 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ t_battle	*initbattle(int ac, char **av)
 	b->func[8] = zjmp;
 	b->func[9] = ldi;
 	b->func[10] = sti;
-	b->func[11] = fork;
+	b->func[11] = fork_ft;
 	b->func[12] = lld;
 	b->func[13] = lldi;
 	b->func[14] = lfork;
