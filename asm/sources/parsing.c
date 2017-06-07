@@ -82,7 +82,7 @@ static void	parse_header(t_asm *env)
 		env->header_len++;
 	}
 	if (!env->prog_name[0] || !env->comment[0])
-		show_err(3, -1);
+		show_err(7, 0);
 }
 
 int			parsing_asm(t_asm *env, t_file *file)
