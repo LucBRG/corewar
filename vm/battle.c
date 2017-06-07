@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 18:47:23 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/06 18:47:25 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/06/07 15:17:08 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,21 +126,21 @@ t_battle	*initbattle(int ac, char **av)
 		return (NULL);
 	b->bots = loadbots(ac, av);
 	b->process = loadmemory(b);
-	b->func[0] = test;
-	b->func[1] = test;
-	b->func[2] = test;
-	b->func[3] = test;
-	b->func[4] = test;
-	b->func[5] = test;
-	b->func[6] = test;
-	b->func[7] = test;
-	b->func[8] = test;
-	b->func[9] = test;
-	b->func[10] = test;
-	b->func[11] = test;
-	b->func[12] = test;
-	b->func[13] = test;
-	b->func[14] = test;
-	b->func[15] = test;
+	b->func[0] = live;
+	b->func[1] = ld;
+	b->func[2] = st;
+	b->func[3] = add;
+	b->func[4] = sub;
+	b->func[5] = and_ft;
+	b->func[6] = or_ft;
+	b->func[7] = xor_ft;
+	b->func[8] = zjmp;
+	b->func[9] = ldi;
+	b->func[10] = sti;
+	b->func[11] = fork;
+	b->func[12] = lld;
+	b->func[13] = lldi;
+	b->func[14] = lfork;
+	b->func[15] = aff;
 	return (b);
 }

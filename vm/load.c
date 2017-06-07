@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fork.c                                             :+:      :+:    :+:   */
+/*   load.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/31 10:21:41 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/07 15:13:04 by tferrari         ###   ########.fr       */
+/*   Created: 2017/06/07 10:36:31 by tferrari          #+#    #+#             */
+/*   Updated: 2017/06/07 10:38:57 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void			fork(t_battle *battle, int ind, int a, int b)
+void			load(t_battle *battle, int param, int reg, int a)
 {
-	addprocess(&battle->process, battle->cur_process->bot,
-	(PC + (ind + a + b) % IDX_MOD) % MEM_SIZE);
+	REGISTRE(reg + a) = param % IDX_MOD;
 }

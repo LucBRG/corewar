@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 18:46:22 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/06 18:46:23 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/06/07 15:15:05 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,14 @@ void			xor_ft(t_battle *battle, int param1, int param2, int reg);
 void			add(t_battle *battle, int reg1, int reg2, int reg3);
 void			sub(t_battle *battle, int reg1, int reg2, int reg3);
 void			live(t_battle *battle, int id, int a, int b);
+void			lload(t_battle *battle, int param, int reg, int a);
+void			load(t_battle *battle, int param, int reg, int a);
+void			ldi(t_battle *battle, int ind1, int ind2, int reg);
+void			lldi(t_battle *battle, int ind1, int ind2, int reg);
+void			aff(t_battle *battle, int reg, int a, int b);
+void			st(t_battle *reg, int reg, int param, int a);
+void			zjmp(t_battle *battle, int ind, int a, int b);
+void			fork(t_battle *battle, int param1, int param2, int reg);
+void			lfork(t_battle *battle, int param1, int param2, int reg);
 
 #endif
