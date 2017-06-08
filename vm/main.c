@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 17:51:29 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/08 14:20:57 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/08 17:37:53 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	main(int ac, char **av)
 	t_battle	*b;
 
 	i = -1;
-	b = initbattle(ac, av);
+	if (!(b = initbattle(ac, av)))
+		return (0);
 	printf("FIGHT\t%d\n", b->bots.nb);
 	if (b->bots.nb)
 	{

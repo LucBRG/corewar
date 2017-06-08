@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 18:22:36 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/08 14:48:10 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/08 15:14:28 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	hexa(uc *s, int len, int color)
 
 	i = -1;
 	while (++i < len)
-		printf("\033[4%d;%dm%.2x \033[40;0m", color, (color) ? 30 : 0, s[i]);
+		ft_printf("\033[4%d;%dm%.2x \033[40;0m", color, (color) ? 30 : 0, s[i]);
 }
 
 void	debug(uc *s, int len)
@@ -40,15 +40,15 @@ void	debug(uc *s, int len)
 	hexa(s + i, 4, C_PURPLE);
 	i += 4;
 	hexa(s + i, len - i, C_CYAN);
-	printf("\n");
+	ft_printf("\n");
 }
 
 void	displaybot(t_bot *bot)
 {
-	printf("id\t\t: %d\nlive\t\t: %d\nname\t\t: %s\ncomment\t\t: %s\ninstructions\t: %d\n",
+	ft_printf("id\t\t: %d\nlive\t\t: %d\nname\t\t: %s\ncomment\t\t: %s\ninstructions\t: %d\n",
 		bot->id, bot->live, bot->name, bot->comment, bot->nb_instructions);
 	hexa(bot->instructions, bot->nb_instructions, bot->id % 6);
-	printf("\n");
+	ft_printf("\n");
 }
 
 void	displayprocess(t_list *elem)
@@ -57,14 +57,17 @@ void	displayprocess(t_list *elem)
 	t_process *process;
 
 	if (!elem)
+	{
+		ft_printf("no elem\n");
 		return ;
+	}
 	process = (t_process*)elem->content;
 	color = process->bot->id % 6;
-	printf("\033[3%dm", color);
-	printf("%p\npc\t: %d\n", process, process->pc);
+	ft_printf("\033[3%dm", color);
+	ft_printf("%p\npc\t: %d\n", process, process->pc);
 	hexa((uc*)process->registre, REG_NUMBER * REG_SIZE, color);
-	printf("\n");
-	printf("\033[3%dm", color);
+	ft_printf("\n");
+	ft_printf("\033[3%dm", color);
 	displaybot(process->bot);
-	printf("\033[40;0m");
+	ft_printf("\033[40;0m");
 }

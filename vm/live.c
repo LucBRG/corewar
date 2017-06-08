@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   live.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 18:33:06 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/07 15:44:47 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/06/08 17:46:56 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ void			live(t_battle *battle, int id, int a, int b)
 	a = b;
 	while (++i < battle->bots.nb)
 		if (battle->bots.tab[i]->id == id)
-			battle->bots.tab[id - 1]->live++;
+			battle->bots.tab[i]->live++;
 }

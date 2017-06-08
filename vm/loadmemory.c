@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 16:53:41 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/06 09:44:09 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/08 15:38:38 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ t_list		*loadmemory(t_battle *b)
 	while (++i < b->bots.nb)
 	{
 		index_bot = (j + i * space);
-		list = addprocess(&list, b->bots.tab[i], index_bot);
+		if (!addprocess(&list, b->bots.tab[i], index_bot))
+			return (NULL);
 		setmemory(b, index_bot,
 			b->bots.tab[i]->instructions, b->bots.tab[i]->nb_instructions);
 		j += b->bots.tab[i]->nb_instructions;
