@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 18:22:36 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/08 14:36:28 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/08 14:48:10 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	displayprocess(t_list *elem)
 	process = (t_process*)elem->content;
 	color = process->bot->id % 6;
 	printf("\033[3%dm", color);
-	printf("pc\t: %d\n", process->pc);
+	printf("%p\npc\t: %d\n", process, process->pc);
 	hexa((uc*)process->registre, REG_NUMBER * REG_SIZE, color);
 	printf("\n");
 	printf("\033[3%dm", color);

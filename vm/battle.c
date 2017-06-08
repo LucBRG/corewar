@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 15:18:33 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/08 14:28:23 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/08 14:47:09 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int			verif_live(t_battle *battle)
 		if (!process->dead)
 		{
 			total += process->bot->live;
+			displayprocess(elem);
 			if (!process->bot->live && !process->dead)
 			{
 				printf("mise a mort de %d(%s)\n", process->bot->id, process->bot->name);
