@@ -3,21 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ldi.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 10:43:46 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/07 15:41:28 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/06/08 17:59:13 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
+#define SIZE sizeof(int)
+
 void			ldi(t_battle *battle, int ind1, int ind2, int reg)
 {
-	int	ret;
-	uc	str[4];
+	uc	str[SIZE];
 
-	ret = ind1 + ind2;
-	REGISTRE(reg % IDX_MOD) = chartoint(getmemory
-	(battle, (PC + ret) % MEM_SIZE, str, 4), 4);
+	if (ISREG(reg))
+	{
+		getmemory(battle, SETPC((ind1 + ind2) % IDX_MOD), str, SIZE);
+		REGISTRE(reg) = chartoint(str, SIZE);
+	}
 }

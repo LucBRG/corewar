@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 15:18:33 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/08 14:47:09 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/08 18:01:16 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int			verif_live(t_battle *battle)
 		if (!process->dead)
 		{
 			total += process->bot->live;
-			displayprocess(elem);
+			// displayprocess(elem);
 			if (!process->bot->live && !process->dead)
 			{
 				printf("mise a mort de %d(%s)\n", process->bot->id, process->bot->name);
@@ -78,18 +78,13 @@ t_process	*battle_launch(t_battle *battle)
 			if (!((t_process*)elem->content)->dead)
 			{
 				battle->cur_process = (t_process*)elem->content;
-				// hexa(battle->memory, MEM_SIZE, 0);
-				// printf("\n\n");
 				PC = SETPC(load_func(battle));
 			}
-			// displayprocess(elem);
 			elem = elem->next;
 		}
 		if (!rulescycle(battle, &loop, &cycle))
 			return (battle->cur_process);
 		loop++;
-		// if (loop ==2)
-		// return (NULL);//a suppr
 	}
 	return (NULL);
 }
@@ -101,7 +96,8 @@ t_battle	*initbattle(int ac, char **av)
 	if (!(b = malloc(sizeof(t_battle))))
 		return (NULL);
 	b->bots = loadbots(ac, av);
-	b->process = loadmemory(b);
+	if (!(b->process = loadmemory(b)))
+		return (NULL);
 	b->func[0] = live;
 	b->func[1] = ld;
 	b->func[2] = st;

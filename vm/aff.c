@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 11:37:47 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/08 11:36:15 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/08 17:32:52 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 void			aff(t_battle *battle, int reg, int a, int b)
 {
 	a = b;
-	ft_printf("%c", REGISTRE(reg) % 256);
+	if (ISREG(reg))
+		ft_printf("%c", REGISTRE(reg) % 256);
 }
