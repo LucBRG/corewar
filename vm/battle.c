@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   battle.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 15:18:33 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/07 15:29:30 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/06/08 11:32:22 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,17 +119,18 @@ t_process	*battle_launch(t_battle *battle)
 			if (!((t_process*)elem->content)->dead)
 			{
 				battle->cur_process = (t_process*)elem->content;
-				hexa(battle->memory, MEM_SIZE, 0);
-				printf("\n\n");
+				// hexa(battle->memory, MEM_SIZE, 0);
+				// printf("\n\n");
 				PC = SETPC(load_func(battle));
 			}
-			displayprocess(elem);
+			// displayprocess(elem);
 			elem = elem->next;
 		}
 		if (!rulescycle(battle, &loop, &cycle))
 			return (battle->cur_process);
 		loop++;
-		return (NULL);//a suppr
+		// if (loop ==2)
+		// return (NULL);//a suppr
 	}
 	return (NULL);
 }

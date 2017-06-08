@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aff.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 11:37:47 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/07 11:43:57 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/06/08 11:36:15 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void			aff(t_battle *battle, int reg, int a, int b)
 {
-	reg += a + b;
-	ft_printf("%c\n", REGISTRE(reg) % 256);
+	a = b;
+	ft_printf("%c", REGISTRE(reg) % 256);
 }
