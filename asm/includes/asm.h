@@ -83,6 +83,10 @@ void				write_inst(t_arg *lst, int fd);
 void				write_reg(t_arg *lst, int fd);
 void				write_dir(t_arg *lst, int fd, int line, t_asm *env);
 void				write_ind(t_arg *lst, int fd, int line, t_asm *env);
+void				label2(t_arg *lst, int fd, int line, t_asm *env);
+void				write_translation(unsigned int nb, int oct, int fd);
+int					label_avant(t_arg *find, t_arg *lst, int i, int line);
+int					label_apres(t_arg *find, t_arg *lst);
 
 
 

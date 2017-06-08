@@ -60,19 +60,13 @@ void	write_reg(t_arg *lst, int fd)
 
 void	write_ind(t_arg *lst, int fd, int line, t_asm *env)
 {
-	unsigned short	nb;
-	int				i;
-	unsigned char	c;
+	unsigned int	nb;
 
-	i = 2;
 	nb = ft_atoi(lst->name);
-	while (i > 0)
+	if (lst->name[0] == ':')
+		label2(lst, fd, line, env);
+	else
 	{
-		c = nb / ft_power(256, i);
-		nb = nb % ft_power(256, i);
-		write(fd, &c, 1);
-		i--;
+		write_translation(nb, 2, fd);
 	}
-	c = nb % ft_power(256, i);
-	write(fd, &c, 1);
 }

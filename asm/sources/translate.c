@@ -114,7 +114,8 @@ void			translate(t_asm *env, char *str)
 	name = (char*)malloc(sizeof(*name) * (len + 2));
 	name = ft_strncpy(name, str, len - 1);
 	name  = ft_strcat(name, "cor");
-	fd = open(name, O_WRONLY | O_CREAT | O_APPEND, 0666);
+	fd = open(name, O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	write_header(env, fd);
 	write_core(env, fd);
+	close(fd);
 }
