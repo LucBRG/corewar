@@ -14,9 +14,9 @@
 
 void			st(t_battle *battle, int reg, int param, int a)
 {
-	uc	str[4];
+	uc	*str;
 
 	reg += a;
 	str = (uc *)inttochar(&reg);
-	setmemory(battle, (PC + ret) % MEM_SIZE, str, 4);
+	setmemory(battle, (PC + reg) % MEM_SIZE, str, 4);
 }

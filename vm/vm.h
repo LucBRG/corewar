@@ -22,6 +22,7 @@
 
 # define REGISTRE(x)	battle->cur_process->registre[x]
 # define PC				battle->cur_process->pc
+# define SETPC(n)		((PC + n) % MEM_SIZE)
 # define MAX(a, b)		((a > b) ? a : b)
 
 enum{NOTHING, LIVE, LD, ST, ADD, SUB, AND, OR, XOR, ZJMP, LDI, STI, FORK, LLD,
@@ -77,6 +78,7 @@ char			*inttochar(int *i);
 int				mod(int a, int b);
 t_battle		*initbattle(int ac, char **av);
 t_process		*battle_launch(t_battle *battle);
+t_list			*addprocess(t_list **list, t_bot *bot, int pc);
 
 void			debug(uc *s, int len);
 void			displaybot(t_bot *bot);

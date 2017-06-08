@@ -17,17 +17,20 @@
 #define PARAMS		battle->memory[PC + 2]
 #define PARAM(n)	(OCP >> ((3 - n) * 2) & 0b11)
 
-void	test(t_battle *b, int p1, int p2, int p3)
+int		isocp(char inst)
 {
-	// printf("id : %d\t params : %d %d %d\n", b->cur_process->bot->id, p1, p2, p3);
+	return (inst == LIVE || inst == ZJMP || inst == FORK || inst == LFORK
+		|| inst == AFF);
 }
 
 int		load_func(t_battle *battle)
 {
+	int i;
 	int pc;
 	int params[3];
 	int sizep[3];
 
+	i = -1;
 	pc = PC;
 	ft_bzero(params, sizeof(int) * 3);
 	ft_bzero(sizep, sizeof(int) * 3);
@@ -38,11 +41,8 @@ int		load_func(t_battle *battle)
 		else if (INST == LIVE || INST == ZJMP || INST == FORK || INST == LFORK)
 			sizep[0] = T_DIR;
 		else
-		{
-			sizep[0] = PARAM(0);
-			sizep[1] = PARAM(1);
-			sizep[2] = PARAM(2);
-		}
+			while (++i < 3)
+				sizep[i] = PARAM(i);
 		params[0] = chartoint(&PARAMS, sizep[0]);
 		params[1] = chartoint(&PARAMS + sizep[0], sizep[1]);
 		params[2] = chartoint(&PARAMS + sizep[0] + sizep[1], sizep[2]);
@@ -50,7 +50,8 @@ int		load_func(t_battle *battle)
 	}
 	// printf("params\t: %d\t%d\t%d\t%d\n", INST, params[0], params[1], params[2]);
 	// printf("sizep\t: %d\t%d\t%d\t%d\n", MAX((sizep[0] + sizep[1] + sizep[2]), 1), sizep[0], sizep[1], sizep[2]);
-	return ((pc == PC) ? MAX((sizep[0] + sizep[1] + sizep[2]), 1) : 0);
+	i = ((pc == PC) ? MAX((1 + sizep[0] + sizep[1] + sizep[2]), 1) : 0);
+	return (i + (isocp(INST) ? 1 : 0));
 }
 
 int			verif_live(t_battle *battle)
@@ -64,16 +65,16 @@ int			verif_live(t_battle *battle)
 	while (elem)
 	{
 		process = (t_process*)elem->content;
+		// printf("%p\tlive : %d\tdead : %d\n", process, process->bot->live, process->dead);
 		if (!process->dead)
 		{
 			total += process->bot->live;
-			if (!process->bot->live)
+			if (!process->bot->live && !process->dead)
 			{
-				printf("mise a mort de %d(%s)\n", process->bot->id, process->bot->name);
+				// printf("mise a mort de %d(%s)\n", process->bot->id, process->bot->name);
 				process->dead = 1;
 			}
-			else
-				process->bot->live = 0;
+			process->bot->live = 0;
 		}
 		elem = elem->next;
 	}
@@ -118,14 +119,17 @@ t_process	*battle_launch(t_battle *battle)
 			if (!((t_process*)elem->content)->dead)
 			{
 				battle->cur_process = (t_process*)elem->content;
-				PC = (PC + load_func(battle)) % MEM_SIZE;
+				hexa(battle->memory, MEM_SIZE, 0);
+				printf("\n\n");
+				PC = SETPC(load_func(battle));
 			}
+			displayprocess(elem);
 			elem = elem->next;
 		}
 		if (!rulescycle(battle, &loop, &cycle))
 			return (battle->cur_process);
 		loop++;
-		// return (NULL);// a supprimer
+		return (NULL);//a suppr
 	}
 	return (NULL);
 }

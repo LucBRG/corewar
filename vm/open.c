@@ -82,7 +82,7 @@ int		print_error(int err)
 	while (++i < NB_ERR)
 	{
 		if (tmp & 1)
-			printf("error: %s\n", error[i]);
+			ft_printf("error: %s\n", error[i]);
 		tmp = tmp >> 1;
 	}
 	return (err);
