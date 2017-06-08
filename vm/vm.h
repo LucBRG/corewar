@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 15:18:41 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/07 15:29:13 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/06/08 11:38:05 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ char			*inttochar(int *i);
 int				mod(int a, int b);
 t_battle		*initbattle(int ac, char **av);
 t_process		*battle_launch(t_battle *battle);
+t_list			*addprocess(t_list **list, t_bot *bot, int pc);
 
 void			debug(uc *s, int len);
 void			displaybot(t_bot *bot);
@@ -95,7 +96,7 @@ void			ld(t_battle *battle, int param, int reg, int a);
 void			ldi(t_battle *battle, int ind1, int ind2, int reg);
 void			lldi(t_battle *battle, int ind1, int ind2, int reg);
 void			aff(t_battle *battle, int reg, int a, int b);
-void			st(t_battle *reg, int reg, int param, int a);
+void			st(t_battle *battle, int reg, int param, int a);
 void			zjmp(t_battle *battle, int ind, int a, int b);
 void			fork_ft(t_battle *battle, int ind, int a, int b);
 void			lfork(t_battle *battle, int ind, int a, int b);
