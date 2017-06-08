@@ -6,14 +6,14 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 14:00:54 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/07 11:50:42 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/08 14:12:08 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
 #define BUFFER		10000
-#define NB_MAG	(0)
+#define NB_MAG		(0)
 #define NAME		(4)
 #define OC_NULL_1	(4 + PROG_NAME_LENGTH)
 #define NB_INST		(8 + PROG_NAME_LENGTH)
@@ -52,14 +52,16 @@ int		check_error(unsigned char *bot, int len)
 {
 	int error;
 
+	if (!bot)
+		return (ERR_BOT);
+	if (len < MIN_BOT)
+		return (ERR_LEN);
 	error = 0;
-	error |= (bot) ? 0 : ERR_BOT;
 	error |= (chartoint(bot + NB_MAG, 4) == COREWAR_EXEC_MAGIC) ? 0 : ERR_MAG;
 	error |= (!chartoint(bot + OC_NULL_1, 4)) ? 0 : ERR_OC1;
 	error |= (!chartoint(bot + OC_NULL_2, 4)) ? 0 : ERR_OC2;
 	error |= (chartoint(bot + NB_INST, 4) == len - INST) ? 0 : ERR_INT;
 	error |= (chartoint(bot + NB_INST, 4) <= CHAMP_MAX_SIZE) ? 0 : ERR_SIZ;
-	error |= (len > MIN_BOT) ? 0 : ERR_LEN;
 	return (error);
 }
 

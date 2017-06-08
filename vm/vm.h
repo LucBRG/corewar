@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 15:18:41 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/08 11:04:57 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/08 14:22:37 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int				mod(int a, int b);
 t_battle		*initbattle(int ac, char **av);
 t_process		*battle_launch(t_battle *battle);
 t_list			*addprocess(t_list **list, t_bot *bot, int pc);
+int				load_func(t_battle *battle);
 
 void			debug(uc *s, int len);
 void			displaybot(t_bot *bot);

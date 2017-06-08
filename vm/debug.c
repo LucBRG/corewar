@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 18:22:36 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/06 18:40:52 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/08 14:36:28 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,26 +45,26 @@ void	debug(uc *s, int len)
 
 void	displaybot(t_bot *bot)
 {
-	if (!bot)
-		printf("error bot\n");
-	else
-	{
-		printf("id\t\t: %d\nlive\t\t: %d\nname\t\t: %s\ncomment\t\t: %s\ninstructions\t: %d\n",
-			bot->id, bot->live, bot->name, bot->comment, bot->nb_instructions);
-		hexa(bot->instructions, bot->nb_instructions, 0);
-		printf("\n");
-	}
+	printf("id\t\t: %d\nlive\t\t: %d\nname\t\t: %s\ncomment\t\t: %s\ninstructions\t: %d\n",
+		bot->id, bot->live, bot->name, bot->comment, bot->nb_instructions);
+	hexa(bot->instructions, bot->nb_instructions, bot->id % 6);
+	printf("\n");
 }
 
 void	displayprocess(t_list *elem)
 {
+	int color;
 	t_process *process;
 
 	if (!elem)
 		return ;
 	process = (t_process*)elem->content;
+	color = process->bot->id % 6;
+	printf("\033[3%dm", color);
 	printf("pc\t: %d\n", process->pc);
-	hexa((uc*)process->registre, REG_NUMBER * REG_SIZE, 0);
+	hexa((uc*)process->registre, REG_NUMBER * REG_SIZE, color);
 	printf("\n");
+	printf("\033[3%dm", color);
 	displaybot(process->bot);
+	printf("\033[40;0m");
 }
