@@ -1,2 +1,2 @@
 gcc *.c -L ../libft -lft -I ../libft/includes
-./a.out test.cor test2.cor
+./a.out champ/test.cor champ/test2.cor
