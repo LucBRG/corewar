@@ -11,6 +11,7 @@
 
 # define REGISTRE(x)	battle->cur_process->registre[x]
 # define PC				battle->cur_process->pc
+# define ID				b->cur_process->bot->id
 # define SETPC(n)		((PC + n) % MEM_SIZE)
 # define MAX(a, b)		((a > b) ? a : b)
 # define CARRY			battle->cur_process->carry
@@ -51,6 +52,7 @@ typedef struct	s_process
 typedef struct	s_battle
 {
 	uc			memory[MEM_SIZE];
+	uc			print_mem[MEM_SIZE];
 	t_process	*cur_process;
 	t_bots		bots;
 	t_list		*process;
@@ -76,6 +78,7 @@ void			debug(uc *s, int len);
 void			displaybot(t_bot *bot);
 void			hexa(uc *s, int len, int color);
 void			displayprocess(t_list *elem);
+void			print_memory(t_battle *b);
 
 void			sti(t_battle *battle, int reg, int ind1, int ind2);
 void			and_ft(t_battle *battle, int param1, int param2, int reg);
