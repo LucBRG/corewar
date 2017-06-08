@@ -13,6 +13,8 @@
 # define PC				battle->cur_process->pc
 # define SETPC(n)		((PC + n) % MEM_SIZE)
 # define MAX(a, b)		((a > b) ? a : b)
+# define CARRY			battle->cur_process->carry
+# define CHANGE(x)		((x) ? 0 : 1)
 
 enum{NOTHING, LIVE, LD, ST, ADD, SUB, AND, OR, XOR, ZJMP, LDI, STI, FORK, LLD,
 	LLDI, LFORK, AFF};
