@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   battle.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 15:18:33 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/08 14:47:09 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/08 18:16:40 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ t_process	*battle_launch(t_battle *battle)
 				battle->cur_process = (t_process*)elem->content;
 				// hexa(battle->memory, MEM_SIZE, 0);
 				// printf("\n\n");
+				print_memory(battle);
 				PC = SETPC(load_func(battle));
 			}
 			// displayprocess(elem);
