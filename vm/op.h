@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   op.h                                               :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/06 17:56:35 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/08 14:59:12 by dbischof         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef OP_H
 # define OP_H
@@ -30,7 +19,11 @@
 
 #define MAX_ARGS_NUMBER			4
 #define MAX_PLAYERS				4
+<<<<<<< HEAD
 #define MEM_SIZE				(1024*4)
+=======
+#define MEM_SIZE				(4 * 1024)
+>>>>>>> vm_tferrari
 #define IDX_MOD					(MEM_SIZE / 8)
 #define CHAMP_MAX_SIZE			(MEM_SIZE / 6)
 
