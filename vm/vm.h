@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 15:18:41 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/08 11:38:05 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/06/08 14:49:59 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # define REGISTRE(x)	battle->cur_process->registre[x]
 # define PC				battle->cur_process->pc
 # define MAX(a, b)		((a > b) ? a : b)
+# define CARRY			battle->cur_process->carry
+# define CHANGE(x)		((x) ? 0 : 1)
 
 enum{NOTHING, LIVE, LD, ST, ADD, SUB, AND, OR, XOR, ZJMP, LDI, STI, FORK, LLD,
 	LLDI, LFORK, AFF};
