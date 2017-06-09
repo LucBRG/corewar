@@ -78,7 +78,8 @@ static t_arg	*fill_arg(t_arg *arg, t_asm *env, int i, int len)
 {
 	arg = arg_create();
 	arg->op_code = g_op_tab[i].op_code;
-	arg->special |= T_INSTRU;	arg_add(&env->args, arg);
+	arg->special |= T_INSTRU;
+	arg_add(&env->args, arg);
 	env->j += len;
 	env->oct_line = g_op_tab[i].op_code;
 	return (arg);

@@ -42,7 +42,6 @@ typedef	struct		s_asm
 	char			prog_name[PROG_NAME_LENGTH + 1];
 	char			comment[COMMENT_LENGTH + 1];
 	unsigned char	oct_line;
-
 }					t_asm;
 
 typedef	struct		s_op

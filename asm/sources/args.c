@@ -44,6 +44,7 @@ void	arg_delete(t_arg **head)
 		free(lst);
 		lst = next;
 	}
+	*head = NULL;
 }
 
 void	arg_add(t_arg **head, t_arg *arg)

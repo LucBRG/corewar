@@ -14,8 +14,17 @@
 
 static void	free_struct(t_asm *env)
 {
+	unsigned int	i;
+
+	i = -1;
 	if (env->str)
+	{
+		while (++i < env->nb_line)
+		{
+			free(env->str[i]);
+		}
 		free(env->str);
+	}
 	free(env);
 }
 
@@ -84,6 +93,10 @@ int			main(int ac, char **av)
 	env->args = NULL;
 	parsing_asm(env, file);
 	translate(env, av[1]);
+	ft_printf("File created.\n");
+	my_fclose(file);
+	arg_delete(&env->args);
 	free_struct(env);
+	while(1);
 	return (0);
 }
