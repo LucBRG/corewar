@@ -9,18 +9,25 @@ void	label2(t_arg *lst, int fd, int line, t_asm *env)
 	i = 0;
 	oct = 0;
 	find = env->args;
-	while (find && oct == 0)
+	while (find)
 	{
-		/*if (find->special & T_LAB)
-			printf("%s && %s\n", find->name, lst->name);*/
 		if (find->special & T_INSTRU)
 			i++;
 		else
 		{
-			if (find && i == line && ft_strcmp(&(find->name[1]), &(lst->name[1])) == 0 && !(find->special & T_LAB))
+			if (find && i == line &&
+				ft_strcmp(&(find->name[1]), &(lst->name[1])) == 0 &&
+				!(find->special & T_LAB))
+			{
 				oct = label_apres(find,lst);
-			else if (find && ft_strcmp(find->name, &(lst->name[1])) == 0 && (find->special & T_LAB))
+				break;
+			}
+			else if (find && ft_strcmp(find->name, &(lst->name[1])) == 0 &&
+				(find->special & T_LAB))
+			{
 				oct = label_avant(find, lst, i, line);
+				break ;
+			}
 		}
 		find = find->next;
 	}
@@ -36,16 +43,25 @@ void	label4(t_arg *lst, int fd, int line, t_asm *env)
 	i = 0;
 	oct = 0;
 	find = env->args;
-	while (find && oct == 0)
+	while (find)
 	{
 		if (find->special & T_INSTRU)
 			i++;
 		else
 		{
-			if (find && i == line && ft_strcmp(&(find->name[1]), &(lst->name[1])) == 0 && !(find->special & T_LAB))
+			if (find && i == line &&
+				ft_strcmp(&(find->name[1]), &(lst->name[1])) == 0 &&
+				!(find->special & T_LAB))
+			{
 				oct = label_apres(find,lst);
-			else if (find && ft_strcmp(find->name, &(lst->name[1])) == 0 && (find->special & T_LAB))
+				break;
+			}
+			else if (find && ft_strcmp(find->name, &(lst->name[1])) == 0 &&
+				(find->special & T_LAB))
+			{
 				oct = label_avant(find, lst, i, line);
+				break ;
+			}
 		}
 		find = find->next;
 	}
