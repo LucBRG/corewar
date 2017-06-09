@@ -14,7 +14,6 @@ int		label_apres(t_arg *find, t_arg *lst)
 
 	oct = 0;
 	tmp = tot_oct_instru(lst);
-	//printf("%s && %s\n", find->name, lst->name);
 	while (find && ft_strcmp(find->name, &(lst->name[1])) != 0)
 	{
 		if (find->special & T_INSTRU)
@@ -22,7 +21,6 @@ int		label_apres(t_arg *find, t_arg *lst)
 		find = find->next;
 	}
 	oct += tmp;
-	//printf("nb = %d\n", oct);
 	return (oct);
 }
 
@@ -32,7 +30,6 @@ int		label_avant(t_arg *find, t_arg *lst, int i, int line)
 	int				tmp;
 
 	oct = 0;
-	//printf("%s && %s\n", find->name, lst->name);
 	find = find->next;
 	tmp = tot_oct_instru(lst);
 	while (find && ft_strcmp(find->name, &(lst->name[1])) != 0 && i != line)
@@ -45,7 +42,6 @@ int		label_avant(t_arg *find, t_arg *lst, int i, int line)
 		find = find->next;
 	}
 	oct -= tmp;
-	//printf("nb = %d\n", oct);
 	return (-oct);
 }
 
