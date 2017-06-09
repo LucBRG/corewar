@@ -30,16 +30,16 @@ static void	check_len(int len, int line, int id)
 	}
 }
 
-int	verif_exist(t_arg *lst, char *str)
+int			verif_exist(t_arg *lst, t_arg *label)
 {
 	while (lst)
 	{
 		if ((lst->special & T_LAB) &&
-			ft_strncmp(lst->name, &(str[1]), cor_strlen(lst->name)) == 0)
+			ft_strncmp(lst->name, &(label->name[1]), cor_strlen(lst->name)) == 0)
 			return (1);
 		lst = lst->next;
 	}
-	show_err(4, 0);
+	show_err(4, label->line);
 	return (0);
 }
 
@@ -55,7 +55,7 @@ void		label_exist(t_asm *env)
 	while (lst)
 	{
 		if (!(lst->special & T_LAB) && ft_strchr(lst->name, LABEL_CHAR))
-			verif_exist(tmp, lst->name);
+			verif_exist(tmp, lst);
 		lst = lst->next;
 	}
 }

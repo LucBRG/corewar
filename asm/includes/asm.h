@@ -26,6 +26,7 @@ typedef	struct		s_arg
 	unsigned char	special;
 	unsigned char	octet;
 	unsigned char	tot_octets;
+	unsigned int	line;
 	struct s_arg	*ref;
 	struct s_arg	*next;
 	struct s_arg	*prec;
@@ -72,7 +73,7 @@ int					is_in(const char *str, char letter);
 void				jump_space(t_asm *env);
 void				verif_name(t_asm *env, t_arg *arg);
 int					cor_strlen(char *str);
-int					verif_exist(t_arg *lst, char *str);
+int					verif_exist(t_arg *lst, t_arg *label);
 void				label_exist(t_asm *env);
 void				good_order(t_asm *env);
 void    			translate(t_asm *env, char *str);
