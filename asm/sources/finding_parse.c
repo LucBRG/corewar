@@ -6,7 +6,7 @@
 /*   By: mdeglain <mdeglain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 16:11:30 by mdeglain          #+#    #+#             */
-/*   Updated: 2017/05/30 11:41:34 by mdeglain         ###   ########.fr       */
+/*   Updated: 2017/06/09 10:54:06 by mdeglain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,19 @@ static void	type_par(char *str, t_asm *env, t_arg *ref_inst)
 	{
 		arg->special |= T_REG;
 		arg->octet = 1;
-		arg->name = ft_strdup(str);
+		arg->name = ft_strsub(str, 0, new_strlen(str));
 	}
 	else if (str[0] == '%')
 	{
 		arg->special |= T_DIR;
 		arg->octet = nb_octet(env);	
-		arg->name = ft_strdup(&str[1]);
+		arg->name = ft_strsub(str, 1, new_strlen(str) - 1);
 	}
 	else
 	{
 		arg->special |= T_IND;
 		arg->octet = 2;
-		arg->name = ft_strdup(str);
+		arg->name = ft_strsub(str, 0, new_strlen(str));
 	}
 	verif_name(env, arg);
 	ref_inst->tot_octets += arg->octet;

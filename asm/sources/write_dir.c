@@ -9,22 +9,18 @@ void	label2(t_arg *lst, int fd, int line, t_asm *env)
 	i = 0;
 	oct = 0;
 	find = env->args;
-	while (find)
+	while (find && oct == 0)
 	{
+		/*if (find->special & T_LAB)
+			printf("%s && %s\n", find->name, lst->name);*/
 		if (find->special & T_INSTRU)
 			i++;
 		else
 		{
-			if (i == line && ft_strcmp(&(find->name[1]), &(lst->name[1])) == 0)
-			{
+			if (find && i == line && ft_strcmp(&(find->name[1]), &(lst->name[1])) == 0 && !(find->special & T_LAB))
 				oct = label_apres(find,lst);
-				break ;
-			}
-			else if (ft_strcmp(find->name, &(lst->name[1])) == 0 && (find->special & T_LAB))
-			{
+			else if (find && ft_strcmp(find->name, &(lst->name[1])) == 0 && (find->special & T_LAB))
 				oct = label_avant(find, lst, i, line);
-				break ;
-			}
 		}
 		find = find->next;
 	}
@@ -40,22 +36,16 @@ void	label4(t_arg *lst, int fd, int line, t_asm *env)
 	i = 0;
 	oct = 0;
 	find = env->args;
-	while (find)
+	while (find && oct == 0)
 	{
 		if (find->special & T_INSTRU)
 			i++;
 		else
 		{
-			if (i == line && ft_strcmp(&(find->name[1]), &(lst->name[1])) == 0)
-			{
+			if (find && i == line && ft_strcmp(&(find->name[1]), &(lst->name[1])) == 0 && !(find->special & T_LAB))
 				oct = label_apres(find,lst);
-				break ;
-			}
-			else if (ft_strcmp(find->name, &(lst->name[1])) == 0 && (find->special & T_LAB))
-			{
+			else if (find && ft_strcmp(find->name, &(lst->name[1])) == 0 && (find->special & T_LAB))
 				oct = label_avant(find, lst, i, line);
-				break ;
-			}
 		}
 		find = find->next;
 	}
@@ -77,7 +67,7 @@ void	on_4oct(t_arg *lst, int fd, int line, t_asm *env)
 
 void	on_2oct(t_arg *lst, int fd, int line, t_asm *env)
 {
-	unsigned short	nb;
+	unsigned int	nb;
 
 	if (lst->name[0] == ':')
 		label2(lst, fd, line, env);
