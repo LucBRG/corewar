@@ -6,7 +6,7 @@
 /*   By: mdeglain <mdeglain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 14:01:20 by mdeglain          #+#    #+#             */
-/*   Updated: 2017/05/30 12:22:32 by mdeglain         ###   ########.fr       */
+/*   Updated: 2017/06/09 10:46:49 by mdeglain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void				label2(t_arg *lst, int fd, int line, t_asm *env);
 void				write_translation(unsigned int nb, int oct, int fd);
 int					label_avant(t_arg *find, t_arg *lst, int i, int line);
 int					label_apres(t_arg *find, t_arg *lst);
+int					new_strlen(char *str);
 
 
 

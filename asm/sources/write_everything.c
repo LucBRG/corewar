@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   write_everything.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdeglain <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdeglain <mdeglain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 16:56:10 by mdeglain          #+#    #+#             */
-/*   Updated: 2017/06/02 17:00:49 by mdeglain         ###   ########.fr       */
+/*   Updated: 2017/06/09 09:20:07 by mdeglain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,5 @@ void	write_ind(t_arg *lst, int fd, int line, t_asm *env)
 	if (lst->name[0] == ':')
 		label2(lst, fd, line, env);
 	else
-	{
 		write_translation(nb, 2, fd);
-	}
 }
