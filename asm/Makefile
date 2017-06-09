@@ -15,7 +15,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra
 SRC_NAME =	$(sort op.c main.c parsing.c utils.c args.c finding_parse.c \
 			parsing2.c verif_args.c parsing3.c translate.c write_everything.c \
-			write_dir.c function.c)
+			write_dir.c function.c reg.c)
 
 LIB_PATH = ../libft/
 LIB_NAME = libft.a

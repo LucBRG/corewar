@@ -78,7 +78,10 @@ static void	verif_ind(t_asm *env, char *str)
 void		verif_name(t_asm *env, t_arg *arg)
 {
 	if (arg->special & T_REG)
+	{
 		verif_reg(env, arg->name);
+		reg(env, ft_atoi(arg->name + 1));
+	}
 	else if (arg->special & T_DIR)
 		verif_dir(env, arg->name);
 	else if (arg->special & T_IND)

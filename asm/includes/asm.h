@@ -41,6 +41,7 @@ typedef	struct		s_asm
 	struct s_arg	*args;
 	char			prog_name[PROG_NAME_LENGTH + 1];
 	char			comment[COMMENT_LENGTH + 1];
+	int				reg[REG_NUMBER];
 	unsigned char	oct_line;
 }					t_asm;
 
@@ -55,9 +56,6 @@ typedef	struct		s_op
 	unsigned char	has_ocp;
 	unsigned char	has_carry;
 }					t_op;
-
-
-
 
 int					cor_strchr(const char *s, int c);
 int					parsing_asm(t_asm *env, t_file *file);
@@ -87,9 +85,7 @@ void				write_translation(unsigned int nb, int oct, int fd);
 int					label_avant(t_arg *find, t_arg *lst, int i, int line);
 int					label_apres(t_arg *find, t_arg *lst);
 int					new_strlen(char *str);
-
-
-
+int					reg(t_asm *env, int reg);
 
 extern t_op	g_op_tab[17];
 
