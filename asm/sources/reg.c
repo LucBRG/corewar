@@ -26,12 +26,8 @@ int			reg(t_asm *env, int reg)
 
 	i = -1;
 	while (++i < REG_NUMBER)
-	{
 		if (env->reg[i] == reg)
-		{
 			return (1);
-		}
-	}
 	reg_add(env, reg);
 	return (1);
 }

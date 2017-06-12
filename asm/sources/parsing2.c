@@ -35,12 +35,8 @@ int			verif_exist(t_arg *lst, t_arg *label)
 	while (lst)
 	{
 		if ((lst->special & T_LAB) &&
-			ft_strncmp(lst->name, &(label->name[1]), cor_strlen(lst->name)) == 0
-			&& ft_strlen(lst->name) == ft_strlen(label->name + 1))
-		{
-			ft_printf("%s == %s\n", lst->name, label->name + 1);
+			ft_strcmp(lst->name, &(label->name[1])) == 0)
 			return (1);
-		}
 		lst = lst->next;
 	}
 	show_err(4, label->line);
