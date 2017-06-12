@@ -6,7 +6,7 @@
 #    By: mdeglain <mdeglain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 11:02:03 by mdeglain          #+#    #+#              #
-#    Updated: 2017/06/07 09:41:41 by mdeglain         ###   ########.fr        #
+#    Updated: 2017/06/12 08:56:21 by lbrugero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,6 @@ WHITE = \e[1;37m
 .PHONY: all libft clean fclean re norme
 
 all: libft $(NAME)
-	rm test.cor
 
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) $(LIB) $(OBJ) -o $@

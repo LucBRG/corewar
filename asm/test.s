@@ -1,5 +1,5 @@
-.name "I am the NAME "   #Le commentaire le plus long du monde
-.comment "The commentaire myfriend"
+.name "First"
+.comment "FirstComment"
 
 sti r1, %2, r2
 live %1
