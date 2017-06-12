@@ -40,7 +40,10 @@ void	arg_delete(t_arg **head)
 	{
 		next = lst->next;
 		if (lst->name)
+		{
 			free(lst->name);
+			lst->name = NULL;
+		}
 		free(lst);
 		lst = next;
 	}

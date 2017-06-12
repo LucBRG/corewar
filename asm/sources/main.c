@@ -31,8 +31,12 @@ static void	free_struct(t_asm *env)
 	if (env->str)
 	{
 		while (++i < env->nb_line)
+		{
 			free(env->str[i]);
+			env->str[i] = NULL;
+		}
 		free(env->str);
+		env->str = NULL;
 	}
 	free(env);
 }
@@ -58,29 +62,27 @@ void	show_err2(int id, int line)
 void		show_err(int id, int line)
 {
 	if (id == 0)
-		ft_putstr_fd("Malloc error.\n", 2);
+		ft_putstr_fd("Malloc error", 2);
 	else if (id == 1)
-		ft_putstr_fd("Usage : ./asm [filename.s]\n", 2);
+		ft_putstr_fd("Usage : ./asm [filename.s]", 2);
 	else if (id == 2)
-		ft_putstr_fd("File doesn't exist.\n", 2);
+		ft_putstr_fd("File doesn't exist", 2);
 	else if (id == 3)
 	{
 		ft_putstr_fd("Syntax error: line ", 2);
 		ft_putnbr_fd(line + 1, 2);
-		ft_putendl_fd(".", 2);
 	}
 	else if (id == 4)
 	{
 		ft_putstr_fd("Label doesn't exist: line ", 2);
 		ft_putnbr_fd(line + 1, 2);
-		ft_putendl_fd(".", 2);
 	}
 	else if (id == 5)
 	{
 		ft_putstr_fd("Instruction doesn't exist: line ", 2);
 		ft_putnbr_fd(line + 1, 2);
-		ft_putendl_fd(".", 2);
 	}
+	ft_putendl_fd(".", 2);
 	exit(EXIT_FAILURE);
 }
 
@@ -104,7 +106,10 @@ int			main(int ac, char **av)
 	ft_printf("Writing output program to %s.\n", filename);
 	free(filename);
 	my_fclose(file);
+	file = NULL;
 	arg_delete(&env->args);
 	free_struct(env);
+	env = NULL;
+	while (1);
 	return (0);
 }
