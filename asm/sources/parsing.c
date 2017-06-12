@@ -71,13 +71,13 @@ static void	parse_header(t_asm *env)
 		else if (!env->prog_name[0] && !ft_strncmp(env->str[env->i],
 			NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
 			copy_header(env->prog_name, env,
-				ft_strlen(NAME_CMD_STRING));
+				ft_strlen(NAME_CMD_STRING), 1);
 		else if (!env->comment[0] && !ft_strncmp(env->str[env->i],
 			COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING)))
 			copy_header(env->comment, env,
-				ft_strlen(COMMENT_CMD_STRING));
+				ft_strlen(COMMENT_CMD_STRING), 2);
 		else
-			show_err(3, env->i);
+			show_err(3,  env->i);
 		env->i++;
 		env->header_len++;
 	}
@@ -98,7 +98,7 @@ int			parsing_asm(t_asm *env, t_file *file)
 	good_order(env);
 
 // =============================================================================
-
+/*
 	t_arg	*lst;
 	int 	n;
 
@@ -124,7 +124,7 @@ int			parsing_asm(t_asm *env, t_file *file)
 	}
 
 // =============================================================================
-
+*/
 	return (0);
 }
 

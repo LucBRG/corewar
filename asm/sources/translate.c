@@ -3,14 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   translate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdeglain <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdeglain <mdeglain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 11:58:54 by mdeglain          #+#    #+#             */
-/*   Updated: 2017/06/02 17:09:37 by mdeglain         ###   ########.fr       */
+/*   Updated: 2017/06/09 09:20:28 by mdeglain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+static void	write_progsize(t_asm *env, int fd)
+{
+	t_arg			*lst;
+	unsigned int	size;
+	int				i;
+	char			c;
+
+	lst = env->args;
+	size = 0;
+	i = 3;
+	while (lst)
+	{
+		if (lst->special & T_INSTRU)
+			size += lst->tot_octets;
+		lst = lst->next;
+	}
+	while (i > 0)
+	{
+		c = size / ft_power(256, i);
+		size = size % ft_power(256, i);
+		write(fd, &c, 1);
+		i--;
+	}
+	c = size % ft_power(256, i);
+	write(fd, &c, 1);
+}
 
 static void	write_comment(t_asm *env, int fd)
 {
@@ -21,7 +48,7 @@ static void	write_comment(t_asm *env, int fd)
 	while (env->comment[i])
 		write(fd, &(env->comment[i++]), 1);
 	c = '\0';
-	while (i++ < COMMENT_LENGTH)
+	while (i++ < COMMENT_LENGTH + 4)
 		write(fd, &c, 1);
 }
 
@@ -47,31 +74,37 @@ static void		write_header(t_asm *env, int fd)
 	while (env->prog_name[i])
 		write(fd, &(env->prog_name[i++]), 1);
 	c = '\0';
-	while (i++ < PROG_NAME_LENGTH - 4)
+	while (i++ < PROG_NAME_LENGTH + 4)
 		write(fd, &c, 1);
+	write_progsize(env, fd);
 	write_comment(env, fd);
 }
 
-void	write_core(t_asm *env, int fd)
+static void		write_core(t_asm *env, int fd)
 {
 	t_arg	*lst;
+	int		line;
 
 	lst = env->args;
+	line = 0;
 	while (lst)
 	{
 		if (lst->special & T_INSTRU)
+		{
 			write_inst(lst, fd);
-		/*else if (lst->special & T_REG)
+			line++;
+		}
+		else if (lst->special & T_REG)
 			write_reg(lst, fd);
 		else if (lst->special & T_DIR)
-			write_dir(lst, fd);
+			write_dir(lst, fd, line, env);
 		else if (lst->special & T_IND)
-			write_ind(lst, fd);*/
+			write_ind(lst, fd, line, env);
 		lst = lst->next;
 	}
 }
 
-void		translate(t_asm *env, char *str)
+void			translate(t_asm *env, char *str)
 {
 	int				fd;
 	char			*name;
@@ -81,7 +114,9 @@ void		translate(t_asm *env, char *str)
 	name = (char*)malloc(sizeof(*name) * (len + 2));
 	name = ft_strncpy(name, str, len - 1);
 	name  = ft_strcat(name, "cor");
-	fd = open(name, O_WRONLY | O_CREAT | O_APPEND, 0666);
+	fd = open(name, O_WRONLY | O_CREAT | O_TRUNC, 0666);
+	free(name);
 	write_header(env, fd);
 	write_core(env, fd);
+	close(fd);
 }

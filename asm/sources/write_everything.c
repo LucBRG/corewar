@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   write_everything.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdeglain <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdeglain <mdeglain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 16:56:10 by mdeglain          #+#    #+#             */
-/*   Updated: 2017/06/02 17:00:49 by mdeglain         ###   ########.fr       */
+/*   Updated: 2017/06/09 09:20:07 by mdeglain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,23 @@ void	write_inst(t_arg *lst, int fd)
 	ft_putchar_fd(lst->op_code, fd);
 	if (g_op_tab[lst->op_code - 1].has_ocp)
 		ft_putchar_fd(ocp, fd);
+}
+
+void	write_reg(t_arg *lst, int fd)
+{
+	char	nb;
+
+	nb = ft_atoi(&(lst->name[1]));
+	ft_putchar_fd(nb, fd);
+}
+
+void	write_ind(t_arg *lst, int fd, int line, t_asm *env)
+{
+	unsigned int	nb;
+
+	nb = ft_atoi(lst->name);
+	if (lst->name[0] == ':')
+		label2(lst, fd, line, env);
+	else
+		write_translation(nb, 2, fd);
 }

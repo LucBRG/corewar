@@ -12,16 +12,34 @@
 
 #include "asm.h"
 
-int	verif_exist(t_arg *lst, char *str)
+static void	check_len(int len, int line, int id)
+{
+	if (id == 1 && len > PROG_NAME_LENGTH)
+	{
+		ft_putstr_fd("Name lenght too big: line ", 2);
+		ft_putnbr_fd(line + 1, 2);
+		ft_putendl_fd(".", 2);
+		exit(EXIT_FAILURE);
+	}
+	else if (id == 2 && len > COMMENT_LENGTH)
+	{
+		ft_putstr_fd("Comment lenght too big: line ", 2);
+		ft_putnbr_fd(line + 1, 2);
+		ft_putendl_fd(".", 2);
+		exit(EXIT_FAILURE);
+	}
+}
+
+int			verif_exist(t_arg *lst, t_arg *label)
 {
 	while (lst)
 	{
 		if ((lst->special & T_LAB) &&
-			ft_strncmp(lst->name, &(str[1]), cor_strlen(lst->name)) == 0)
+			ft_strncmp(lst->name, &(label->name[1]), cor_strlen(lst->name)) == 0)
 			return (1);
 		lst = lst->next;
 	}
-	show_err(4, 0);
+	show_err(4, label->line);
 	return (0);
 }
 
@@ -37,23 +55,29 @@ void		label_exist(t_asm *env)
 	while (lst)
 	{
 		if (!(lst->special & T_LAB) && ft_strchr(lst->name, LABEL_CHAR))
-			verif_exist(tmp, lst->name);
+			verif_exist(tmp, lst);
 		lst = lst->next;
 	}
 }
 
-void		copy_header(char *dst, t_asm *env, int i)
+void		copy_header(char *dst, t_asm *env, int i, int id)
 {
 	int	j;
+	int k;
 
 	j = 0;
+	k = 0;
 	while (ft_is_space(env->str[env->i][i]))
 		i++;
 	if (env->str[env->i][i] != '"')
 		show_err(3, env->i);
 	i++;
 	while (env->str[env->i][i] != '"')
+	{
+		k++;
 		dst[j++] = env->str[env->i][i++];
+	}
+	check_len(k, env->i, id);
 	i++;
 	while (ft_is_space(env->str[env->i][i]))
 		i++;

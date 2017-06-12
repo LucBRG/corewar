@@ -6,7 +6,7 @@
 /*   By: mdeglain <mdeglain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/29 09:35:03 by mdeglain          #+#    #+#             */
-/*   Updated: 2017/05/30 11:54:53 by mdeglain         ###   ########.fr       */
+/*   Updated: 2017/06/09 10:52:49 by mdeglain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,17 @@ void	jump_space(t_asm *env)
 {
 	while (ft_is_space(env->str[env->i][env->j]))
 		env->j++;
+}
+
+int    new_strlen(char *str)
+{
+    int    len;
+
+    len = 0;
+    while (*str && !(ft_is_space(*str)))
+    {
+        len++;
+        str++;
+    }
+    return (len);
 }

@@ -12,10 +12,30 @@
 
 #include "asm.h"
 
+static void	init_struct(t_asm *env)
+{
+	int	i;
+
+	env->str = NULL;
+	env->args = NULL;
+	i = -1;
+	while (++i < REG_NUMBER)
+		env->reg[i] = -1;
+}
+
 static void	free_struct(t_asm *env)
 {
+	unsigned int	i;
+
+	i = -1;
 	if (env->str)
+	{
+		while (++i < env->nb_line)
+		{
+			free(env->str[i]);
+		}
 		free(env->str);
+	}
 	free(env);
 }
 
@@ -25,16 +45,15 @@ void	show_err2(int id, int line)
 	{
 		ft_putstr_fd("Bad arguments: line ", 2);
 		ft_putnbr_fd(line + 1, 2);
-		ft_putendl_fd(".", 2);
 	}
 	else if (id == 7)
-		ft_putstr_fd("Need .name and .comment attribute.\n", 2);
+		ft_putstr_fd("Need .name and .comment attribute", 2);
 	else if (id == 8)
 	{
 		ft_putstr_fd("Bad number of argument: line ", 2);
 		ft_putnbr_fd(line + 1, 2);
-		ft_putendl_fd(".", 2);
 	}
+	ft_putendl_fd(".", 2);
 	exit(EXIT_FAILURE);
 }
 
@@ -80,10 +99,13 @@ int			main(int ac, char **av)
 	env = (t_asm*)malloc(sizeof(t_asm));
 	if (env == NULL)
 		exit(EXIT_FAILURE);
-	env->str = NULL;
-	env->args = NULL;
+	init_struct(env);
 	parsing_asm(env, file);
 	translate(env, av[1]);
+	ft_printf("File created.\n");
+	my_fclose(file);
+	arg_delete(&env->args);
 	free_struct(env);
+	
 	return (0);
 }
