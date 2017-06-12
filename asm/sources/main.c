@@ -6,7 +6,7 @@
 /*   By: mdeglain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 13:54:47 by mdeglain          #+#    #+#             */
-/*   Updated: 2017/06/02 11:56:17 by mdeglain         ###   ########.fr       */
+/*   Updated: 2017/06/12 09:20:38 by lbrugero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ static void	free_struct(t_asm *env)
 	if (env->str)
 	{
 		while (++i < env->nb_line)
-		{
 			free(env->str[i]);
-		}
 		free(env->str);
 	}
 	free(env);
@@ -90,6 +88,7 @@ int			main(int ac, char **av)
 {
 	t_asm	*env;
 	t_file	*file;
+	char	*filename;
 
 	if (ac != 2)
 		show_err(1, 0);
@@ -101,11 +100,11 @@ int			main(int ac, char **av)
 		exit(EXIT_FAILURE);
 	init_struct(env);
 	parsing_asm(env, file);
-	translate(env, av[1]);
-	ft_printf("File created.\n");
+	filename = translate(env, av[1]);
+	ft_printf("Writing output program to %s.\n", filename);
+	free(filename);
 	my_fclose(file);
 	arg_delete(&env->args);
 	free_struct(env);
-	
 	return (0);
 }

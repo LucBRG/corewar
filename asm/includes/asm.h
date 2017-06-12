@@ -76,7 +76,7 @@ int					cor_strlen(char *str);
 int					verif_exist(t_arg *lst, t_arg *label);
 void				label_exist(t_asm *env);
 void				good_order(t_asm *env);
-void    			translate(t_asm *env, char *str);
+char    			*translate(t_asm *env, char *str);
 void				write_inst(t_arg *lst, int fd);
 void				write_reg(t_arg *lst, int fd);
 void				write_dir(t_arg *lst, int fd, int line, t_asm *env);
