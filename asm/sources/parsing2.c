@@ -6,7 +6,7 @@
 /*   By: mdeglain <mdeglain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 16:11:42 by mdeglain          #+#    #+#             */
-/*   Updated: 2017/05/30 16:32:25 by mdeglain         ###   ########.fr       */
+/*   Updated: 2017/06/12 09:17:47 by lbrugero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,12 @@ int			verif_exist(t_arg *lst, t_arg *label)
 	while (lst)
 	{
 		if ((lst->special & T_LAB) &&
-			ft_strncmp(lst->name, &(label->name[1]), cor_strlen(lst->name)) == 0)
+			ft_strncmp(lst->name, &(label->name[1]), cor_strlen(lst->name)) == 0
+			&& ft_strlen(lst->name) == ft_strlen(label->name + 1))
+		{
+			ft_printf("%s == %s\n", lst->name, label->name + 1);
 			return (1);
+		}
 		lst = lst->next;
 	}
 	show_err(4, label->line);
