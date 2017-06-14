@@ -119,15 +119,18 @@ int		find_ins(t_asm *env, t_arg **ref_inst)
 void		find_par(t_asm *env, unsigned char n_args, t_arg *ref_inst)
 {
 	char	**split;
+	int		i;
 
+	i = 0;
 	jump_space(env);
 	split = ft_strsplit(&env->str[env->i][env->j], ',');
 	if (ft_strsplit_len(split) != n_args || split == NULL)
 		show_err(8, env->i);
-	while (*split)
+	while (split[i])
 	{
-		type_par(*split, env, ref_inst);
-		split++;
+		type_par(split[i], env, ref_inst);
+		i++;
 	}
 	ft_strsplit_free(split);
+	split = NULL;
 }

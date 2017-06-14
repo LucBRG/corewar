@@ -6,13 +6,13 @@
 #    By: mdeglain <mdeglain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 11:02:03 by mdeglain          #+#    #+#              #
-#    Updated: 2017/06/12 09:00:05 by lbrugero         ###   ########.fr        #
+#    Updated: 2017/06/14 16:50:15 by lbrugero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = asm
 CC = gcc
-CFLAGS = -Wall -Wextra
+CFLAGS = -Wall -Wextra -Wextra
 SRC_NAME =	$(sort op.c main.c parsing.c utils.c args.c finding_parse.c \
 			parsing2.c verif_args.c parsing3.c translate.c write_everything.c \
 			write_dir.c function.c reg.c)

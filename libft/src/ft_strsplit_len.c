@@ -19,8 +19,7 @@ int	ft_strsplit_len(char **split)
 	size = 0;
 	if (split == NULL)
 		return (-1);
-	else
-		while (split[size] != NULL)
-			size++;
+	while (split[size] != NULL)
+		size++;
 	return (size);
 }

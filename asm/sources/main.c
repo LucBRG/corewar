@@ -6,7 +6,7 @@
 /*   By: mdeglain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 13:54:47 by mdeglain          #+#    #+#             */
-/*   Updated: 2017/06/12 09:20:38 by lbrugero         ###   ########.fr       */
+/*   Updated: 2017/06/14 16:51:10 by lbrugero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,5 @@ int			main(int ac, char **av)
 	arg_delete(&env->args);
 	free_struct(env);
 	env = NULL;
-	while (1);
 	return (0);
 }
