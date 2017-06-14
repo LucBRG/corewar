@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add.c                                              :+:      :+:    :+:   */
+/*   aff.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/06 17:47:46 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/08 17:30:53 by dbischof         ###   ########.fr       */
+/*   Created: 2017/06/07 11:37:47 by tferrari          #+#    #+#             */
+/*   Updated: 2017/06/14 18:24:02 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void			add(t_battle *battle, int reg1, int reg2, int reg3)
+void			aff(t_battle *battle, int *params)
 {
-	if ((CARRY = (ISREG(reg1) && ISREG(reg2) && ISREG(reg3))))
-		REGISTRE(reg3) = REGISTRE(reg1) + REGISTRE(reg2);
+	if (ISREG(params[0]))
+		ft_printf("%c", REGISTRE(params[0]) % 256);
 }

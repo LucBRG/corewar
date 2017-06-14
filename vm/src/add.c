@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   live.c                                             :+:      :+:    :+:   */
+/*   add.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/06 18:33:06 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/08 17:46:56 by dbischof         ###   ########.fr       */
+/*   Created: 2017/06/06 17:47:46 by tferrari          #+#    #+#             */
+/*   Updated: 2017/06/14 18:25:20 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void			live(t_battle *battle, int id, int a, int b)
+void			add(t_battle *battle, int *params)
 {
-	int i;
-
-	i = -1;
-	a = b;
-	while (++i < battle->bots.nb)
-		if (battle->bots.tab[i]->id == id)
-			battle->bots.tab[i]->live++;
+	if ((CARRY = (ISREG(params[1]) && ISREG(params[2]) && ISREG(params[3]))))
+		REGISTRE(params[3]) = REGISTRE(params[1]) + REGISTRE(params[2]);
 }

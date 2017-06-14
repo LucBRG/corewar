@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 14:00:54 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/08 14:12:08 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/09 16:55:57 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ t_bot	*newbot(void)
 
 t_bot	*creabot(char *path)
 {
-	int				i;
 	int				length;
 	t_bot			*bot;
 	unsigned char	*bot_brut;

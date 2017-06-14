@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zjmp.c                                             :+:      :+:    :+:   */
+/*   print_memory.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/07 14:17:28 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/08 18:19:14 by tferrari         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
->>>>>>> vm_tferrari
+/*   Created: 2017/06/08 17:45:54 by tferrari          #+#    #+#             */
+/*   Updated: 2017/06/13 13:43:22 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void			zjmp(t_battle *battle, int ind, int a, int b)
+#define RST		"\033[0m"
+
+void			print_memory(t_battle *battle)
 {
-	a = b;
-	if (CARRY)
-		PC = SETPC(ind);
+	int i;
+
+	i = -1;
+	while (++i < MEM_SIZE)
+	{
+		// if (battle->memory[i] > 0)
+			ft_printf("\e[38;5;%dm%.2x "RST, ((battle->print_mem[i] == 0) ? 255 : battle->print_mem[i] % 255),
+			battle->memory[i]);
+		// else
+			// ft_printf(RST"%.2x", b->print_mem[i]);
+	}
+	// ft_printf("\nreg 9 = %.2x\n", REGISTRE(9));
+	// ft_printf("id = %d\n", battle->bot->id);
 }
