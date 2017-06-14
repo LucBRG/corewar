@@ -7,6 +7,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include "libft.h"
+# include "ft_printf.h"
 # include "op.h"
 
 # define REGISTRE(x)	battle->cur_process->registre[x]
@@ -15,14 +16,14 @@
 # define SETPC(n)		((PC + n) % MEM_SIZE)
 # define MAX(a, b)		((a > b) ? a : b)
 # define CARRY			battle->cur_process->carry
-# define ISREG(x)		(x <= 0 && x < REG_NUMBER)
+# define ISREG(x)		(x >= 0 && x < REG_NUMBER)
 
 enum{NOTHING, LIVE, LD, ST, ADD, SUB, AND, OR, XOR, ZJMP, LDI, STI, FORK, LLD,
 	LLDI, LFORK, AFF};
 
 typedef unsigned char	uc;
 typedef struct s_battle	t_battle;
-typedef void (*t_listfunc[16])(t_battle *b, int p1, int p2, int p3);
+typedef int (*t_listfunc[3])(t_battle *b, int params[3], int *size);
 
 typedef struct	s_bot
 {
@@ -73,6 +74,7 @@ t_battle		*initbattle(int ac, char **av);
 t_process		*battle_launch(t_battle *battle);
 t_list			*addprocess(t_list **list, t_bot *bot, int pc);
 int				load_func(t_battle *battle);
+int				check_ocp(char inst, char ocp);
 
 void			debug(uc *s, int len);
 void			displaybot(t_bot *bot);
@@ -80,21 +82,21 @@ void			hexa(uc *s, int len, int color);
 void			displayprocess(t_list *elem);
 void			print_memory(t_battle *b);
 
-void			sti(t_battle *battle, int reg, int ind1, int ind2);
-void			and_ft(t_battle *battle, int param1, int param2, int reg);
-void			or_ft(t_battle *battle, int param1, int param2, int reg);
-void			xor_ft(t_battle *battle, int param1, int param2, int reg);
-void			add(t_battle *battle, int reg1, int reg2, int reg3);
-void			sub(t_battle *battle, int reg1, int reg2, int reg3);
-void			live(t_battle *battle, int id, int a, int b);
-void			lld(t_battle *battle, int param, int reg, int a);
-void			ld(t_battle *battle, int param, int reg, int a);
-void			ldi(t_battle *battle, int ind1, int ind2, int reg);
-void			lldi(t_battle *battle, int ind1, int ind2, int reg);
-void			aff(t_battle *battle, int reg, int a, int b);
-void			st(t_battle *battle, int reg, int param, int a);
-void			zjmp(t_battle *battle, int ind, int a, int b);
+void			add(t_battle *battle, int *params);
+void			aff(t_battle *battle, int *params);
+void			and_ft(t_battle *battle, int *params);
 void			fork_ft(t_battle *battle, int ind, int a, int b);
+int				ld(t_battle *battle, int params[3], int size[3]);
+void			ldi(t_battle *battle, int ind1, int ind2, int reg);
+void			lld(t_battle *battle, int param, int reg, int a);
+void			lldi(t_battle *battle, int ind1, int ind2, int reg);
 void			lfork(t_battle *battle, int ind, int a, int b);
+int				live(t_battle *battle, int params[3], int size[3]);
+void			or_ft(t_battle *battle, int param1, int param2, int reg);
+int				st(t_battle *battle, int params[3], int size[3]);
+void			sti(t_battle *battle, int reg, int ind1, int ind2);
+void			sub(t_battle *battle, int reg1, int reg2, int reg3);
+void			xor_ft(t_battle *battle, int param1, int param2, int reg);
+void			zjmp(t_battle *battle, int ind, int a, int b);
 
 #endif

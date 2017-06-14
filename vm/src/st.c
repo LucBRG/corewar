@@ -3,24 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   st.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 12:10:53 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/08 17:45:49 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/14 21:58:21 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void			st(t_battle *battle, int reg, int param, int a)
+int			st(t_battle *battle, int params[3], int size[3])
 {
 	uc *str;
 
-	a = 0;
-	if (ISREG(reg))
+	if (size[1] == 1 && !ISREG(params[1]))
+		return (0);
+	if (size[1] == 1 && ISREG(params[1]))
+		params[1] = REGISTRE(params[1]);
+	if (ISREG(params[0]))
 	{
-		reg = REGISTRE(reg);
-		str = (uc*)inttochar(&reg);
-		setmemory(battle, SETPC(param % IDX_MOD), str, sizeof(int));
+		params[0] = REGISTRE(params[0]);
+		str = (uc*)inttochar(&params[0]);
+		setmemory(battle, SETPC(params[1] % IDX_MOD), str, sizeof(int));
 	}
+	return (1);
 }
