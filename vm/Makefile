@@ -6,7 +6,7 @@
 #    By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/13 16:44:11 by tferrari          #+#    #+#              #
-#    Updated: 2017/06/14 19:30:02 by tferrari         ###   ########.fr        #
+#    Updated: 2017/06/14 21:59:32 by tferrari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC_FILE =	add.c aff.c and_ft.c battle.c debug.c fork.c getset_memory.c \
 			intchar.c ld.c ldi.c lfork.c live.c lld.c lldi.c loadbots.c \
 			loadfunc.c loadmemory.c main.c open.c or_ft.c print_memory.c \
 			process.c st.c sti.c sub.c xor_ft.c zjmp.c check_ocp.c
-			
+
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILE))
 
 OBJS_DIR = obj

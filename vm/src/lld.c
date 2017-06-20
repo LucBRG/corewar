@@ -3,18 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   lld.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 10:39:26 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/08 17:47:46 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/15 21:49:23 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void			lld(t_battle *battle, int param, int reg, int a)
+int				lld(t_battle *battle, int params[3], int size[3])
 {
-	a = 0;
-	if ((CARRY = ISREG(reg)))
-		REGISTRE(reg) = param;
+	if (size)
+		;
+	if ((CARRY = ISREG(params[1])))
+		REGISTRE(params[1]) = params[0];
+	return (CARRY);
 }

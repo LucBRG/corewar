@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 17:51:29 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/14 16:21:45 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/06/15 20:36:08 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ int	main(int ac, char **av)
 			printf("le joueur %d(%s) a gagne\n", win->bot->id, win->bot->name);
 	}
 	print_memory(b);
+	ft_printf("\nreg 3 = %u", b->cur_process->registre[3]);
 	return (0);
 }
