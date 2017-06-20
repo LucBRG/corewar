@@ -25,11 +25,11 @@ void	label2(t_arg *lst, int fd, int line, t_asm *env)
 			i++;
 		else
 		{
-			if (find && i == line && !(find->special & T_LAB)
-				&& ft_strcmp(&(find->name[1]), &(lst->name[1])) == 0)
+			if (find && i == line && !(find->special & T_LAB) &&
+				ft_strcmp(&(find->name[1]), &(lst->name[1])) == 0)
 				return (write_translation(label_apres(find, lst), 2, fd));
-			else if (find && ft_strcmp(find->name, &(lst->name[1])) == 0
-				&& (find->special & T_LAB))				
+			else if (find && ft_strcmp(find->name, &(lst->name[1])) == 0 &&
+				(find->special & T_LAB))
 				return (write_translation(label_avant(find, lst, i, line),
 					2, fd));
 		}
@@ -54,7 +54,7 @@ void	label4(t_arg *lst, int fd, int line, t_asm *env)
 				&& ft_strcmp(&(find->name[1]), &(lst->name[1])) == 0)
 				return (write_translation(label_apres(find, lst), 4, fd));
 			else if (find && ft_strcmp(find->name, &(lst->name[1])) == 0
-				&& (find->special & T_LAB))				
+				&& (find->special & T_LAB))
 				return (write_translation(label_avant(find, lst, i, line),
 					4, fd));
 		}
