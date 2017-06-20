@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+         #
+#    By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/13 16:44:11 by tferrari          #+#    #+#              #
-#    Updated: 2017/06/14 19:30:02 by tferrari         ###   ########.fr        #
+#    Updated: 2017/06/20 17:19:35 by dbischof         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY: libft
 
-NAME = a.out
+NAME = corewar
 
 SRC_DIR = src
 
