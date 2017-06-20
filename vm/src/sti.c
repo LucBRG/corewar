@@ -3,23 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   sti.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 15:32:11 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/08 17:45:55 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/20 16:53:26 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void		sti(t_battle *battle, int reg, int ind1, int ind2)
+int			sti(t_battle *battle, int params[3], int size[3])
 {
-	uc *str;
+	uc	*str;
+	int	i;
 
-	if (ISREG(reg))
-	{
-		reg = REGISTRE(reg);
-		str = (uc*)inttochar(&reg);
-		setmemory(battle, SETPC(ind1 + ind2), str, sizeof(int));
-	}
+	i = -1;
+	while (++i < 3)
+		if (size[i] == T_REG && !ISREG(params[i]))
+			return (0);
+		else if (size[i] == T_REG)
+			params[i] = REGISTRE(params[i]);
+	str = (uc*)inttochar(&params[0]);
+	setmemory(battle, SETPC(params[1] + params[2]), str, sizeof(int));
+	return (1);
 }

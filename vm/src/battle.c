@@ -71,14 +71,14 @@ t_process	*battle_launch(t_battle *battle)
 				// printf("\n\n");
 				// print_memory(battle);
 				PC = SETPC(load_func(battle));
-				ft_printf("pc = %d\n", PC);
+				// ft_printf("pc = %d\n", PC);
 			}
 			elem = elem->next;
 		}
 		if (!rulescycle(battle, &loop, &cycle))
 			return (battle->cur_process);
 		loop++;
-			return (NULL);
+			// return (NULL);
 	}
 	return (NULL);
 }
@@ -95,7 +95,7 @@ t_battle	*initbattle(int ac, char **av)
 	b->func[0] = live;
 	b->func[1] = ld;
 	b->func[2] = st;
-	/*b->func[3] = add;
+	b->func[3] = add;
 	b->func[4] = sub;
 	b->func[5] = and_ft;
 	b->func[6] = or_ft;
@@ -107,6 +107,6 @@ t_battle	*initbattle(int ac, char **av)
 	b->func[12] = lld;
 	b->func[13] = lldi;
 	b->func[14] = lfork;
-	b->func[15] = aff;*/
+	b->func[15] = aff;
 	return (b);
 }

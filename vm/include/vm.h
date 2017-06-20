@@ -23,7 +23,7 @@ enum{NOTHING, LIVE, LD, ST, ADD, SUB, AND, OR, XOR, ZJMP, LDI, STI, FORK, LLD,
 
 typedef unsigned char	uc;
 typedef struct s_battle	t_battle;
-typedef int (*t_listfunc[3])(t_battle *b, int params[3], int *size);
+typedef int (*t_listfunc[16])(t_battle *b, int params[3], int *size);
 
 typedef struct	s_bot
 {
@@ -82,21 +82,21 @@ void			hexa(uc *s, int len, int color);
 void			displayprocess(t_list *elem);
 void			print_memory(t_battle *b);
 
-void			add(t_battle *battle, int *params);
-void			aff(t_battle *battle, int *params);
-void			and_ft(t_battle *battle, int *params);
-void			fork_ft(t_battle *battle, int ind, int a, int b);
+int				add(t_battle *battle, int params[3], int size[3]);
+int				aff(t_battle *battle, int params[3], int size[3]);
+int				and_ft(t_battle *battle, int params[3], int size[3]);
+int				fork_ft(t_battle *battle, int params[3], int size[3]);
 int				ld(t_battle *battle, int params[3], int size[3]);
-void			ldi(t_battle *battle, int ind1, int ind2, int reg);
-void			lld(t_battle *battle, int param, int reg, int a);
-void			lldi(t_battle *battle, int ind1, int ind2, int reg);
-void			lfork(t_battle *battle, int ind, int a, int b);
+int				ldi(t_battle *battle, int params[3], int size[3]);
+int				lld(t_battle *battle, int params[3], int size[3]);
+int				lldi(t_battle *battle, int params[3], int size[3]);
+int				lfork(t_battle *battle, int params[3], int size[3]);
 int				live(t_battle *battle, int params[3], int size[3]);
-void			or_ft(t_battle *battle, int param1, int param2, int reg);
+int				or_ft(t_battle *battle, int params[3], int size[3]);
 int				st(t_battle *battle, int params[3], int size[3]);
-void			sti(t_battle *battle, int reg, int ind1, int ind2);
-void			sub(t_battle *battle, int reg1, int reg2, int reg3);
-void			xor_ft(t_battle *battle, int param1, int param2, int reg);
-void			zjmp(t_battle *battle, int ind, int a, int b);
+int				sti(t_battle *battle, int params[3], int size[3]);
+int				sub(t_battle *battle, int params[3], int size[3]);
+int				xor_ft(t_battle *battle, int params[3], int size[3]);
+int				zjmp(t_battle *battle, int params[3], int size[3]);
 
 #endif
