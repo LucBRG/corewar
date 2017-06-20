@@ -49,7 +49,7 @@ static void	verif_dir(t_asm *env, char *str)
 			if (!ft_isdigit(*str))
 				show_err(3, env->i);
 	}
-	while (*(++str))
+	while (*str && *(++str))
 		if (!ft_is_space(*str))
 			show_err(3, env->i);
 }
@@ -70,7 +70,7 @@ static void	verif_ind(t_asm *env, char *str)
 			if (!ft_isdigit(*str))
 				show_err(3, env->i);
 	}
-	while (*(++str))
+	while (*str && *(++str))
 		if (!ft_is_space(*str))
 			show_err(3, env->i);
 }

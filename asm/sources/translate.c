@@ -110,7 +110,7 @@ char		*translate(t_asm *env, char *str)
 	int				len;
 
 	len = ft_strlen(str);
-	name = (char*)malloc(sizeof(*name) * (len + 2));
+	name = ft_strnew(len);
 	name = ft_strncpy(name, str, len - 1);
 	name = ft_strcat(name, "cor");
 	fd = open(name, O_WRONLY | O_CREAT | O_TRUNC, 0666);
