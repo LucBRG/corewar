@@ -12,11 +12,6 @@
 
 #include "asm.h"
 
-static void	init_parse(t_asm *env)
-{
-	env->nb_line = 0;
-}
-
 static char	*give_line(char *str)
 {
 	int		space;
@@ -77,7 +72,7 @@ static void	parse_header(t_asm *env)
 			copy_header(env->comment, env,
 				ft_strlen(COMMENT_CMD_STRING), 2);
 		else
-			show_err(3,  env->i);
+			show_err(3, env->i);
 		env->i++;
 		env->header_len++;
 	}
@@ -89,46 +84,12 @@ int			parsing_asm(t_asm *env, t_file *file)
 {
 	char		str[BUF_SZ];
 
-	init_parse(env);
+	env->nb_line = 0;
 	ft_bzero(str, BUF_SZ);
 	fill_parsing(env, file);
 	parse_header(env);
 	parse_instruction(env);
 	label_exist(env);
 	good_order(env);
-
-// =============================================================================
-/*
-	t_arg	*lst;
-	int 	n;
-
-	lst = env->args;
-	n = -1;
-	while (lst)
-	{
-		printf("%d\t", ++n);
-
-		if (lst->name && !lst->octet)
-		{
-			printf(RED"LAB"RESET"\t%s\n", lst->name);
-		}
-		else if (lst->name && lst->octet)
-		{
-			printf("TYPE = \t%s\n", (lst->special > 3) ? "indirect" : (lst->special == 1) ? "registre" : "direct");
-		}
-		else if (lst->op_code)
-		{
-			printf(CYAN"INS"RESET"\t%s %d\n", g_op_tab[lst->op_code - 1].name, lst->tot_octets);
-		}
-		lst = lst->next;
-	}
-
-// =============================================================================
-*/
 	return (0);
 }
-
-
-
-
-

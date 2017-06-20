@@ -14,9 +14,9 @@
 
 static char	ocp_f(t_arg *lst)
 {
-	int		i;
+	int				i;
 	unsigned char	c;
-	int		op_code;
+	int				op_code;
 
 	i = 0;
 	c = 0;
@@ -38,7 +38,7 @@ static char	ocp_f(t_arg *lst)
 	return (c);
 }
 
-void	write_inst(t_arg *lst, int fd)
+void		write_inst(t_arg *lst, int fd)
 {
 	char ocp;
 
@@ -50,7 +50,7 @@ void	write_inst(t_arg *lst, int fd)
 		ft_putchar_fd(ocp, fd);
 }
 
-void	write_reg(t_arg *lst, int fd)
+void		write_reg(t_arg *lst, int fd)
 {
 	char	nb;
 
@@ -58,7 +58,7 @@ void	write_reg(t_arg *lst, int fd)
 	ft_putchar_fd(nb, fd);
 }
 
-void	write_ind(t_arg *lst, int fd, int line, t_asm *env)
+void		write_ind(t_arg *lst, int fd, int line, t_asm *env)
 {
 	unsigned int	nb;
 

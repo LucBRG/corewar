@@ -12,16 +12,7 @@
 
 #include "asm.h"
 
-static int	nb_octet(t_asm *env)
-{
-	if (env->oct_line == 1 || env->oct_line == 2 || env->oct_line == 6 ||
-			env->oct_line == 7 || env->oct_line == 8 || env->oct_line == 13)
-		return (4);
-	else
-		return (2);
-}
-
-static void	type_par(char *str, t_asm *env, t_arg *ref_inst)
+static void		type_par(char *str, t_asm *env, t_arg *ref_inst)
 {
 	t_arg	*arg;
 
@@ -35,7 +26,7 @@ static void	type_par(char *str, t_asm *env, t_arg *ref_inst)
 	else if (str[0] == '%')
 	{
 		arg->special |= T_DIR;
-		arg->octet = nb_octet(env);	
+		arg->octet = nb_octet(env);
 		arg->name = ft_strsub(str, 1, new_strlen(str) - 1);
 	}
 	else
@@ -50,7 +41,7 @@ static void	type_par(char *str, t_asm *env, t_arg *ref_inst)
 	arg_add(&env->args, arg);
 }
 
-void		find_lab(t_asm *env)
+void			find_lab(t_asm *env)
 {
 	t_arg	*arg;
 
@@ -76,6 +67,7 @@ void		find_lab(t_asm *env)
 	else
 		env->j = 0;
 }
+
 static t_arg	*fill_arg(t_arg *arg, t_asm *env, int i, int len)
 {
 	arg = arg_create();
@@ -87,7 +79,8 @@ static t_arg	*fill_arg(t_arg *arg, t_asm *env, int i, int len)
 	env->oct_line = g_op_tab[i].op_code;
 	return (arg);
 }
-int		find_ins(t_asm *env, t_arg **ref_inst)
+
+int				find_ins(t_asm *env, t_arg **ref_inst)
 {
 	int		i;
 	size_t	len;
@@ -116,7 +109,7 @@ int		find_ins(t_asm *env, t_arg **ref_inst)
 	return (0);
 }
 
-void		find_par(t_asm *env, unsigned char n_args, t_arg *ref_inst)
+void			find_par(t_asm *env, unsigned char n_args, t_arg *ref_inst)
 {
 	char	**split;
 	int		i;

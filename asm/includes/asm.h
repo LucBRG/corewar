@@ -76,7 +76,7 @@ int					cor_strlen(char *str);
 int					verif_exist(t_arg *lst, t_arg *label);
 void				label_exist(t_asm *env);
 void				good_order(t_asm *env);
-char    			*translate(t_asm *env, char *str);
+char				*translate(t_asm *env, char *str);
 void				write_inst(t_arg *lst, int fd);
 void				write_reg(t_arg *lst, int fd);
 void				write_dir(t_arg *lst, int fd, int line, t_asm *env);
@@ -87,15 +87,8 @@ int					label_avant(t_arg *find, t_arg *lst, int i, int line);
 int					label_apres(t_arg *find, t_arg *lst);
 int					new_strlen(char *str);
 int					reg(t_asm *env, int reg);
+int					nb_octet(t_asm *env);
 
 extern t_op	g_op_tab[17];
-
-#define RED     "\x1b[31m"
-#define GREEN   "\x1b[32m"
-#define YELLOW  "\x1b[33m"
-#define BLUE    "\x1b[34m"
-#define MAGENTA "\x1b[35m"
-#define CYAN    "\x1b[36m"
-#define RESET   "\x1b[0m"
 
 #endif

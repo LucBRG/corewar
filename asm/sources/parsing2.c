@@ -89,8 +89,8 @@ void		parse_instruction(t_asm *env)
 {
 	int		n_args;
 	t_arg	*ref_inst;
-	ref_inst = NULL;
 
+	ref_inst = NULL;
 	while (env->i < env->nb_line)
 	{
 		env->oct_line = 0;

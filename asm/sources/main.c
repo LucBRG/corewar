@@ -41,7 +41,7 @@ static void	free_struct(t_asm *env)
 	free(env);
 }
 
-void	show_err2(int id, int line)
+void		show_err2(int id, int line)
 {
 	if (id == 6)
 	{

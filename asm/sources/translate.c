@@ -52,12 +52,11 @@ static void	write_comment(t_asm *env, int fd)
 		write(fd, &c, 1);
 }
 
-static void		write_header(t_asm *env, int fd)
+static void	write_header(t_asm *env, int fd)
 {
-	int 			i;
+	int				i;
 	int				nb;
 	unsigned char	c;
-
 
 	i = 3;
 	nb = COREWAR_EXEC_MAGIC;
@@ -80,7 +79,7 @@ static void		write_header(t_asm *env, int fd)
 	write_comment(env, fd);
 }
 
-static void		write_core(t_asm *env, int fd)
+static void	write_core(t_asm *env, int fd)
 {
 	t_arg	*lst;
 	int		line;
@@ -104,7 +103,7 @@ static void		write_core(t_asm *env, int fd)
 	}
 }
 
-char			*translate(t_asm *env, char *str)
+char		*translate(t_asm *env, char *str)
 {
 	int				fd;
 	char			*name;
@@ -113,7 +112,7 @@ char			*translate(t_asm *env, char *str)
 	len = ft_strlen(str);
 	name = (char*)malloc(sizeof(*name) * (len + 2));
 	name = ft_strncpy(name, str, len - 1);
-	name  = ft_strcat(name, "cor");
+	name = ft_strcat(name, "cor");
 	fd = open(name, O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	write_header(env, fd);
 	write_core(env, fd);

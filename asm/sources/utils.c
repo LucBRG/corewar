@@ -12,7 +12,7 @@
 
 #include "asm.h"
 
-int	cor_strlen(char *str)
+int		cor_strlen(char *str)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ int	cor_strlen(char *str)
 	return (i);
 }
 
-int	cor_strchr(const char *s, int c)
+int		cor_strchr(const char *s, int c)
 {
 	int		i;
 	int		is_quote;
@@ -62,15 +62,15 @@ void	jump_space(t_asm *env)
 		env->j++;
 }
 
-int    new_strlen(char *str)
+int		new_strlen(char *str)
 {
-    int    len;
+	int	len;
 
-    len = 0;
-    while (*str && !(ft_is_space(*str)))
-    {
-        len++;
-        str++;
-    }
-    return (len);
+	len = 0;
+	while (*str && !(ft_is_space(*str)))
+	{
+		len++;
+		str++;
+	}
+	return (len);
 }
