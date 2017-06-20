@@ -24,8 +24,7 @@ int			setmemory(t_battle *b, int index, uc *s, int len)
 	while (++i < len)
 	{
 		b->memory[mod(index + i, MEM_SIZE)] = s[i];
-		if (b->cur_process)
-			b->print_mem[mod(index + i, MEM_SIZE)] = (char)ID;
+		b->print_mem[mod(index + i, MEM_SIZE)] = (char)ID;
 	}
 	return (1);
 }

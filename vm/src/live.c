@@ -3,22 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   live.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 18:33:06 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/08 17:46:56 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/14 21:58:19 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void			live(t_battle *battle, int id, int a, int b)
+int			live(t_battle *battle, int params[3], int size[3])
 {
 	int i;
 
 	i = -1;
-	a = b;
+	if (size[3] != T_IND)
+		return (0);
 	while (++i < battle->bots.nb)
-		if (battle->bots.tab[i]->id == id)
+		if (battle->bots.tab[i]->id == params[0])
 			battle->bots.tab[i]->live++;
+	return (1);
 }

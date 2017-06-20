@@ -1,33 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   intchar.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/06 17:51:29 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/08 17:37:53 by dbischof         ###   ########.fr       */
+/*   Created: 2017/06/06 15:17:38 by dbischof          #+#    #+#             */
+/*   Updated: 2017/06/09 16:50:15 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int	main(int ac, char **av)
+char	*inttochar(int *i)
 {
-	int			i;
-	t_process	*win;
-	t_battle	*b;
+	int j;
+	int tmp;
+
+	j = -1;
+	tmp = 0;
+	while (++j < 4)
+	{
+		tmp = tmp << 8;
+		tmp |= (0xff & *i);
+		*i = *i >> 8;
+	}
+	*i = tmp;
+	return ((char*)i);
+}
+
+int		chartoint(unsigned char *t, int len)
+{
+	int i;
+	int tmp;
 
 	i = -1;
-	if (!(b = initbattle(ac, av)))
-		return (0);
-	printf("FIGHT\t%d\n", b->bots.nb);
-	if (b->bots.nb)
-	{
-		ft_lstiter(b->process, displayprocess);
-		win = battle_launch(b);
-		if (win)
-			printf("le joueur %d(%s) a gagne\n", win->bot->id, win->bot->name);
-	}
-	return (0);
+	tmp = 0;
+	while (++i < len && i < 4)
+		tmp |= t[i] << (((len - 1) * 8) - (i * 8));
+	return (tmp);
 }
