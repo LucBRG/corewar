@@ -69,7 +69,7 @@ t_process	*battle_launch(t_battle *battle)
 				battle->cur_process = (t_process*)elem->content;
 				// hexa(battle->memory, MEM_SIZE, 0);
 				// printf("\n\n");
-				print_memory(battle);
+				// print_memory(battle);
 				PC = SETPC(load_func(battle));
 			}
 			elem = elem->next;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mdeglain <mdeglain@student.42.fr>          +#+  +:+       +#+         #
+#    By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/24 13:19:50 by mdeglain          #+#    #+#              #
-#    Updated: 2017/05/22 11:21:59 by mdeglain         ###   ########.fr        #
+#    Updated: 2017/06/08 15:21:41 by dbischof         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ SRC_NAME =	$(sort ft_memset.c ft_bzero.c ft_memccpy.c ft_memcpy.c \
 		di_conv.c o_conv.c u_conv.c x_conv.c c_conv.c utils.c b_conv.c \
 		ft_strchrindex.c my_fgets.c my_fopen.c my_fclose.c my_fgetc.c \
 		get_next_line.c my_strtoull.c my_strtoll.c my_strtoul.c my_strtol.c \
-		my_strtouint.c my_strtoint.c ft_strchr2.c)
+		my_strtouint.c my_strtoint.c ft_strchr2.c ft_lstlen.c)
 
 SRC_PATH = ./src/
 OBJ_PATH = ./obj/
