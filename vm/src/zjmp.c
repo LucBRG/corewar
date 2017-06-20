@@ -1,9 +1,9 @@
 
 #include "vm.h"
 
-void			zjmp(t_battle *battle, int ind, int a, int b)
+int				zjmp(t_battle *battle, int params[3], int size[3])
 {
-	a = b;
-	if (CARRY)
-		PC = SETPC(ind);
+	if (CARRY && size[0] == T_IND)
+		PC = SETPC(params[0]);
+	return (CARRY);
 }

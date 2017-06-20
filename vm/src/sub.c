@@ -3,17 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   sub.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 17:51:14 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/08 17:38:41 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/06/15 15:34:36 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void			sub(t_battle *battle, int reg1, int reg2, int reg3)
+int				sub(t_battle *battle, int params[3], int size[3])
 {
-	if ((CARRY = (ISREG(reg1) && ISREG(reg2) && ISREG(reg3))))
-		REGISTRE(reg3) = REGISTRE(reg1) - REGISTRE(reg2);
+	if (size)
+		;
+	if ((CARRY = (ISREG(params[0]) && ISREG(params[1]) && ISREG(params[2]))))
+		REGISTRE(params[2]) = REGISTRE(params[1]) - REGISTRE(params[0]);
+	return (CARRY);
 }
