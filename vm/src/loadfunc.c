@@ -22,7 +22,7 @@ void	size_p(t_battle *battle, int (*sizep)[3])
 	if (INST == AFF)
 		(*sizep)[0] = T_REG;
 	else if (INST == LIVE || INST == ZJMP || INST == FORK || INST == LFORK)
-		(*sizep)[0] = T_DIR;
+		(*sizep)[0] = T_IND;
 	else
 		while (++i < 3)
 			(*sizep)[i] = (PARAM(i) != 3) ? PARAM(i) : 4;
