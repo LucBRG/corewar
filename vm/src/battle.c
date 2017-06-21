@@ -79,9 +79,9 @@ t_process	*battle_launch(t_battle *battle)
 			}
 			elem = elem->next;
 		}
+		loop++;
 		if (!rulescycle(battle, &loop, &cycle))
 			return (battle->cur_process);
-		loop++;
 			// return (NULL);
 	}
 	return (NULL);

@@ -13,30 +13,30 @@ int	mod(int a, int b)
 	return ret;
 }
 
-int			setmemory(t_battle *b, int index, uc *s, int len)
+int			setmemory(t_battle *battle, int index, uc *s, int len)
 {
 	int i;
 
 	i = -1;
 	// ft_printf("set memory :\nindex : %d\tlen : %d\tmem : %.8x\n", index, len, *(unsigned int*)s);
-	if (!b || !s || len <= 0 || MEM_SIZE <= 0)
+	if (!battle || !s || len <= 0 || MEM_SIZE <= 0)
 		return (0);
 	while (++i < len)
 	{
-		b->memory[mod(index + i, MEM_SIZE)] = s[i];
-		b->print_mem[mod(index + i, MEM_SIZE)] = (char)ID;
+		battle->memory[mod(index + i, MEM_SIZE)] = s[i];
+		battle->print_mem[mod(index + i, MEM_SIZE)] = (char)ID;
 	}
 	return (1);
 }
 
-uc			*getmemory(t_battle *b, int index, uc *buff, int len)
+uc			*getmemory(t_battle *battle, int index, uc *buff, int len)
 {
 	int i;
 
 	i = -1;
-	if (!b || !buff || len <= 0 || MEM_SIZE <= 0)
+	if (!battle || !buff || len <= 0 || MEM_SIZE <= 0)
 		return (buff);
 	while (++i < len)
-		buff[i] = b->memory[mod(index + i, MEM_SIZE)];
+		buff[i] = battle->memory[mod(index + i, MEM_SIZE)];
 	return (buff);
 }

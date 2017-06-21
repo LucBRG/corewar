@@ -12,7 +12,7 @@
 
 # define REGISTRE(x)	battle->cur_process->registre[x]
 # define PC				battle->cur_process->pc
-# define ID				b->cur_process->bot->id
+# define ID				battle->cur_process->bot->id
 # define SETPC(n)		((PC + n) % MEM_SIZE)
 # define MAX(a, b)		((a > b) ? a : b)
 # define CARRY			battle->cur_process->carry
