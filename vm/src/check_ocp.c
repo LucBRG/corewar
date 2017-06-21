@@ -1,6 +1,6 @@
 #include "vm.h"
 
-#define C(a, b, c)	(a << 2 | b << 4 | c << 6)
+#define C(a, b, c)	(a << 6 | b << 4 | c << 2)
 #define RRR		C(R, R, R)
 #define RIR		C(R, I, R)
 #define RDR		C(R, D, R)
@@ -16,6 +16,7 @@ enum{Z, R, D, I};
 
 int			check_ocp(char inst, char ocp)
 {
+	// ft_printf("ocp = %x, RIZ = %x\n", ocp, C(R, I, Z));
 	const char	tab[16][10] = {
 				{0},
 				{C(D, R, Z), IRZ, 0},
