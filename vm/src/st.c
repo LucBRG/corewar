@@ -15,5 +15,5 @@ int			st(t_battle *battle, int params[3], int size[3])
 		str = (uc*)inttochar(&params[0]);
 		setmemory(battle, SETPC(params[1] % IDX_MOD), str, sizeof(int));
 	}
-	return (1);
+	return (5);
 }

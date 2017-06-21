@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   loadfunc.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/08 14:21:26 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/21 18:28:37 by dbischof         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "vm.h"
 
@@ -44,9 +33,9 @@ void	params_p(t_battle *battle, int (*params)[3], int sizep[3])
 	int i;
 
 	i = -1;
-	(*params)[2] = chartoint(&PARAMS, sizep[0]);
-	(*params)[1] = chartoint(&PARAMS + sizep[0], sizep[1]);
-	(*params)[0] = chartoint(&PARAMS + sizep[0] + sizep[1], sizep[2]);
+	(*params)[2] = chartoint(&PARAMS, sizep[2]);
+	(*params)[1] = chartoint(&PARAMS + sizep[2], sizep[1]);
+	(*params)[0] = chartoint(&PARAMS + sizep[2] + sizep[1], sizep[0]);
 }
 
 int		load_func(t_battle *battle)
@@ -65,8 +54,10 @@ int		load_func(t_battle *battle)
 		// ft_printf("opc = %d\n", C(R, R, Z));
 		size_p(battle, &sizep);
 		params_p(battle, &params, sizep);
-		// ft_printf("params\t: %d\t%d\t%d\t%d\n", INST, params[0], params[1], params[2]);
-		// ft_printf("sizep\t: %d\t%d\t%d\t%d\n", MAX((sizep[0] + sizep[1] + sizep[2]), 1), sizep[0], sizep[1], sizep[2]);
+		ft_swap(&sizep[0], &sizep[2]);
+		ft_swap(&params[0], &params[2]);
+		ft_printf("params\t: %d\t%d\t%d\t%d\n", INST, params[0], params[1], params[2]);
+		ft_printf("sizep\t: %d\t%d\t%d\t%d\n", MAX((sizep[0] + sizep[1] + sizep[2]), 1), sizep[0], sizep[1], sizep[2]);
 		// ft_printf("pass\n");
 		if (!(battle->cur_process->stun = battle->func[INST - 1](battle, params, sizep)))
 			return (1);

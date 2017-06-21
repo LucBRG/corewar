@@ -10,7 +10,7 @@ int				ld(t_battle *battle, int params[3], int size[3])
 	if ((CARRY = ISREG(params[1])))
 		REGISTRE(params[1]) = params[0] % IDX_MOD;
 	// ft_printf("reg 8 = %d\n", REGISTRE(params[1]));
-	return (CARRY);
+	return (5);
 	// else
 	// 	printf("valeur reg %.2d = %.2d\n", REGISTRE(reg), param);
 	return (CARRY);
