@@ -1,6 +1,8 @@
 
 #include "vm.h"
 
+#define PROCESS	((t_process*)elem->content)
+
 int			verif_live(t_battle *battle)
 {
 	int			total;
@@ -11,7 +13,7 @@ int			verif_live(t_battle *battle)
 	elem = battle->process;
 	while (elem)
 	{
-		process = (t_process*)elem->content;
+		process = PROCESS;
 		// printf("%p\tlive : %d\tdead : %d\n", process, process->bot->live, process->dead);
 		if (!process->dead)
 		{
@@ -64,9 +66,11 @@ t_process	*battle_launch(t_battle *battle)
 		elem = battle->process;
 		while (elem)
 		{
-			if (!((t_process*)elem->content)->dead)
+			if (PROCESS->stun > 0)
+				PROCESS->stun--;
+			else if (!PROCESS->dead)
 			{
-				battle->cur_process = (t_process*)elem->content;
+				battle->cur_process = PROCESS;
 				// hexa(battle->memory, MEM_SIZE, 0);
 				// printf("\n\n");
 				// print_memory(battle);

@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 14:21:26 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/20 17:12:38 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/06/21 18:28:37 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int		load_func(t_battle *battle)
 		// ft_printf("params\t: %d\t%d\t%d\t%d\n", INST, params[0], params[1], params[2]);
 		// ft_printf("sizep\t: %d\t%d\t%d\t%d\n", MAX((sizep[0] + sizep[1] + sizep[2]), 1), sizep[0], sizep[1], sizep[2]);
 		// ft_printf("pass\n");
-		if (!(battle->func[INST - 1](battle, params, sizep)))
+		if (!(battle->cur_process->stun = battle->func[INST - 1](battle, params, sizep)))
 			return (1);
 		// ft_printf("pc = %d\n", pc);
 		// ft_printf("PC = %d\n", PC);

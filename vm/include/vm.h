@@ -45,6 +45,7 @@ typedef struct	s_process
 {
 	int			registre[REG_NUMBER];
 	int			pc;
+	int			stun;
 	int			dead;
 	char		carry;
 	t_bot		*bot;

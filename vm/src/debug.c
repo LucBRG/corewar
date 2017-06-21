@@ -53,7 +53,7 @@ void	displayprocess(t_list *elem)
 	process = (t_process*)elem->content;
 	color = process->bot->id % 6;
 	ft_printf("\033[3%dm", color);
-	ft_printf("%p\npc\t: %d\n", process, process->pc);
+	ft_printf("%p\npc\t: %d\tstun :%d\n", process, process->pc, process->stun);
 	hexa((uc*)process->registre, REG_NUMBER * REG_SIZE, color);
 	ft_printf("\n");
 	ft_printf("\033[3%dm", color);
