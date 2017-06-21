@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 10:33:20 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/15 20:49:13 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/06/21 18:35:06 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ int				and_ft(t_battle *battle, int params[3], int size[3])
 			params[i] = REGISTRE(params[i]);
 	if ((CARRY = ISREG(params[2])))
 		REGISTRE(params[2]) = params[0] & params[1];
-	return (CARRY);
+	return (6);
 }

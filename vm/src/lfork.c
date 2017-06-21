@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 15:13:18 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/15 21:53:27 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/06/21 18:36:53 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ int				lfork(t_battle *battle, int params[3], int size[3])
 		;
 	addprocess(&battle->process, battle->cur_process->bot,
 		SETPC(params[0]));
-	return (1);
+	return (1000);
 }

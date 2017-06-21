@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 10:36:31 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/15 21:59:43 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/06/21 18:34:15 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int				ld(t_battle *battle, int params[3], int size[3])
 	if ((CARRY = ISREG(params[1])))
 		REGISTRE(params[1]) = params[0] % IDX_MOD;
 	// ft_printf("reg 8 = %d\n", REGISTRE(params[1]));
-	return (CARRY);
+	return (5);
 	// else
 	// 	printf("valeur reg %.2d = %.2d\n", REGISTRE(reg), param);
 

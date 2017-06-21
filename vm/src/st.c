@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 12:10:53 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/15 21:36:30 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/06/21 18:34:25 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ int			st(t_battle *battle, int params[3], int size[3])
 		str = (uc*)inttochar(&params[0]);
 		setmemory(battle, SETPC(params[1] % IDX_MOD), str, sizeof(int));
 	}
-	return (1);
+	return (5);
 }

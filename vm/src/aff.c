@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 11:37:47 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/15 21:57:20 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/06/21 18:37:19 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ int			aff(t_battle *battle, int params[3], int size[3])
 		return (0);
 	else
 		ft_printf("%c", REGISTRE(params[0]) % 256);
-	return (1);
+	return (2);
 }
