@@ -59,6 +59,7 @@ typedef struct	s_battle
 	t_bots		bots;
 	t_list		*process;
 	t_listfunc	func;
+	int			count;
 }				t_battle;
 
 int				open_bot(char *path, uc **bot);

@@ -58,6 +58,7 @@ t_process	*battle_launch(t_battle *battle)
 	int		loop;
 	int		cycle;
 	t_list	*elem;
+	int		tmp;
 
 	loop = 0;
 	cycle = CYCLE_TO_DIE;
@@ -74,15 +75,19 @@ t_process	*battle_launch(t_battle *battle)
 				// hexa(battle->memory, MEM_SIZE, 0);
 				// printf("\n\n");
 				// print_memory(battle);
-				PC = SETPC(load_func(battle));
-				// ft_printf("pc = %d\n", PC);
+				tmp = load_func(battle);
+				PC = SETPC(tmp);
+				ft_printf("pc = %d\n", PC);
+				ft_printf("stun = %d\n", PROCESS->stun);
+				// ft_printf("i = %d\n", (PC + i) % MEM_SIZE);
 			}
 			elem = elem->next;
 		}
 		loop++;
 		if (!rulescycle(battle, &loop, &cycle))
 			return (battle->cur_process);
-			// return (NULL);
+		if (loop == 100)
+			return (NULL);
 	}
 	return (NULL);
 }
