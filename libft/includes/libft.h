@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdeglain <mdeglain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 11:47:35 by mdeglain          #+#    #+#             */
-/*   Updated: 2017/05/22 11:09:16 by mdeglain         ###   ########.fr       */
+/*   Updated: 2017/06/08 15:19:47 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,6 +198,7 @@ t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void			ft_lstaddafter(t_list **alst, t_list *node_new);
 void			ft_lstshift(t_list **alst);
 t_list			*ft_lstln(void *content, size_t content_size);
+int				ft_lstlen(t_list *list);
 
 /*
 ** Fonctions _is

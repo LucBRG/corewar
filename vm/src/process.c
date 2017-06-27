@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdel.c                                        :+:      :+:    :+:   */
+/*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/09 11:48:49 by mdeglain          #+#    #+#             */
-/*   Updated: 2017/06/06 16:13:49 by dbischof         ###   ########.fr       */
+/*   Created: 2017/06/01 14:02:24 by dbischof          #+#    #+#             */
+/*   Updated: 2017/06/21 18:17:50 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "vm.h"
 
-void		ft_lstdel(t_list **alst, void (*del)(void *, size_t))
+t_process newprocess(t_bot *bot, int pc)
 {
-	t_list	*list;
+	t_process process;
 
-	while (*alst)
-	{
-		list = *alst;
-		*alst = (*alst)->next;
-		ft_lstdelone(&list, del);
-	}
+	process.pc = pc;
+	process.bot = bot;
+	process.stun = 0;
+	process.dead = 0;
+	process.carry = 0;
+	ft_bzero(process.registre, REG_NUMBER * REG_SIZE);
+	process.registre[0] = bot->id;
+	return (process);
 }

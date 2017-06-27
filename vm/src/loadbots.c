@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdel.c                                        :+:      :+:    :+:   */
+/*   loadbots.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/09 11:48:49 by mdeglain          #+#    #+#             */
-/*   Updated: 2017/06/06 16:13:49 by dbischof         ###   ########.fr       */
+/*   Created: 2017/05/31 14:14:51 by dbischof          #+#    #+#             */
+/*   Updated: 2017/06/10 17:00:07 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "vm.h"
 
-void		ft_lstdel(t_list **alst, void (*del)(void *, size_t))
+t_bots	loadbots(int ac, char **av)
 {
-	t_list	*list;
+	int		i;
+	t_bot	*tmp;
+	t_bots	bots;
 
-	while (*alst)
+	i = 0;
+	bots.nb = 0;
+	while (++i < ac && bots.nb < MAX_PLAYERS)
 	{
-		list = *alst;
-		*alst = (*alst)->next;
-		ft_lstdelone(&list, del);
+		if ((tmp = creabot(av[i])))
+		{
+			bots.tab[bots.nb] = tmp;
+			bots.tab[bots.nb]->id = i;
+			bots.nb++;
+		}
 	}
+	return (bots);
 }

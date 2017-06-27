@@ -1,25 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdel.c                                        :+:      :+:    :+:   */
+/*   intchar.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/09 11:48:49 by mdeglain          #+#    #+#             */
-/*   Updated: 2017/06/06 16:13:49 by dbischof         ###   ########.fr       */
+/*   Created: 2017/06/06 15:17:38 by dbischof          #+#    #+#             */
+/*   Updated: 2017/06/09 16:50:15 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "vm.h"
 
-void		ft_lstdel(t_list **alst, void (*del)(void *, size_t))
+char	*inttochar(int *i)
 {
-	t_list	*list;
+	int j;
+	int tmp;
 
-	while (*alst)
+	j = -1;
+	tmp = 0;
+	while (++j < 4)
 	{
-		list = *alst;
-		*alst = (*alst)->next;
-		ft_lstdelone(&list, del);
+		tmp = tmp << 8;
+		tmp |= (0xff & *i);
+		*i = *i >> 8;
 	}
+	*i = tmp;
+	return ((char*)i);
+}
+
+int		chartoint(unsigned char *t, int len)
+{
+	int i;
+	int tmp;
+
+	i = -1;
+	tmp = 0;
+	while (++i < len && i < 4)
+		tmp |= t[i] << (((len - 1) * 8) - (i * 8));
+	return (tmp);
 }

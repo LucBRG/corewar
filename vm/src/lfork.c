@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdel.c                                        :+:      :+:    :+:   */
+/*   lfork.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/09 11:48:49 by mdeglain          #+#    #+#             */
-/*   Updated: 2017/06/06 16:13:49 by dbischof         ###   ########.fr       */
+/*   Created: 2017/06/07 15:13:18 by tferrari          #+#    #+#             */
+/*   Updated: 2017/06/22 17:37:01 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "vm.h"
 
-void		ft_lstdel(t_list **alst, void (*del)(void *, size_t))
+int				lfork(t_battle *battle, int params[3], int size[3])
 {
-	t_list	*list;
-
-	while (*alst)
-	{
-		list = *alst;
-		*alst = (*alst)->next;
-		ft_lstdelone(&list, del);
-	}
+	if (size)
+		;
+	addprocess(&battle->process, battle->cur_process->bot,
+		SETPC(params[0]));
+	return (1000);
 }
