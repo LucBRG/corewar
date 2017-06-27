@@ -3,12 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   op.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: zaz <zaz@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2013/11/06 14:21:46 by zaz              ###   ########.fr       */
+/*   Updated: 2017/05/31 16:48:25 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef OP_H
+# define OP_H
 
 /*
 ** Toutes les tailles sont en octets.
@@ -33,7 +36,7 @@
 
 #define COMMENT_CHAR			'#'
 #define LABEL_CHAR				':'
-#define DIRECT_CHAR				'%'
+#define DIRECT_CHAR				'%'s
 #define SEPARATOR_CHAR			','
 
 #define LABEL_CHARS				"abcdefghijklmnopqrstuvwxyz_0123456789"
@@ -66,7 +69,7 @@ typedef char	t_arg_type;
 # define PROG_NAME_LENGTH		(128)
 # define COMMENT_LENGTH			(2048)
 # define COREWAR_EXEC_MAGIC		0xea83f3
-
+/*
 typedef struct		header_s
 {
   unsigned int		magic;
@@ -74,3 +77,5 @@ typedef struct		header_s
   unsigned int		prog_size;
   char				comment[COMMENT_LENGTH + 1];
 }					header_t;
+*/
+#endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: zaz <zaz@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2013/11/06 14:44:35 by zaz              ###   ########.fr       */
+/*   Updated: 2017/06/26 14:43:45 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ t_op    op_tab[17] =
 	{"sub", 3, {T_REG, T_REG, T_REG}, 5, 10, "soustraction", 1, 0},
 	{"and", 3, {T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}, 6, 6,
 		"et (and  r1, r2, r3   r1&r2 -> r3", 1, 0},
-	{"or", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 7, 6,
+	{"or", 3, {T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}, 7, 6,
 		"ou  (or   r1, r2, r3   r1 | r2 -> r3", 1, 0},
-	{"xor", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 8, 6,
+	{"xor", 3, {T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}, 8, 6,
 		"ou (xor  r1, r2, r3   r1^r2 -> r3", 1, 0},
 	{"zjmp", 1, {T_DIR}, 9, 20, "jump if zero", 0, 1},
 	{"ldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 10, 25,
@@ -38,3 +38,7 @@ t_op    op_tab[17] =
 	{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0},
 	{0, 0, {0}, 0, 0, 0, 0, 0}
 };
+
+
+// last arg = si 1 alors dir code sur 2 octects
+// last arg = si 0 alors dir code sur 4 octects
