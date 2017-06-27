@@ -7,7 +7,6 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include "libft.h"
-# include "ft_printf.h"
 # include "op.h"
 
 # define REGISTRE(x)	battle->cur_process->registre[x]
