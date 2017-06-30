@@ -9,13 +9,17 @@
 # include "libft.h"
 # include "op.h"
 
-# define REGISTRE(x)	battle->cur_process->registre[x]
+# define REGISTRE(x)	battle->cur_process->registre[x - 1]
 # define PC				battle->cur_process->pc
 # define ID				battle->cur_process->bot->id
+# define INST			battle->memory[PC]
 # define SETPC(n)		((PC + n) % MEM_SIZE)
 # define MAX(a, b)		((a > b) ? a : b)
 # define CARRY			battle->cur_process->carry
-# define ISREG(x)		(x >= 0 && x < REG_NUMBER)
+# define ISREG(x)		(x > 0 && x <= REG_NUMBER)
+# define ISOP(x)		(INST > x && INST <= x)
+#define STUN			battle->cur_process->stun
+#define FLAG			battle->cur_process->flag
 
 enum{NOTHING, LIVE, LD, ST, ADD, SUB, AND, OR, XOR, ZJMP, LDI, STI, FORK, LLD,
 	LLDI, LFORK, AFF};
@@ -48,6 +52,8 @@ typedef struct	s_process
 	int			dead;
 	char		carry;
 	t_bot		*bot;
+	int			id;
+	int			flag;
 }				t_process;
 
 typedef struct	s_battle
@@ -76,6 +82,7 @@ t_process		*battle_launch(t_battle *battle);
 t_list			*addprocess(t_list **list, t_bot *bot, int pc);
 int				load_func(t_battle *battle);
 int				check_ocp(char inst, char ocp);
+int				stun(t_battle *battle);
 
 void			debug(uc *s, int len);
 void			displaybot(t_bot *bot);

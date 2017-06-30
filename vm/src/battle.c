@@ -59,36 +59,59 @@ t_process	*battle_launch(t_battle *battle)
 	int		cycle;
 	t_list	*elem;
 	int		tmp;
+	long long	dump;
 
-	loop = 0;
 	cycle = CYCLE_TO_DIE;
-	while (42)
+	dump = -100;
+	loop = 0;
+	/*
+	**	Si il y a un dump de rensigné (exemple -dump 1000), alors battle->dump = 1000
+	**	Sinon, battle->dump = -1;
+
+		While (toujours_ok && dump != 0)
+		{
+			get_process(joueur_actuel)
+			while (tant_que)
+		}
+	*/
+	while (rulescycle(battle, &loop, &cycle) && dump-- != 0) // Le_programme_peut_continuer && battle->dump-- != 0
 	{
 		elem = battle->process;
+		ft_printf("\n\n", PC);
 		while (elem)
 		{
+
 			if (PROCESS->stun > 0)
 				PROCESS->stun--;
 			else if (!PROCESS->dead)
 			{
+				// ft_printf("Process not dead\n");
 				battle->cur_process = PROCESS;
 				// hexa(battle->memory, MEM_SIZE, 0);
 				// printf("\n\n");
+				// ft_printf("pc actuel = %d\n", PC);
 				// print_memory(battle);
+				sleep(1);
 				tmp = load_func(battle);
+				ft_printf("je fais avancer l'id %d de %d\n", PROCESS->id, tmp);
 				PC = SETPC(tmp);
-				ft_printf("pc = %d\n", PC);
-				ft_printf("stun = %d\n", PROCESS->stun);
+				ft_printf("process id %d et stun %d tour et un ", PROCESS->id, PROCESS->stun);
+				ft_printf("pc = %d\n\n", PC);	if (PC < 0)
+					return (NULL);
+				// ft_printf("stun = %d\n", PROCESS->stun);
 				// ft_printf("i = %d\n", (PC + i) % MEM_SIZE);
 			}
+			// if (loop > 999)
 			elem = elem->next;
 		}
 		loop++;
-		if (!rulescycle(battle, &loop, &cycle))
-			return (battle->cur_process);
-		if (loop == 100)
-			return (NULL);
+		//if (!rulescycle(battle, &loop, &cycle);
+		// if (loop == 100)
+		// 	return (NULL);
 	}
+	ft_printf("loop = %d\n", loop);
+	if (dump != -1)
+		return (battle->cur_process);
 	return (NULL);
 }
 

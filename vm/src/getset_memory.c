@@ -24,7 +24,7 @@ int			setmemory(t_battle *battle, int index, uc *s, int len)
 	while (++i < len)
 	{
 		battle->memory[mod(index + i, MEM_SIZE)] = s[i];
-		battle->print_mem[mod(index + i, MEM_SIZE)] = (char)ID;
+		battle->print_mem[mod(index + i, MEM_SIZE)] = (char)(ID % 255);
 	}
 	return (1);
 }
