@@ -66,8 +66,9 @@ int		load_func(t_battle *battle)
 		params_p(battle, &params, sizep);
 		// ft_swap(&sizep[0], &sizep[2]);
 		// ft_swap(&params[0], &params[2]);
-		ft_printf("params\t: %d\t%d\t%d\t%d\n", INST, params[0], params[1], params[2]);
-		ft_printf("sizep\t: %d\t%d\t%d\t%d\n", MAX((sizep[0] + sizep[1] + sizep[2]), 1), sizep[0], sizep[1], sizep[2]);
+		ft_printf("inst\t: %d\n", INST);
+		ft_printf("params\t: %d\t%d\t%d\n", params[0], params[1], params[2]);
+		ft_printf("sizep\t: %d\t%d\t%d\n", sizep[0], sizep[1], sizep[2]);
 		// ft_printf("pass\n");
 		if (!(battle->cur_process->stun = battle->func[INST - 1](battle, params, sizep)))
 			return (1);

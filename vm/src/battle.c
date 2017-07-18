@@ -84,6 +84,7 @@ t_process	*battle_launch(t_battle *battle)
 			elem = elem->next;
 		}
 		loop++;
+		getchar();
 		if (!rulescycle(battle, &loop, &cycle))
 			return (battle->cur_process);
 		if (loop == 100)
