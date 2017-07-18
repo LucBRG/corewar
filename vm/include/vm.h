@@ -7,20 +7,25 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include "libft.h"
-# include "ft_printf.h"
 # include "op.h"
+# include "view.h"
 
-# define REGISTRE(x)	battle->cur_process->registre[x]
+# define REGISTRE(x)	battle->cur_process->registre[x - 1]
 # define PC				battle->cur_process->pc
 # define ID				battle->cur_process->bot->id
+# define INST			battle->memory[PC]
 # define SETPC(n)		((PC + n) % MEM_SIZE)
 # define MAX(a, b)		((a > b) ? a : b)
 # define CARRY			battle->cur_process->carry
-# define ISREG(x)		(x >= 0 && x < REG_NUMBER)
+# define ISREG(x)		(x > 0 && x <= REG_NUMBER)
+# define ISOP(x)		(INST > x && INST <= x)
+# define STUN			battle->cur_process->stun
+# define FLAG			battle->cur_process->flag
 
 enum{NOTHING, LIVE, LD, ST, ADD, SUB, AND, OR, XOR, ZJMP, LDI, STI, FORK, LLD,
 	LLDI, LFORK, AFF};
 
+typedef struct s_view t_view;
 typedef unsigned char	uc;
 typedef struct s_battle	t_battle;
 typedef int (*t_listfunc[16])(t_battle *b, int params[3], int *size);
@@ -49,6 +54,8 @@ typedef struct	s_process
 	int			dead;
 	char		carry;
 	t_bot		*bot;
+	int			id;
+	int			flag;
 }				t_process;
 
 typedef struct	s_battle
@@ -60,6 +67,7 @@ typedef struct	s_battle
 	t_list		*process;
 	t_listfunc	func;
 	int			count;
+	t_view		*view;
 }				t_battle;
 
 int				open_bot(char *path, uc **bot);
@@ -77,12 +85,14 @@ t_process		*battle_launch(t_battle *battle);
 t_list			*addprocess(t_list **list, t_bot *bot, int pc);
 int				load_func(t_battle *battle);
 int				check_ocp(char inst, char ocp);
+int				stun(t_battle *battle);
 
 void			debug(uc *s, int len);
 void			displaybot(t_bot *bot);
 void			hexa(uc *s, int len, int color);
 void			displayprocess(t_list *elem);
 void			print_memory(t_battle *b);
+char			*ft_strhexa(unsigned char *str, int len);
 
 int				add(t_battle *battle, int params[3], int size[3]);
 int				aff(t_battle *battle, int params[3], int size[3]);

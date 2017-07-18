@@ -3,21 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdeglain <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdeglain <mdeglain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 14:33:53 by mdeglain          #+#    #+#             */
-/*   Updated: 2017/05/22 12:18:35 by mdeglain         ###   ########.fr       */
+/*   Updated: 2017/05/30 16:51:38 by mdeglain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "op.h"
 #include "asm.h"
 
-static void	init_parse(header_t *header, t_asm *env)
+static char	*give_line(char *str)
 {
-	ft_bzero(header->prog_name, PROG_NAME_LENGTH);
-	ft_bzero(header->comment, COMMENT_LENGTH);
-	env->nb_line = 0;
+	int		space;
+	int		comment;
+	int		str_len;
+	int		dst_len;
+	char	*dst;
+
+	space = 0;
+	comment = cor_strchr(str, '#');
+	str_len = ft_strlen(str);
+	while (str[space] && ft_is_space(str[space]))
+		space++;
+	dst_len = (comment != -1) ? (comment - space) : (str_len - space);
+	if (dst_len != str_len)
+	{
+		dst = ft_strnew(dst_len);
+		ft_strncpy(dst, &str[space], dst_len);
+		return (dst);
+	}
+	return (ft_strdup(str));
 }
 
 static void	fill_parsing(t_asm *env, t_file *file)
@@ -30,70 +45,51 @@ static void	fill_parsing(t_asm *env, t_file *file)
 		env->nb_line++;
 	lseek(file->fd, 0, SEEK_SET);
 	env->str = (char**)malloc(sizeof(char*) * env->nb_line);
+	if (!env->str)
+		show_err(0, -1);
 	while (my_fgets(str, BUF_SZ, file))
-		env->str[i++] = ft_strdup(str);
-	
-}
-
-static void	copy_header(char *dst, char *src)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (src[i] != '"')
-		i++;
-	i++;
-	while (src[i] != '"')
-		dst[j++] = src[i++];
-}
-
-static void	parse_header(header_t *header, t_asm *env)
-{
-	int	i;
-	int	nu;
-	int	space;
-
-	i = 0;
-	while (!header->prog_name[0] || !header->comment[0])
 	{
-		nu = corewar_strchr(env->str[i], '#');
-		if (nu != -1) 
-			env->str[nu] = 0;
-		space = 0;
-		while (env->str[i][space] && ft_is_space(env->str[i][space]))
-			space++;
-		if (!env->str[i][space])
-			;
-		else if (!header->prog_name[0] && !ft_strncmp(env->str[i] + space, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
-			copy_header(header->prog_name, env->str[i]);
-		else if (!header->comment[0] && !ft_strncmp(env->str[i] + space, COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING)))
-			copy_header(header->comment, env->str[i]);
-		else
-			show_err(3, 0);
+		env->str[i] = give_line(str);
 		i++;
 	}
 }
 
-int	parsing_asm(t_asm *env, t_file *file)
+static void	parse_header(t_asm *env)
+{
+	env->i = 0;
+	env->header_len = 0;
+	while (env->i < env->nb_line
+		&& (!env->prog_name[0] || !env->comment[0]))
+	{
+		if (!env->str[env->i][0])
+			;
+		else if (!env->prog_name[0] && !ft_strncmp(env->str[env->i],
+			NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
+			copy_header(env->prog_name, env,
+				ft_strlen(NAME_CMD_STRING), 1);
+		else if (!env->comment[0] && !ft_strncmp(env->str[env->i],
+			COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING)))
+			copy_header(env->comment, env,
+				ft_strlen(COMMENT_CMD_STRING), 2);
+		else
+			show_err(3, env->i);
+		env->i++;
+		env->header_len++;
+	}
+	if (!env->prog_name[0] || !env->comment[0])
+		show_err(7, 0);
+}
+
+int			parsing_asm(t_asm *env, t_file *file)
 {
 	char		str[BUF_SZ];
-	header_t	*header;
 
-	header = (header_t*)malloc(sizeof(*header));
-	if (header == NULL)
-		exit(EXIT_FAILURE);
-	init_parse(header, env);
+	env->nb_line = 0;
 	ft_bzero(str, BUF_SZ);
 	fill_parsing(env, file);
-	if (!env->str)
-	{
-		ft_printf("error \n");
-		exit(EXIT_FAILURE);
-	}
-	parse_header(header, env);
-	ft_printf("name = %s\ncomment = %s\n", header->prog_name, header->comment);
-	//parse_instruction(env);
+	parse_header(env);
+	parse_instruction(env);
+	label_exist(env);
+	good_order(env);
 	return (0);
 }

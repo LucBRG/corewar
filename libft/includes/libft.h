@@ -32,7 +32,7 @@
 ** DEFINE
 */
 
-# define BUF_SZ 1024
+# define BUF_SZ 10192
 # define FLAG_SHARP 1
 # define FLAG_ZERO 2
 # define FLAG_MINUS 4
@@ -127,7 +127,6 @@ void			ft_putnwstr(wint_t *str, int nb);
 /*
 **Fonctions _str
 */
-int				corewar_strchr(const char *s, int c);
 
 char			*ft_strcat(char *s1, const char *s2);
 char			*ft_strchr(const char *s, int c);
@@ -152,6 +151,8 @@ char			*ft_strnew(size_t size);
 char			*ft_strnstr(const char *big, const char *little, size_t len);
 char			*ft_strrchr(const char *s, int c);
 char			**ft_strsplit(char const *s, char c);
+int				ft_strsplit_len(char **str);
+void			ft_strsplit_free(char **str);
 char			*ft_strstr(const char *big, const char *little);
 char			*ft_strsub(char const *s, unsigned int start, size_t len);
 char			*ft_strtrim(char const *s);

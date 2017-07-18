@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 14:00:54 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/14 21:59:28 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/07/18 12:17:56 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 #define NB_INST		(8 + PROG_NAME_LENGTH)
 #define COMMENT		(12 + PROG_NAME_LENGTH)
 #define OC_NULL_2	(12 + PROG_NAME_LENGTH + COMMENT_LENGTH)
-#define INST		(16 + PROG_NAME_LENGTH + COMMENT_LENGTH)
-#define MIN_BOT		INST + 1
+#define INSTA		(16 + PROG_NAME_LENGTH + COMMENT_LENGTH)
+#define MIN_BOT		INSTA + 1
 #define ERR_BOT		(1<<0)
 #define ERR_MAG		(1<<1)
 #define ERR_OC1		(1<<2)
@@ -60,8 +60,8 @@ int		check_error(unsigned char *bot, int len)
 	error |= (chartoint(bot + NB_MAG, 4) == COREWAR_EXEC_MAGIC) ? 0 : ERR_MAG;
 	error |= (!chartoint(bot + OC_NULL_1, 4)) ? 0 : ERR_OC1;
 	error |= (!chartoint(bot + OC_NULL_2, 4)) ? 0 : ERR_OC2;
-	error |= (chartoint(bot + NB_INST, 4) == len - INST) ? 0 : ERR_INT;
-	error |= (chartoint(bot + NB_INST, 4) <= CHAMP_MAX_SIZE) ? 0 : ERR_SIZ;
+	error |= (chartoint(bot + NB_INST, 4) == len - INSTA) ? 0 : ERR_INT;
+	// error |= (chartoint(bot + NB_INST, 4) <= CHAMP_MAX_SIZE) ? 0 : ERR_SIZ;
 	return (error);
 }
 
@@ -118,6 +118,6 @@ t_bot	*creabot(char *path)
 	bot->nb_instructions = chartoint(bot_brut + NB_INST, 4);
 	ft_memcpy(bot->comment, (bot_brut + COMMENT), COMMENT_LENGTH);
 	bot->instructions = (unsigned char*)malloc(bot->nb_instructions);
-	ft_memcpy(bot->instructions, (bot_brut + INST), bot->nb_instructions);
+	ft_memcpy(bot->instructions, (bot_brut + INSTA), bot->nb_instructions);
 	return (bot);
 }

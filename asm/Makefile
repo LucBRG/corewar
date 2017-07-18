@@ -6,14 +6,16 @@
 #    By: mdeglain <mdeglain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 11:02:03 by mdeglain          #+#    #+#              #
-#    Updated: 2017/05/22 11:59:24 by mdeglain         ###   ########.fr        #
+#    Updated: 2017/06/14 16:50:15 by lbrugero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = asm
 CC = gcc
-CFLAGS = -Wall -Wextra
-SRC_NAME =	$(sort main.c parsing.c)
+CFLAGS = -Wall -Wextra -Wextra
+SRC_NAME =	$(sort op.c main.c parsing.c utils.c args.c finding_parse.c \
+			parsing2.c verif_args.c parsing3.c translate.c write_everything.c \
+			write_dir.c function.c reg.c)
 
 LIB_PATH = ../libft/
 LIB_NAME = libft.a
@@ -76,6 +78,6 @@ re: fclean all
 
 norme:
 	@clear
-	@make norme -C ./libft
-	@norminette ./src/*.c
+	@make norme -C ../libft
+	@norminette ./sources/*.c
 	@norminette ./includes/*.h

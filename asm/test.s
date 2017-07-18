@@ -1,4 +1,6 @@
-.name "Salut YOLerubewrfbiewrubf" #Le commentaire le plus long du monde
-.comment "xderbfewirbufiewfriebrf FIN"
+.name "First"
+.comment "FirstComment"
 
-sti r2, %2, r1
+debut:	st	r1, :li1
+		ld	%0, r3
+li1:	zjmp	%:debut

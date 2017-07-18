@@ -41,7 +41,11 @@ static char		*ft_nextstr(char **str, char c)
 	char		*result;
 	char		*end;
 
-	while (**str == c)
+	if (**str == c)
+		(*str)++;
+	if (**str == c)
+		return (NULL);
+	while (ft_is_space(**str))
 		(*str)++;
 	end = ft_strchr(*str, c);
 	if (end == NULL)
@@ -73,6 +77,6 @@ char			**ft_strsplit(char const *s, char c)
 		result[i] = ft_nextstr(&new, c);
 		i++;
 	}
-	result[i] = NULL;
+	result[i] = 0;
 	return (result);
 }

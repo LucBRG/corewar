@@ -10,18 +10,20 @@ int	main(int ac, char **av)
 	i = -1;
 	if (!(b = initbattle(ac, av)))
 		return (0);
-	printf("FIGHT\t%d\n", b->bots.nb);
-	print_memory(b);
+	b->view = view(b);
+	// ft_printf("%s\n", ft_string_memory(b));
+	// printf("FIGHT\t%d\n", b->bots.nb);
+	// print_memory(b);
 	if (b->bots.nb)
 	{
-		ft_lstiter(b->process, displayprocess);
+		// ft_lstiter(b->process, displayprocess);
 		win = battle_launch(b);
 		if (win)
 			printf("le joueur %d(%s) a gagne\n", win->bot->id, win->bot->name);
 	}
-	print_memory(b);
-	ft_printf("\n");
-	displayprocess(b->process);
+	// print_memory(b);
+	// displayprocess(b->process);
 	// ft_printf("\nreg 3 = %u", b->cur_process->registre[3]);
+	delview(b);
 	return (0);
 }

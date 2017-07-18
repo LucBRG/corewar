@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 12:14:27 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/22 17:32:00 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/07/17 10:17:59 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ int				or_ft(t_battle *battle, int params[3], int size[3])
 		REGISTRE(params[2]) = params[0] | params[1];
 	else
 		return (0);
-	return (7);
+	FLAG = 0;
+	return (1);
 }
