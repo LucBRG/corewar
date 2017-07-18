@@ -11,5 +11,6 @@ int			live(t_battle *battle, int params[3], int size[3])
 	while (++i < battle->bots.nb)
 		if (battle->bots.tab[i]->id == params[0])
 			battle->bots.tab[i]->live++;
-	return (10);
+	FLAG = 0;
+	return (1);
 }

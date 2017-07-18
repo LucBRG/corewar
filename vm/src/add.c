@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 17:47:46 by tferrari          #+#    #+#             */
-/*   Updated: 2017/06/22 17:39:04 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/07/17 10:15:29 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ int				add(t_battle *battle, int params[3], int size[3])
 		REGISTRE(params[2]) = REGISTRE(params[0]) + REGISTRE(params[1]);
 	else
 		return (0);
-	return (10);
+	FLAG = 0;
+	return (0);
 }

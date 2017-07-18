@@ -18,8 +18,8 @@
 # define CARRY			battle->cur_process->carry
 # define ISREG(x)		(x > 0 && x <= REG_NUMBER)
 # define ISOP(x)		(INST > x && INST <= x)
-#define STUN			battle->cur_process->stun
-#define FLAG			battle->cur_process->flag
+# define STUN			battle->cur_process->stun
+# define FLAG			battle->cur_process->flag
 
 enum{NOTHING, LIVE, LD, ST, ADD, SUB, AND, OR, XOR, ZJMP, LDI, STI, FORK, LLD,
 	LLDI, LFORK, AFF};
