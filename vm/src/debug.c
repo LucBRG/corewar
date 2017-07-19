@@ -37,8 +37,8 @@ void	debug(uc *s, int len)
 
 void	displaybot(t_bot *bot)
 {
-	ft_printf("id\t\t: %x\nlive\t\t: %d\nname\t\t: %s\ncomment\t\t: %s\ninstructions\t: %d\n",
-		bot->id, bot->live, bot->name, bot->comment, bot->nb_instructions);
+	ft_printf("id\t\t: %x\nname\t\t: %s\ncomment\t\t: %s\ninstructions\t: %d\n",
+		bot->id, bot->name, bot->comment, bot->nb_instructions);
 	// hexa(bot->instructions, bot->nb_instructions, bot->id % 6);
 	// ft_printf("\n");
 }
