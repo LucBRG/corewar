@@ -6,24 +6,11 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 14:40:12 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/18 21:37:19 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/19 18:53:23 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "view.h"
-
-#define HEIGHT			66
-#define WIDTH			200
-
-#define COL1_X			0
-#define COL1_Y			0
-#define COL1_W			(32 * 3 + 3)
-#define COL1_H			(HEIGHT)
-
-#define COL2_X			(COL1_X + COL1_W)
-#define COL2_W			(WIDTH - COL2_X)
-#define COL2_H			(HEIGHT / 4)
-#define COL2_Y			((i - 1) * COL2_H)
 
 void	init_color_view(t_view *view)
 {
@@ -46,7 +33,7 @@ void	init_color_view(t_view *view)
 	view->memcolor = NULL;
 }
 
-t_view	*view(t_battle *battle)
+t_view	*initview(t_battle *battle)
 {
 	t_view	*view;
 	int		i;
@@ -55,7 +42,6 @@ t_view	*view(t_battle *battle)
 	if (!(view = (t_view*)malloc(sizeof(t_view)))
 		|| !(view->windows = (WINDOW**)malloc(sizeof(WINDOW*) * NBOTS)))
 		return (NULL);
-	battle->view = view;
 	initscr();
 	if (has_colors())
 	{
@@ -80,6 +66,8 @@ void	delview(t_battle *battle)
 	int i;
 
 	i = -1;
+	if (!battle->view)
+		return ;
     endwin();
 	while (++i < NBOTS)
 		free(battle->view->windows[i]);
@@ -96,21 +84,33 @@ void	showmemory(t_battle *battle)
 	color = 0;
 	ft_getcolor_mem(battle);
 	tmp = ft_strhexa((uc*)VMEM, MEM_SIZE);
-	move(1, 2);
+	wmove(VIEWMEM, 1, 2);
 	while (++i < (int)ft_strlen(tmp))
 	{
 		if (color != VCOLOR[i / 3])
 		{
 			color = VCOLOR[i / 3];
 			if (!color)
-				attron(COLOR_PAIR(100));
+				wattron(VIEWMEM, COLOR_PAIR(100));
 			else
-				attron(COLOR_PAIR((VCOLOR[i / 3])));
+				wattron(VIEWMEM, COLOR_PAIR((VCOLOR[i / 3])));
 		}
 		if (!(i % (COL1_W - 3)))
-			move((1 + i / (COL1_W - 3)), 2);
-		addch(tmp[i]);
+			wmove(VIEWMEM, (1 + i / (COL1_W - 3)), 2);
+		waddch(VIEWMEM, tmp[i]);
 	}
 	wrefresh(VIEWMEM);
 	ft_strdel(&tmp);
+}
+
+void	showallview(t_battle *battle)
+{
+	if (!battle->view)
+		return ;
+	showbot(battle);
+	showmemory(battle);
+	mvprintw(0, 10, " Loop : %d\tLimit : %d\tCycle : %d ",
+		battle->fight.loop, battle->fight.limitloop, battle->fight.cycle);
+	mvprintw(0, COL2_X + 10, " Dernier joueur rapporte vivant : %s ",
+		(battle->fight.last_live) ? battle->fight.last_live->name : "");
 }

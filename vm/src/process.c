@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/01 14:02:24 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/18 20:24:19 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/19 17:52:47 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_process newprocess(t_bot *bot, int pc)
 	process.bot = bot;
 	process.stun = 0;
 	process.dead = 0;
+	process.live = 0;
 	process.carry = 0;
 	ft_bzero(process.registre, REG_NUMBER * REG_SIZE);
 	process.registre[0] = bot->id;

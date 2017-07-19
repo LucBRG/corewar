@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 20:36:46 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/18 21:46:03 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/19 15:30:32 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	color_pc(t_battle *battle)
 	while (elem)
 	{
 		pr = (t_process*)elem->content;
-		VCOLOR[pr->pc] = (-pr->bot->id % 4 + 4);
+		VCOLOR[pr->pc] = ((1 + pr->bot->rid) % 4 + 4);
 		elem = elem->next;
 	}
 }

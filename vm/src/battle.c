@@ -17,60 +17,56 @@ int			verif_live(t_battle *battle)
 		// printf("%p\tlive : %d\tdead : %d\n", process, process->bot->live, process->dead);
 		if (!process->dead)
 		{
-			total += process->bot->live;
+			total += process->live;
 			// displayprocess(elem);
-			if (!process->bot->live && !process->dead)
+			if (!process->live && !process->dead)
 			{
 				//printf("mise a mort de %d(%s)\n", process->bot->id, process->bot->name);
 				process->dead = 1;
 			}
-			process->bot->live = 0;
+			process->live = 0;
 		}
 		elem = elem->next;
 	}
 	return (total);
 }
 
-int			rulescycle(t_battle *battle, int *loop, int *cycle)
+int			rulescycle(t_battle *battle)
 {
-	static int	checks = 0;
 	int			live;
 
-	if (*loop == *cycle)
+	if (battle->fight.loop == battle->fight.limitloop)
 	{
 		if (!(live = verif_live(battle)))
 			return (0);
 		if (live >= NBR_LIVE)
-			*cycle -= CYCLE_DELTA;
-		if (checks >= MAX_CHECKS)
+			battle->fight.limitloop -= CYCLE_DELTA;
+		if (battle->fight.cycle >= MAX_CHECKS)
 		{
-			checks = 0;
-			(*cycle)--;
+			battle->fight.cycle = 0;
+			battle->fight.limitloop--;
 		}
-		*loop = 0;
-		checks++;
+		battle->fight.loop = 0;
+		battle->fight.cycle++;
 	}
 	return (1);
 }
 
 t_process	*battle_launch(t_battle *battle)
 {
-	int			loop;
-	int			cycle;
 	t_list		*elem;
 	int			tmp;
 	long long	dump;
 
-	cycle = CYCLE_TO_DIE;
 	dump = -100;
-	loop = 0;
-	while (rulescycle(battle, &loop, &cycle) && dump-- != 0) // Le_programme_peut_continuer && battle->dump-- != 0
+	while (rulescycle(battle) && dump-- != 0) // Le_programme_peut_continuer && battle->dump-- != 0
 	{
 		elem = battle->process;
 		// ft_printf("\n\n", PC);
+		showallview(battle);
 		while (elem)
 		{
-
+			// getch();
 			if (PROCESS->stun > 0)
 				PROCESS->stun--;
 			else if (!PROCESS->dead)
@@ -103,15 +99,34 @@ t_process	*battle_launch(t_battle *battle)
 			// getchar();
 			elem = elem->next;
 		}
-		loop++;
-		showmemory(battle);
-		if (!rulescycle(battle, &loop, &cycle))
+		battle->fight.loop++;
+		if (!rulescycle(battle))
 			return (NULL);
 	}
 	// ft_printf("loop = %d\n", loop);
 	if (dump != -1)
 		return (battle->cur_process);
 	return (NULL);
+}
+
+void		initbattle_func(t_battle *battle)
+{
+	battle->func[0] = live;
+	battle->func[1] = ld;
+	battle->func[2] = st;
+	battle->func[3] = add;
+	battle->func[4] = sub;
+	battle->func[5] = and_ft;
+	battle->func[6] = or_ft;
+	battle->func[7] = xor_ft;
+	battle->func[8] = zjmp;
+	battle->func[9] = ldi;
+	battle->func[10] = sti;
+	battle->func[11] = fork_ft;
+	battle->func[12] = lld;
+	battle->func[13] = lldi;
+	battle->func[14] = lfork;
+	battle->func[15] = aff;
 }
 
 t_battle	*initbattle(int ac, char **av)
@@ -123,21 +138,11 @@ t_battle	*initbattle(int ac, char **av)
 	b->bots = loadbots(ac, av);
 	if (!(b->process = loadmemory(b)))
 		return (NULL);
-	b->func[0] = live;
-	b->func[1] = ld;
-	b->func[2] = st;
-	b->func[3] = add;
-	b->func[4] = sub;
-	b->func[5] = and_ft;
-	b->func[6] = or_ft;
-	b->func[7] = xor_ft;
-	b->func[8] = zjmp;
-	b->func[9] = ldi;
-	b->func[10] = sti;
-	b->func[11] = fork_ft;
-	b->func[12] = lld;
-	b->func[13] = lldi;
-	b->func[14] = lfork;
-	b->func[15] = aff;
+	b->view = NULL;
+	b->fight.loop = 0;
+	b->fight.cycle = 0;
+	b->fight.limitloop = CYCLE_TO_DIE;
+	b->fight.last_live = NULL;
+	initbattle_func(b);
 	return (b);
 }

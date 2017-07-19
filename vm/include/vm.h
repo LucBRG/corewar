@@ -14,6 +14,7 @@
 # define PC				battle->cur_process->pc
 # define ID				battle->cur_process->bot->id
 # define INST			battle->memory[PC]
+# define MEMORY			battle->memory
 # define SETPC(n)		((PC + n) % MEM_SIZE)
 # define MAX(a, b)		((a > b) ? a : b)
 # define CARRY			battle->cur_process->carry
@@ -33,11 +34,12 @@ typedef int (*t_listfunc[16])(t_battle *b, int params[3], int *size);
 typedef struct	s_bot
 {
 	int			id;
-	int			live;
+	int			rid;
 	char		*name;
 	char		*comment;
 	uc			*instructions;
 	int			nb_instructions;
+	int			loop;
 }				t_bot;
 
 typedef struct	s_bots
@@ -52,11 +54,20 @@ typedef struct	s_process
 	int			pc;
 	int			stun;
 	int			dead;
+	int			live;
 	char		carry;
 	t_bot		*bot;
 	int			id;
 	int			flag;
 }				t_process;
+
+typedef struct	s_fight
+{
+	int			loop;
+	int			limitloop;
+	int			cycle;
+	t_bot		*last_live;
+}				t_fight;
 
 typedef struct	s_battle
 {
@@ -68,7 +79,19 @@ typedef struct	s_battle
 	t_listfunc	func;
 	int			count;
 	t_view		*view;
+	t_fight		fight;
 }				t_battle;
+
+typedef struct	s_command
+{
+	uc			inst;
+	uc			ocp;
+	int			params[3];
+	int			size[3];
+	int			isocp;
+	int			len;
+	int			error;
+}				t_command;
 
 int				open_bot(char *path, uc **bot);
 t_bot			*creabot(char *path);
@@ -85,7 +108,7 @@ t_process		*battle_launch(t_battle *battle);
 t_list			*addprocess(t_list **list, t_bot *bot, int pc);
 int				load_func(t_battle *battle);
 int				check_ocp(char inst, char ocp);
-int				stun(t_battle *battle);
+int				stun(t_battle *battle, t_command *c);
 
 void			debug(uc *s, int len);
 void			displaybot(t_bot *bot);
@@ -93,6 +116,7 @@ void			hexa(uc *s, int len, int color);
 void			displayprocess(t_list *elem);
 void			print_memory(t_battle *b);
 char			*ft_strhexa(unsigned char *str, int len);
+t_command		getcommand(t_battle *battle, int pc);
 
 int				add(t_battle *battle, int params[3], int size[3]);
 int				aff(t_battle *battle, int params[3], int size[3]);
