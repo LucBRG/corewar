@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 14:40:31 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/20 18:05:26 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/20 20:06:41 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,6 @@ void	color_pc(t_battle *battle);
 void	showbot(t_battle *battle);
 void	controls(t_battle *battle);
 void	refreshall(t_battle *battle);
+void	setvcolor(t_battle *battle, int index, int color, int len);
 
 #endif

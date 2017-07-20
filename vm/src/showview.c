@@ -6,11 +6,20 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/20 15:34:51 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/20 18:02:52 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/20 20:06:52 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "view.h"
+
+void	setvcolor(t_battle *battle, int index, int color, int len)
+{
+	int i;
+
+	i = -1;
+	while (++i < len)
+		VCOLOR[mod(index + i, MEM_SIZE)] = color;
+}
 
 void	showmemory(t_battle *battle)
 {
@@ -53,8 +62,8 @@ void	showallview(t_battle *battle)
 	usleep(SECONDS / battle->view->speed);
 	showbot(battle);
 	showmemory(battle);
-	mvprintw(0, 10, " Speed : %d/s    Loop : %d    Limit : %d    Cycle : %d ",
-		battle->view->speed, battle->fight.loop, battle->fight.limitloop,
+	mvprintw(0, 10, " Speed : %d/s    Total loop : %6d    Loop : %4d    Limit : %4d    Cycle : %4d ",
+		battle->view->speed, battle->fight.totalloop, battle->fight.loop, battle->fight.limitloop,
 		battle->fight.cycle);
 	mvprintw(0, COL2_X + 10, " Dernier joueur rapporte vivant : %s ",
 		(battle->fight.last_live) ? battle->fight.last_live->name : "");

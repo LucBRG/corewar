@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 14:40:12 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/20 17:43:06 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/20 19:34:58 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void	delview(t_battle *battle)
 	i = -1;
 	if (!battle->view)
 		return ;
+	curs_set(1);
     endwin();
     free(VCOLOR);
 	while (++i < NBOTS)

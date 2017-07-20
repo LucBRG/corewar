@@ -22,7 +22,7 @@ int			verif_live(t_battle *battle)
 			if (!process->live && !process->dead)
 			{
 				//printf("mise a mort de %d(%s)\n", process->bot->id, process->bot->name);
-				process->dead = 1;
+				// process->dead = 1;
 			}
 			process->live = 0;
 		}
@@ -52,7 +52,7 @@ int			rulescycle(t_battle *battle)
 	return (1);
 }
 
-t_process	*battle_launch(t_battle *battle)
+void	battle_launch(t_battle *battle)
 {
 	t_list		*elem;
 	int			tmp;
@@ -93,8 +93,6 @@ t_process	*battle_launch(t_battle *battle)
 				PC = SETPC(tmp);
 				// ft_printf("process id %d et stun %d tour et un ", PROCESS->id, PROCESS->stun);
 				// ft_printf("pc = %d\n\n", PC);
-				if (PC < 0)
-					return (NULL);
 				// ft_printf("stun = %d\n", PROCESS->stun);
 				// ft_printf("i = %d\n", (PC + i) % MEM_SIZE);
 			}
@@ -105,13 +103,12 @@ t_process	*battle_launch(t_battle *battle)
 			elem = elem->next;
 		}
 		battle->fight.loop++;
-		if (!rulescycle(battle))
-			return (NULL);
+		battle->fight.totalloop++;
 	}
 	// ft_printf("loop = %d\n", loop);
 	if (dump != -1)
-		return (battle->cur_process);
-	return (NULL);
+		return ;
+	return ;
 }
 
 void		initbattle_func(t_battle *battle)
@@ -145,6 +142,7 @@ t_battle	*initbattle(int ac, char **av)
 		return (NULL);
 	b->view = NULL;
 	b->fight.loop = 0;
+	b->fight.totalloop = 0;
 	b->fight.cycle = 0;
 	b->fight.limitloop = CYCLE_TO_DIE;
 	b->fight.last_live = NULL;

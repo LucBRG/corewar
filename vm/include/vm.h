@@ -67,6 +67,7 @@ typedef struct	s_fight
 	int			loop;
 	int			limitloop;
 	int			cycle;
+	int			totalloop;
 	t_bot		*last_live;
 }				t_fight;
 
@@ -105,7 +106,7 @@ int				chartoint(unsigned char *t, int len);
 char			*inttochar(int *i);
 int				mod(int a, int b);
 t_battle		*initbattle(int ac, char **av);
-t_process		*battle_launch(t_battle *battle);
+void			battle_launch(t_battle *battle);
 t_list			*addprocess(t_list **list, t_process process);
 t_process 		cpyprocess(t_process *orignal, int pc);
 int				load_func(t_battle *battle);

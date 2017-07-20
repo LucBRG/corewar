@@ -28,7 +28,6 @@ void getoptions(t_battle *battle, int options)
 int	main(int ac, char **av)
 {
 	int			i;
-	t_process	*win;
 	t_battle	*b;
 
 	i = -1;
@@ -38,19 +37,15 @@ int	main(int ac, char **av)
 	// ft_printf("%s\n", ft_string_memory(b));
 	// printf("FIGHT\t%d\n", b->bots.nb);
 	// ft_printf("%d\n", 4294904660);
-	print_memory(b);
+	// print_memory(b);
 	if (b->bots.nb)
 	{
 		// ft_lstiter(b->process, displayprocess);
-		win = battle_launch(b);
-		if (win)
-			printf("le joueur %d(%s) a gagne\n", win->bot->id, win->bot->name);
+		battle_launch(b);
+		delview(b);
+		if (b->fight.last_live)
+			ft_printf("le joueur %d(%s) a gagne\n",
+				-(b->fight.last_live->id), b->fight.last_live->name);
 	}
-	// print_memory(b);
-	// displayprocess(b->process);
-	// ft_printf("\nreg 3 = %u", b->cur_process->registre[3]);
-	delview(b);
-	ft_printf("le joueur %d(%s) a gagne\n",
-		-(b->fight.last_live->id), b->fight.last_live->name);
 	return (0);
 }
