@@ -6,14 +6,14 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 15:15:33 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/19 16:42:01 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/20 18:45:14 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
 #define OCP			battle->memory[pc + 1]
-#define PARAMS		battle->memory[(pc + (isocp(INST) ? 2 : 1))]
+#define PARAMS		battle->memory[(pc + ((c->isocp) ? 2 : 1))]
 #define PARAM(n)	(OCP >> ((3 - n) * 2) & 0b11)
 
 int		isocp(char inst)
@@ -32,30 +32,30 @@ int		t_ind_size(t_battle *battle, char inst, int i, int pc)
 		return (PARAM(i));
 }
 
-void	size_p(t_battle *battle, int (*sizep)[3], char inst, int pc)
+void	size_p(t_battle *battle, t_command *c, int pc)
 {
 	int i;
 
 	i = -1;
-	if (inst == AFF)
-		(*sizep)[0] = 1;
-	else if (inst == LIVE)
-		(*sizep)[0] = 4;
-	else if (inst == ZJMP || inst == FORK || inst == LFORK)
-		(*sizep)[0] = 2;
+	if (c->inst == AFF)
+		c->size[0] = 1;
+	else if (c->inst == LIVE)
+		c->size[0] = 4;
+	else if (c->inst == ZJMP || c->inst == FORK || c->inst == LFORK)
+		c->size[0] = 2;
 	else
 		while (++i < 3)
-			(*sizep)[i] = (PARAM(i) != 3) ? t_ind_size(battle, inst, i, pc) : 2;
+			c->size[i] = (PARAM(i) != 3) ? t_ind_size(battle, c->inst, i, pc) : 2;
 }
 
-void	params_p(t_battle *battle, int (*params)[3], int sizep[3], int pc)
+void	params_p(t_battle *battle, t_command *c, int pc)
 {
 	int i;
 
 	i = -1;
-	(*params)[0] = chartoint(&PARAMS, sizep[0]);
-	(*params)[1] = chartoint(&PARAMS + sizep[0], sizep[1]);
-	(*params)[2] = chartoint(&PARAMS + sizep[0] + sizep[1], sizep[2]);
+	c->params[0] = chartoint(&PARAMS, c->size[0]);
+	c->params[1] = chartoint(&PARAMS + c->size[0], c->size[1]);
+	c->params[2] = chartoint(&PARAMS + c->size[0] + c->size[1], c->size[2]);
 }
 
 t_command	getcommand(t_battle *battle, int pc)
@@ -77,8 +77,8 @@ t_command	getcommand(t_battle *battle, int pc)
 	}
 	if (!c.error)
 	{
-		size_p(battle, &c.size, c.inst, pc);
-		params_p(battle, &c.params, c.size, pc);
+		size_p(battle, &c, pc);
+		params_p(battle, &c, pc);
 	}
 	c.len = 1 + c.isocp + c.size[0] + c.size[1] + c.size[2];
 	return (c);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sti.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 15:32:11 by tferrari          #+#    #+#             */
-/*   Updated: 2017/07/20 15:04:50 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/07/20 18:31:03 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int			sti(t_battle *battle, int params[3], int size[3])
 
 	i = -1;
 	// ft_printf("reg 1 = %d\n", REGISTRE(params[0]));
-	if (params[0] == 6 && ID == -1)
-		ft_printf("sti reg %d, val reg = %d\n",params[0], REGISTRE(params[0]));
+	// if (params[0] == 6 && ID == -1)
+	// 	ft_printf("sti reg %d, val reg = %d\n",params[0], REGISTRE(params[0]));
 	while (++i < 3)
 		if (size[i] == T_REG && !ISREG(params[i]))
 			return (0);
