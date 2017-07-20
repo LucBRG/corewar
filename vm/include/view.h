@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 14:40:31 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/20 16:03:27 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/20 17:35:55 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 
 # define SECONDS	100000
 
-# define HEIGHT		66
-# define WIDTH		200
+# define HEIGHT		(64 + 2)
+# define WIDTH		(192 + 110)
 
 # define COL1_X		0
 # define COL1_Y		0
-# define COL1_W		(32 * 3 + 3)
+# define COL1_W		(192 + 3)
 # define COL1_H		(HEIGHT)
 
 # define COL2_X		(COL1_X + COL1_W)
@@ -51,6 +51,7 @@ typedef struct	s_view {
 	char		*memcolor;
 	int			speed;
 	int			pause;
+	int			screendown;
 }				t_view;
 
 t_view	*initview(t_battle *battle);
@@ -60,5 +61,6 @@ void	ft_color_mem(t_battle *battle);
 void	color_pc(t_battle *battle);
 void	showbot(t_battle *battle);
 void	controls(t_battle *battle);
+void	refreshall(t_battle *battle);
 
 #endif
