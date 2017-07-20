@@ -6,13 +6,13 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 14:40:12 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/19 18:53:23 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/20 16:09:46 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "view.h"
 
-void	init_color_view(t_view *view)
+void	init_color_view()
 {
 	curs_set(0);
 	init_color(COLOR_WHITE, 700, 700, 700);
@@ -29,27 +29,18 @@ void	init_color_view(t_view *view)
 	init_pair(YELLOW_BACK, COLOR_YELLOW, COLOR_BLACK);
 	init_pair(YELLOW_PC, COLOR_BLACK, COLOR_YELLOW);
 	init_pair(YELLOW_LAST, COLOR_WHITE, COLOR_YELLOW);
-	view->mem = NULL;
-	view->memcolor = NULL;
 }
 
-t_view	*initview(t_battle *battle)
+void	initparamsview(t_battle *battle, t_view *view)
 {
-	t_view	*view;
 	int		i;
 
 	i = -1;
-	if (!(view = (t_view*)malloc(sizeof(t_view)))
-		|| !(view->windows = (WINDOW**)malloc(sizeof(WINDOW*) * NBOTS)))
-		return (NULL);
-	initscr();
-	if (has_colors())
-	{
-    	start_color();
-		init_color_view(view);
-	}
 	view->width = WIDTH;
 	view->height = HEIGHT;
+	view->memcolor = ft_strnew(MEM_SIZE);
+	view->speed = 50;
+	view->pause = 0;
 	while (++i < 1 + NBOTS)
 	{
 		view->windows[i] = (!i)
@@ -58,6 +49,24 @@ t_view	*initview(t_battle *battle)
 		box(view->windows[i], ACS_VLINE, ACS_HLINE);
 		wrefresh(view->windows[i]);
 	}
+}
+
+t_view	*initview(t_battle *battle)
+{
+	t_view	*view;
+	if (!(view = (t_view*)malloc(sizeof(t_view)))
+		|| !(view->windows = (WINDOW**)malloc(sizeof(WINDOW*) * NBOTS)))
+		return (NULL);
+	initscr();
+	cbreak();
+	// noecho();
+	timeout(0);
+	if (has_colors())
+	{
+    	start_color();
+		init_color_view();
+	}
+	initparamsview(battle, view);
 	return (view);
 };
 
@@ -69,48 +78,8 @@ void	delview(t_battle *battle)
 	if (!battle->view)
 		return ;
     endwin();
+    free(VCOLOR);
 	while (++i < NBOTS)
 		free(battle->view->windows[i]);
 	free(battle->view);
-}
-
-void	showmemory(t_battle *battle)
-{
-	int		i;
-	int		color;
-	char	*tmp;
-
-	i = -1;
-	color = 0;
-	ft_getcolor_mem(battle);
-	tmp = ft_strhexa((uc*)VMEM, MEM_SIZE);
-	wmove(VIEWMEM, 1, 2);
-	while (++i < (int)ft_strlen(tmp))
-	{
-		if (color != VCOLOR[i / 3])
-		{
-			color = VCOLOR[i / 3];
-			if (!color)
-				wattron(VIEWMEM, COLOR_PAIR(100));
-			else
-				wattron(VIEWMEM, COLOR_PAIR((VCOLOR[i / 3])));
-		}
-		if (!(i % (COL1_W - 3)))
-			wmove(VIEWMEM, (1 + i / (COL1_W - 3)), 2);
-		waddch(VIEWMEM, tmp[i]);
-	}
-	wrefresh(VIEWMEM);
-	ft_strdel(&tmp);
-}
-
-void	showallview(t_battle *battle)
-{
-	if (!battle->view)
-		return ;
-	showbot(battle);
-	showmemory(battle);
-	mvprintw(0, 10, " Loop : %d\tLimit : %d\tCycle : %d ",
-		battle->fight.loop, battle->fight.limitloop, battle->fight.cycle);
-	mvprintw(0, COL2_X + 10, " Dernier joueur rapporte vivant : %s ",
-		(battle->fight.last_live) ? battle->fight.last_live->name : "");
 }

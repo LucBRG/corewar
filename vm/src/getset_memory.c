@@ -32,6 +32,8 @@ int			setmemory(t_battle *battle, int index, uc *s, int len)
 		battle->print_mem[mod(index + i, MEM_SIZE)] = 
 			(char)(1 + battle->cur_process->bot->rid);
 	}
+	battle->cur_process->last_action[0] = index;
+	battle->cur_process->last_action[1] = len;
 	return (1);
 }
 
