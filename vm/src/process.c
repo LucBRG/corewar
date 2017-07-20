@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/01 14:02:24 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/19 17:52:47 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/20 15:51:03 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 t_process newprocess(t_bot *bot, int pc)
 {
 	t_process process;
-	static int id = 0;
 
 	process.pc = pc;
 	process.bot = bot;
@@ -25,9 +24,23 @@ t_process newprocess(t_bot *bot, int pc)
 	process.carry = 0;
 	ft_bzero(process.registre, REG_NUMBER * REG_SIZE);
 	process.registre[0] = bot->id;
-	process.id = id;
 	process.flag = 0;
-	id++;
+	// ft_printf("add process id = %d, pc = %d\n", process.id, process.pc);
+	return (process);
+}
+
+t_process cpyprocess(t_process *orignal, int pc)
+{
+	t_process process;
+
+	process.pc = pc;
+	process.bot = orignal->bot;
+	process.stun = 0;
+	process.dead = 0;
+	process.live = 0;
+	process.carry = 0;
+	ft_memcpy(process.registre, orignal->registre, REG_NUMBER * REG_SIZE);
+	process.flag = 0;
 	// ft_printf("add process id = %d, pc = %d\n", process.id, process.pc);
 	return (process);
 }

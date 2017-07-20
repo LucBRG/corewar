@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 16:53:41 by dbischof          #+#    #+#             */
-/*   Updated: 2017/06/29 15:45:59 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/07/20 15:50:26 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,10 @@ static int	totalsize(t_bots bots)
 	return (total);
 }
 
-t_list		*addprocess(t_list **list, t_bot *bot, int pc)
+t_list		*addprocess(t_list **list, t_process process)
 {
-	t_process	process;
 	t_list		*tmp;
 
-	process = newprocess(bot, pc);
 	if (!(tmp = ft_lstnew(&process, sizeof(process))))
 		return (NULL);
 	if (!*list)
@@ -57,7 +55,7 @@ t_list		*loadmemory(t_battle *b)
 	while (++i < b->bots.nb)
 	{
 		index_bot = (j + i * space);
-		if (!addprocess(&list, b->bots.tab[i], index_bot))
+		if (!addprocess(&list, newprocess(b->bots.tab[i], index_bot)))
 			return (NULL);
 		b->cur_process = (t_process*)list->content;
 		setmemory(b, index_bot,

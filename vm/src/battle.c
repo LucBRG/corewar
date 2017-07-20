@@ -71,6 +71,11 @@ t_process	*battle_launch(t_battle *battle)
 				PROCESS->stun--;
 			else if (!PROCESS->dead)
 			{
+				// int j = 0;
+				// if (ID == - 1)
+				// 	while (++j <= 16)
+				// 		ft_printf("reg %d = %x\n", j , REGISTRE(j));
+				// ft_printf("\n");
 				// ft_printf("Process not dead\n");
 				battle->cur_process = PROCESS;
 				// hexa(battle->memory, MEM_SIZE, 0);

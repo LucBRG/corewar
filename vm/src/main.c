@@ -37,6 +37,7 @@ int	main(int ac, char **av)
 	getoptions(b, initoptions(ac, av));
 	// ft_printf("%s\n", ft_string_memory(b));
 	// printf("FIGHT\t%d\n", b->bots.nb);
+	// ft_printf("%d\n", 4294904660);
 	// print_memory(b);
 	if (b->bots.nb)
 	{
