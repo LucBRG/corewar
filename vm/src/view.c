@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 14:40:12 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/20 16:09:46 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/20 17:43:06 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,31 @@ void	initparamsview(t_battle *battle, t_view *view)
 	view->memcolor = ft_strnew(MEM_SIZE);
 	view->speed = 50;
 	view->pause = 0;
+	view->screendown = 0;
 	while (++i < 1 + NBOTS)
 	{
 		view->windows[i] = (!i)
 			? subwin(stdscr, COL1_H, COL1_W, COL1_Y, COL1_X)
 			: subwin(stdscr, COL2_H, COL2_W, COL2_Y, COL2_X);
 		box(view->windows[i], ACS_VLINE, ACS_HLINE);
-		wrefresh(view->windows[i]);
 	}
+}
+
+void	refreshall(t_battle * battle)
+{
+	int		i;
+
+	i = -1;
+	clear();
+	while (++i < 1 + NBOTS)
+	{
+		battle->view->windows[i] = (!i)
+			? subwin(stdscr, COL1_H, COL1_W, COL1_Y, COL1_X)
+			: subwin(stdscr, COL2_H, COL2_W, COL2_Y, COL2_X);
+		box(battle->view->windows[i], ACS_VLINE, ACS_HLINE);
+		wrefresh(battle->view->windows[i]);
+	}
+	refresh();
 }
 
 t_view	*initview(t_battle *battle)
@@ -59,7 +76,7 @@ t_view	*initview(t_battle *battle)
 		return (NULL);
 	initscr();
 	cbreak();
-	// noecho();
+	noecho();
 	timeout(0);
 	if (has_colors())
 	{
