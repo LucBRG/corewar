@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 13:44:30 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/20 17:17:55 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/20 18:04:57 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void	showprocess(t_battle *battle, WINDOW *win, t_process *process, int posy)
 	ft_bzero(tmp, 10);
 	getmemory(battle, process->pc, (uc*)tmp, 2);
 	tmp2 = ft_strhexa((uc*)tmp, 10);
-	mvwprintw(win, posy, 1, "%-3c%2d\t%.2x\t%-4s\t",
-		((process->dead) ? 'x' : 'v'), process->id, c.inst,
+	mvwprintw(win, posy, 1, "%-3c%.2x\t%-4s\t",
+		((process->dead) ? 'x' : 'v'), c.inst,
 		((c.error) ? "" : instructions[c.inst]));
 	while (++i < 3)
 		showparam(win, c.size[i], c.params[i]);
@@ -106,7 +106,7 @@ void	showbot(t_battle *battle)
 		mvwprintw(win, 2, 1, "Description\t: %s", bot->comment);
 		mvwprintw(win, 4, 1, "Processus\t:");
 		mvwprintw(win, 5, 4,
-			"ID\tPC\tINST\tPARAM1\t\tPARAM2\t\tPARAM3\t\tSAUT\tSTUN\tLIVE");
+			"PC\tINST\tPARAM1\t\tPARAM2\t\tPARAM3\t\tSAUT\tSTUN\tLIVE");
 		shearchprocess(battle, win, bot);
 		wrefresh(win);
 	}

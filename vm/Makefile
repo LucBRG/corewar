@@ -48,12 +48,12 @@ $(OBJS_DIR)/%.o: $(SRC_DIR)/%.c
 
 clean:
 	@rm -rf $(OBJS_DIR)
-	# @make -C ../Libft clean
+	@make -C ../Libft clean
 	@echo "\033[31mFichier objet de corewar supprimé\033[0m"
 
 fclean: clean
 	@rm -f $(NAME)
-	# @rm -f ../libft/libft.a
+	@rm -f ../libft/libft.a
 	@echo "\033[31mLibft.a supprimé\033[0m"
 	@echo "\033[31mcorewar supprimé\033[0m"
 
