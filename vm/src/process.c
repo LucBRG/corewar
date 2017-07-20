@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/01 14:02:24 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/19 17:52:47 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/20 15:32:28 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ t_process newprocess(t_bot *bot, int pc)
 	process.registre[0] = bot->id;
 	process.id = id;
 	process.flag = 0;
+	process.last_action[0] = -1;
+	process.last_action[1] = -1;
 	id++;
 	// ft_printf("add process id = %d, pc = %d\n", process.id, process.pc);
 	return (process);

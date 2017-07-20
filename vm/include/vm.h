@@ -59,6 +59,7 @@ typedef struct	s_process
 	t_bot		*bot;
 	int			id;
 	int			flag;
+	int			last_action[2];
 }				t_process;
 
 typedef struct	s_fight

@@ -6,11 +6,29 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 13:44:30 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/19 18:31:39 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/20 16:10:06 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "view.h"
+
+void	ft_color_mem(t_battle *battle)
+{
+	t_list		*elem;
+	t_process	*pr;
+	int			colorbase;
+
+	elem = battle->process;
+	while (elem)
+	{
+		pr = (t_process*)elem->content;
+		colorbase = (1 + pr->bot->rid) % 4;
+		VCOLOR[pr->pc] = (colorbase + 4);
+		if (pr->last_action[0] != -1 && pr->last_action[0] != -1)
+			ft_memset(VCOLOR + pr->last_action[0], colorbase + 8, pr->last_action[1]);
+		elem = elem->next;
+	}
+}
 
 void	showparam(WINDOW *win, int size, int param)
 {
