@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/20 15:26:09 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/20 17:57:45 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/20 18:14:03 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 void	msgsizescreen()
 {
 	const char *msg[3] = {
-		"Agrandissez l'ecran",
-		"Height : %3d -> %3d",
-		"Width : %3d -> %3d"
+		"Agrandir la console",
+		"Hauteur : %3d -> %3d",
+		"Largeur : %3d -> %3d"
 	};
 	int y;
 
@@ -66,7 +66,7 @@ void	controls(t_battle *battle)
 	int tmp;
 
 	tmp = 1;
-	while (battle->view->pause || tmp || sizescreenless(battle))
+	while (sizescreenless(battle) || battle->view->pause || tmp)
 	{
 		c = getch();
 		if (c == ' ')
@@ -75,7 +75,7 @@ void	controls(t_battle *battle)
 			SPEED -= STEP;
 		else if (c == '+' && SPEED < MAXSPEED)
 			SPEED += STEP;
-		else if (c == '.')
+		else if (c == '.' && battle->view->pause)
 			return ;
 		tmp = 0;
 	}
