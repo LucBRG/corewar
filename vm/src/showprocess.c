@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 13:44:30 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/24 13:30:06 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/24 15:17:49 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ void	ft_color_mem(t_battle *battle)
 void	showparam(WINDOW *win, int size, int param)
 {
 	if (size == 1)
-		wprintw(win, "%-8.2x\t", param);
+		wprintw(win, "%-8d\t", param);
 	else if (size == 2)
-		wprintw(win, "%-8.4x\t", param);
+		wprintw(win, "%-8d\t", param);
 	else if (size == 4)
-		wprintw(win, "%-8.8x\t", param);
+		wprintw(win, "%-8d\t", param);
 	else
 		wprintw(win, "%-8s\t", "--");
 }

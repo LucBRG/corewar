@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 15:15:33 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/24 14:17:34 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/24 15:55:44 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,24 @@ void	params_p(t_battle *battle, t_command *c, int pc)
 		c->params[i] = (c->size[i] == 2) ? (short)(c->params[i]) : c->params[i];
 }
 
+int		getindirect(t_battle *battle, int param, int pc, int l)
+{
+	int	index;
+	uc	tmp[4];
+
+	index = (l) ? ((pc + param) % IDX_MOD) : (pc + param);
+	getmemory(battle, index, tmp, 4);
+	return (chartoint(tmp, 4));
+}
+
+void	getspe(t_battle *battle, t_command *c, int pc)
+{
+	if (c->inst == LD && c->size[0] == 2)
+		c->params[0] = getindirect(battle, c->params[0], pc, 0);
+	else if (c->inst == LLD && c->size[0] == 2)
+		c->params[0] = getindirect(battle, c->params[0], pc, 1);
+}
+
 t_command	getcommand(t_battle *battle, int pc)
 {
 	t_command c;
@@ -81,6 +99,7 @@ t_command	getcommand(t_battle *battle, int pc)
 	{
 		size_p(battle, &c, pc);
 		params_p(battle, &c, pc);
+		getspe(battle, &c, pc);
 	}
 	c.len = 1 + c.isocp + c.size[0] + c.size[1] + c.size[2];
 	return (c);

@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/20 15:26:09 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/20 19:15:45 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/24 16:09:35 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,35 @@ int		sizescreenless(t_battle *battle)
 	return (0);
 }
 
+int		getminstep(t_battle *battle)
+{
+	t_list		*elem;
+	t_process	*process;
+	int			step;
+
+	step = -1;
+	elem = battle->process;
+	while (elem)
+	{
+		process = (t_process*)elem->content;
+		if (process->stun > step || step == -1)
+			step = process->stun;
+		elem = elem->next;
+	}
+	return (step);
+}
+
 void	controls(t_battle *battle)
 {
+	static int next = 0;
 	int c;
 	int tmp;
 
+	if (next > 0)
+		if (!next--)
+			return ;
 	tmp = 1;
-	while (sizescreenless(battle) || battle->view->pause || tmp)
+	while (!next && (sizescreenless(battle) || battle->view->pause || tmp))
 	{
 		c = getch();
 		if (c == ' ')
@@ -76,7 +98,7 @@ void	controls(t_battle *battle)
 		else if (c == '+' && SPEED < MAXSPEED)
 			SPEED += STEP;
 		else if (c == '.' && battle->view->pause)
-			return ;
+			next = 1 + getminstep(battle);
 		tmp = 0;
 	}
 }
