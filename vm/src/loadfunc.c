@@ -36,7 +36,6 @@
 
 int		load_func(t_battle *battle)
 {
-	int i;
 	int pc;
 	t_command command;
 
@@ -48,18 +47,15 @@ int		load_func(t_battle *battle)
 		// ft_printf("inst\t: %d\n", INST);
 		// ft_printf("params\t: %d\t%d\t%d\n", params[0], params[1], params[2]);
 		// ft_printf("sizep\t: %d\t%d\t%d\n", sizep[0], sizep[1], sizep[2]);
-		if (STUN == 0 && FLAG == 0)
+		if (FLAG == 0)
 			return (stun(battle, &command));
-		else if (STUN == 0 && FLAG == 1 && !(battle->func[INST - 1](battle, command.params, command.size)))
-			return (1);
+		battle->func[INST - 1](battle, command.params, command.size);
+		FLAG = 0;
 		// ft_printf("le stun = %d\n", battle->cur_process->stun);
 		// ft_printf("pc = %d\n", pc);
 		// ft_printf("passe\n");
 		if (pc != PC)
 			return (0);
 	}
-	else
-		return (1);
-	i = command.len;
-	return (i);
+	return (command.len);
 }

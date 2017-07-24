@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/20 15:26:09 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/24 16:09:35 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/24 16:39:45 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int		getminstep(t_battle *battle)
 	while (elem)
 	{
 		process = (t_process*)elem->content;
-		if (process->stun > step || step == -1)
+		if (process->stun < step || step == -1)
 			step = process->stun;
 		elem = elem->next;
 	}
@@ -98,7 +98,7 @@ void	controls(t_battle *battle)
 		else if (c == '+' && SPEED < MAXSPEED)
 			SPEED += STEP;
 		else if (c == '.' && battle->view->pause)
-			next = 1 + getminstep(battle);
+			next = 2 + getminstep(battle);
 		tmp = 0;
 	}
 }

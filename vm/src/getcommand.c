@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 15:15:33 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/24 16:20:18 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/24 17:07:53 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,6 @@ t_command	getcommand(t_battle *battle, int pc)
 		params_p(battle, &c, pc);
 		getspe(battle, &c, pc);
 	}
-	c.len = 1 + c.isocp + c.size[0] + c.size[1] + c.size[2];
+	c.len = (c.error) ? 1 : 1 + c.isocp + c.size[0] + c.size[1] + c.size[2];
 	return (c);
 }
