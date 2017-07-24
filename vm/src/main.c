@@ -29,8 +29,8 @@ int	main(int ac, char **av)
 {
 	int			i;
 	t_battle	*b;
-
 	i = -1;
+
 	if (!(b = initbattle(ac, av)))
 		return (0);
 	getoptions(b, initoptions(ac, av));

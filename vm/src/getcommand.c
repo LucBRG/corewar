@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 15:15:33 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/20 18:45:14 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/24 14:07:45 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	params_p(t_battle *battle, t_command *c, int pc)
 	c->params[0] = chartoint(&PARAMS, c->size[0]);
 	c->params[1] = chartoint(&PARAMS + c->size[0], c->size[1]);
 	c->params[2] = chartoint(&PARAMS + c->size[0] + c->size[1], c->size[2]);
+	while (++i < 3)
+		c->params[i] = (c->size[i] == 2) ? (short)(c->params[i]) : c->params[i];
 }
 
 t_command	getcommand(t_battle *battle, int pc)
