@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 13:44:30 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/20 20:06:16 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/24 13:30:06 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,11 @@ void	showprocess(t_battle *battle, WINDOW *win, t_process *process, int posy)
 		((c.error) ? "" : instructions[c.inst]));
 	while (++i < 3)
 		showparam(win, c.size[i], c.params[i]);
-	wprintw(win, "%4d\t%4d\t%4d",
+	wprintw(win, "%4d\t%4d\t%4d\t",
 		c.len, process->stun, process->live);
+	wprintw(win, "%d ", 1 + process->last_action[2]);
+	if (process->last_action[2] >= 0 && process->last_action[2] < REG_NUMBER)
+		wprintw(win, "%.8x", process->registre[process->last_action[2]]);
 	free(tmp2);
 }
 
@@ -103,7 +106,7 @@ void	showbot(t_battle *battle)
 		mvwprintw(win, 2, 1, "Description\t: %s", bot->comment);
 		mvwprintw(win, 4, 1, "Processus\t:");
 		mvwprintw(win, 5, 4,
-			"PC\tINST\tPARAM1\t\tPARAM2\t\tPARAM3\t\tSAUT\tSTUN\tLIVE");
+			"PC\tINST\tPARAM1\t\tPARAM2\t\tPARAM3\t\tSAUT\tSTUN\tLIVE\tMEMORY");
 		shearchprocess(battle, win, bot);
 		wrefresh(win);
 	}

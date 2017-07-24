@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lld.c                                              :+:      :+:    :+:   */
+/*   getset_registre.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/07 10:39:26 by tferrari          #+#    #+#             */
-/*   Updated: 2017/07/24 11:52:10 by dbischof         ###   ########.fr       */
+/*   Created: 2017/07/24 11:48:20 by dbischof          #+#    #+#             */
+/*   Updated: 2017/07/24 13:21:45 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int				lld(t_battle *battle, int params[3], int size[3])
+void	set_registre(t_process *process, int i, int value)
 {
-	if (size)
-		;
-	if ((CARRY = ISREG(params[1])))
-		SETREGISTRE(params[1], params[0]);
-	else
-		return (0);
-	FLAG = 0;
-	return (1);
+	process->registre[i] = value;
+	process->last_action[2] = i;
+}
+
+int		get_registre(t_process *process, int i)
+{
+	process->last_action[2] = i;
+	return (process->registre[i]);
 }

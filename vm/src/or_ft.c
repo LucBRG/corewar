@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   or_ft.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 12:14:27 by tferrari          #+#    #+#             */
-/*   Updated: 2017/07/17 10:17:59 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/07/24 11:52:50 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int				or_ft(t_battle *battle, int params[3], int size[3])
 		if (size[i] == T_REG && !ISREG(params[i]))
 			return (0);
 		else if (size[i] == 1)
-			params[i] = REGISTRE(params[i]);
+			params[i] = GETREGISTRE(params[i]);
 	if ((CARRY = ISREG(params[2])))
-		REGISTRE(params[2]) = params[0] | params[1];
+		SETREGISTRE(params[2], params[0] | params[1]);
 	else
 		return (0);
 	FLAG = 0;

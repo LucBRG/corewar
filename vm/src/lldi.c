@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lldi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 11:37:02 by tferrari          #+#    #+#             */
-/*   Updated: 2017/07/17 10:17:46 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/07/24 11:52:33 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int				lldi(t_battle *battle, int params[3], int size[3])
 		if (size[i] == T_REG && !ISREG(params[i]))
 			return (0);
 		else if (size[i] == T_REG)
-			params[i] = REGISTRE(params[i]);
+			params[i] = GETREGISTRE(params[i]);
 	getmemory(battle, SETPC((params[0] + params[1])), str, SIZE);
-	REGISTRE(params[2]) = chartoint(str, SIZE);
+	SETREGISTRE(params[2], chartoint(str, SIZE));
 	FLAG = 0;
 	return (1);
 }

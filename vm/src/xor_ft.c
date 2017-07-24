@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xor_ft.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 17:03:45 by tferrari          #+#    #+#             */
-/*   Updated: 2017/07/17 10:18:36 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/07/24 11:54:03 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int				xor_ft(t_battle *battle, int params[3], int size[3])
 		if (size[i] == 1 && !ISREG(params[i]))
 			return (0);
 		else if (size[i] == 1)
-			params[i] = REGISTRE(params[i]);
+			params[i] = GETREGISTRE(params[i]);
 	if ((CARRY = ISREG(params[2])))
-		REGISTRE(params[2]) = params[0] ^ params[1];
+		SETREGISTRE(params[2], params[0] ^ params[1]);
 	else
 		return (0);
 	FLAG = 0;

@@ -10,18 +10,19 @@
 # include "op.h"
 # include "view.h"
 
-# define REGISTRE(x)	battle->cur_process->registre[x - 1]
-# define PC				battle->cur_process->pc
-# define ID				battle->cur_process->bot->id
-# define INST			battle->memory[PC]
-# define MEMORY			battle->memory
-# define SETPC(n)		((PC + n) % MEM_SIZE)
-# define MAX(a, b)		((a > b) ? a : b)
-# define CARRY			battle->cur_process->carry
-# define ISREG(x)		(x > 0 && x <= REG_NUMBER)
-# define ISOP(x)		(INST > x && INST <= x)
-# define STUN			battle->cur_process->stun
-# define FLAG			battle->cur_process->flag
+# define SETREGISTRE(x, v)	set_registre(battle->cur_process, x - 1, v)
+# define GETREGISTRE(x)		get_registre(battle->cur_process, x - 1)
+# define PC					battle->cur_process->pc
+# define ID					battle->cur_process->bot->id
+# define INST				battle->memory[PC]
+# define MEMORY				battle->memory
+# define SETPC(n)			((PC + n) % MEM_SIZE)
+# define MAX(a, b)			((a > b) ? a : b)
+# define CARRY				battle->cur_process->carry
+# define ISREG(x)			(x > 0 && x <= REG_NUMBER)
+# define ISOP(x)			(INST > x && INST <= x)
+# define STUN				battle->cur_process->stun
+# define FLAG				battle->cur_process->flag
 
 enum{NOTHING, LIVE, LD, ST, ADD, SUB, AND, OR, XOR, ZJMP, LDI, STI, FORK, LLD,
 	LLDI, LFORK, AFF};
@@ -59,7 +60,7 @@ typedef struct	s_process
 	t_bot		*bot;
 	int			id;
 	int			flag;
-	int			last_action[2];
+	int			last_action[3];
 }				t_process;
 
 typedef struct	s_fight
@@ -112,6 +113,8 @@ t_process 		cpyprocess(t_process *orignal, int pc);
 int				load_func(t_battle *battle);
 int				check_ocp(char inst, char ocp);
 int				stun(t_battle *battle, t_command *c);
+void			set_registre(t_process *process, int i, int value);
+int				get_registre(t_process *process, int i);
 
 void			debug(uc *s, int len);
 void			displaybot(t_bot *bot);
