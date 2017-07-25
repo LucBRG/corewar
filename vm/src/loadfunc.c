@@ -1,6 +1,8 @@
 
 #include "vm.h"
 
+# define TYPEVAR(x)	((c->type[x] == REG_CODE) ? 'r' : ' ')
+
 // int		load_func(t_battle *battle)
 // {
 // 	int i;
@@ -34,6 +36,26 @@
 // 	return (i);
 // }
 
+void	printfunc(t_battle *battle, t_command *c)
+{
+	const char	*instructions[17] = {"", "live", "ld", "st", "add", "sub",
+		"and", "or", "xor", "zjmp", "ldi", "sti", "fork", "lld", "lldi",
+		"lfor", "aff"};
+
+	if (battle->view)
+		mvprintw(battle->view->height, 1, "%s %c%d %c%d %c%d",
+			instructions[c->inst],
+			TYPEVAR(0), c->params[0],
+			TYPEVAR(1), c->params[1],
+			TYPEVAR(2), c->params[2]);
+	else
+		ft_printf("%s %c%d %c%d %c%d",
+			instructions[c->inst],
+			TYPEVAR(0), c->params[0],
+			TYPEVAR(1), c->params[1],
+			TYPEVAR(2), c->params[2]);
+}
+
 int		load_func(t_battle *battle)
 {
 	int pc;
@@ -50,6 +72,7 @@ int		load_func(t_battle *battle)
 		if (FLAG == 0)
 			return (stun(battle, &command));
 		FLAG = 0;
+		printfunc(battle, &command);
 		battle->func[INST - 1](battle, &command);
 		// ft_printf("le stun = %d\n", battle->cur_process->stun);
 		// ft_printf("pc = %d\n", pc);
