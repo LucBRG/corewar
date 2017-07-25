@@ -17,6 +17,5 @@ int			st(t_battle *battle, int params[3], int size[3])
 	}
 	else
 		return (0);
-	FLAG = 0;
 	return (1);
 }

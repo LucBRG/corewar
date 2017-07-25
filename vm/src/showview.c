@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/20 15:34:51 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/24 16:38:03 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/25 13:00:44 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void	showallview(t_battle *battle)
 {
 	if (!battle->view)
 		return ;
-	controls(battle);
-	usleep(SECONDS / battle->view->speed);
 	showbot(battle);
 	showmemory(battle);
 	mvprintw(0, 10, " Speed : %d/s    Total cycle : %6d    Cycle : %4d    Limit : %4d    Check : %4d ",
@@ -67,4 +65,6 @@ void	showallview(t_battle *battle)
 		battle->fight.cycle);
 	mvprintw(0, COL2_X + 10, " Dernier joueur rapporte vivant : %s ",
 		(battle->fight.last_live) ? battle->fight.last_live->name : "");
+	controls(battle);
+	usleep(SECONDS / battle->view->speed);
 }

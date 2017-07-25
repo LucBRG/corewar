@@ -91,6 +91,7 @@ typedef struct	s_command
 	uc			ocp;
 	int			params[3];
 	int			size[3];
+	int			type[3];
 	int			isocp;
 	int			len;
 	int			error;

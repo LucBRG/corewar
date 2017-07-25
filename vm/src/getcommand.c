@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   getcommand.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/19 15:15:33 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/24 17:25:49 by tferrari         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "vm.h"
 
@@ -70,12 +59,23 @@ int		getindirect(t_battle *battle, int param, int pc, int l)
 	return (chartoint(tmp, 4));
 }
 
-void	getspe(t_battle *battle, t_command *c, int pc)
+void	getallindirect(t_battle *battle, t_command *c, int pc)
 {
-	if (c->inst == LD && c->size[0] == 2)
+	if (c->inst == LD && c->type[0] == IND_CODE)
 		c->params[0] = getindirect(battle, c->params[0], pc, 0);
-	else if (c->inst == LLD && c->size[0] == 2)
+	else if (c->inst == LLD && c->type[0] == IND_CODE)
 		c->params[0] = getindirect(battle, c->params[0], pc, 1);
+	else if (c->inst == STI && c->type[1] == IND_CODE)
+		c->params[1] = getindirect(battle, c->params[1], pc, 0);
+}
+
+void	gettype(t_command *c)
+{
+	int i;
+
+	i = -1;
+	while (++i < 3)
+		c->type[i] = (c->ocp >> ((3 - i) * 2) & 0b11);
 }
 
 t_command	getcommand(t_battle *battle, int pc)
@@ -89,6 +89,7 @@ t_command	getcommand(t_battle *battle, int pc)
 	c.isocp = isocp(c.inst);
 	ft_bzero(c.params, sizeof(int) * 3);
 	ft_bzero(c.size, sizeof(int) * 3);
+	ft_bzero(c.type, sizeof(int) * 3);
 	c.error |= !(c.inst >= 1 && c.inst <= 16);
 	if (!c.error && c.isocp)
 	{
@@ -99,7 +100,8 @@ t_command	getcommand(t_battle *battle, int pc)
 	{
 		size_p(battle, &c, pc);
 		params_p(battle, &c, pc);
-		getspe(battle, &c, pc);
+		gettype(&c);
+		getallindirect(battle, &c, pc);
 	}
 	c.len = (c.error) ? 1 : 1 + c.isocp + c.size[0] + c.size[1] + c.size[2];
 	return (c);

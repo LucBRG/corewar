@@ -49,8 +49,8 @@ int		load_func(t_battle *battle)
 		// ft_printf("sizep\t: %d\t%d\t%d\n", sizep[0], sizep[1], sizep[2]);
 		if (FLAG == 0)
 			return (stun(battle, &command));
-		battle->func[INST - 1](battle, command.params, command.size);
 		FLAG = 0;
+		battle->func[INST - 1](battle, command.params, command.size);
 		// ft_printf("le stun = %d\n", battle->cur_process->stun);
 		// ft_printf("pc = %d\n", pc);
 		// ft_printf("passe\n");
