@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 14:40:12 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/20 19:34:58 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/24 19:22:18 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	initparamsview(t_battle *battle, t_view *view)
 	view->height = HEIGHT;
 	view->memcolor = ft_strnew(MEM_SIZE);
 	view->speed = 50;
-	view->pause = 0;
+	view->pause = 1;
 	view->screendown = 0;
 	while (++i < 1 + NBOTS)
 	{
