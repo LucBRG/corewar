@@ -50,12 +50,12 @@ int		load_func(t_battle *battle)
 		if (FLAG == 0)
 			return (stun(battle, &command));
 		FLAG = 0;
-		battle->func[INST - 1](battle, command.params, command.size);
+		battle->func[INST - 1](battle, &command);
 		// ft_printf("le stun = %d\n", battle->cur_process->stun);
 		// ft_printf("pc = %d\n", pc);
 		// ft_printf("passe\n");
-		if (pc != PC)
-			return (0);
 	}
+	if (command.inst == ZJMP && CARRY)
+		return (0);
 	return (command.len);
 }

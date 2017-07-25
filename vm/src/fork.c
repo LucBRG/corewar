@@ -3,22 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   fork.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 10:21:41 by tferrari          #+#    #+#             */
-/*   Updated: 2017/07/20 17:52:22 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/07/25 16:33:29 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int				fork_ft(t_battle *battle, int params[3], int size[3])
+void	fork_ft(t_battle *battle, t_command *c)
 {
-	if (size)
-		;
-	FLAG = 0;
-	if (!addprocess(&battle->process, cpyprocess(battle->cur_process,
-		SETPC(params[0] % IDX_MOD))))
-		return (0);
-	return (1);
+	addprocess(&battle->process, cpyprocess(battle->cur_process,
+		SETPC(c->params[0] % IDX_MOD)));
 }

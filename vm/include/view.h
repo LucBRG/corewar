@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 14:40:31 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/24 13:06:16 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/25 13:20:29 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct	s_view {
 }				t_view;
 
 t_view	*initview(t_battle *battle);
-void	delview(t_battle *battle);
+void	viewfinnish(t_battle *battle);
 void	showallview(t_battle *battle);
 void	ft_color_mem(t_battle *battle);
 void	color_pc(t_battle *battle);

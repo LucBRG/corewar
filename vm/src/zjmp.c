@@ -1,10 +1,8 @@
 
 #include "vm.h"
 
-int				zjmp(t_battle *battle, int params[3], int size[3])
+void	zjmp(t_battle *battle, t_command *c)
 {
-	if (CARRY && size[0] == T_DIR)
-		PC = SETPC(params[0]);
-	FLAG = 0;
-	return (1);
+	if (CARRY)
+		PC = SETPC(c->params[0]);
 }
