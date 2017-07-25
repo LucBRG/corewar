@@ -16,7 +16,7 @@
 # define ID					battle->cur_process->bot->id
 # define INST				battle->memory[PC]
 # define MEMORY				battle->memory
-# define SETPC(n)			((PC + n) % MEM_SIZE)
+# define SETPC(n)			(mod((PC + n), MEM_SIZE))
 # define MAX(a, b)			((a > b) ? a : b)
 # define CARRY				battle->cur_process->carry
 # define ISREG(x)			(x > 0 && x <= REG_NUMBER)
