@@ -16,7 +16,7 @@
 # define ID					battle->cur_process->bot->id
 # define INST				battle->memory[PC]
 # define MEMORY				battle->memory
-# define SETPC(n)			((PC + n) % MEM_SIZE)
+# define SETPC(n)			(mod((PC + n), MEM_SIZE))
 # define MAX(a, b)			((a > b) ? a : b)
 # define CARRY				battle->cur_process->carry
 # define ISREG(x)			(x > 0 && x <= REG_NUMBER)
@@ -27,10 +27,11 @@
 enum{NOTHING, LIVE, LD, ST, ADD, SUB, AND, OR, XOR, ZJMP, LDI, STI, FORK, LLD,
 	LLDI, LFORK, AFF};
 
-typedef struct s_view t_view;
+typedef struct s_view	t_view;
 typedef unsigned char	uc;
 typedef struct s_battle	t_battle;
-typedef int (*t_listfunc[16])(t_battle *b, int params[3], int *size);
+typedef struct s_command t_command;
+typedef void (*t_listfunc[16])(t_battle *b, t_command *c);
 
 typedef struct	s_bot
 {
@@ -125,21 +126,21 @@ void			print_memory(t_battle *b);
 char			*ft_strhexa(unsigned char *str, int len);
 t_command		getcommand(t_battle *battle, int pc);
 
-int				add(t_battle *battle, int params[3], int size[3]);
-int				aff(t_battle *battle, int params[3], int size[3]);
-int				and_ft(t_battle *battle, int params[3], int size[3]);
-int				fork_ft(t_battle *battle, int params[3], int size[3]);
-int				ld(t_battle *battle, int params[3], int size[3]);
-int				ldi(t_battle *battle, int params[3], int size[3]);
-int				lld(t_battle *battle, int params[3], int size[3]);
-int				lldi(t_battle *battle, int params[3], int size[3]);
-int				lfork(t_battle *battle, int params[3], int size[3]);
-int				live(t_battle *battle, int params[3], int size[3]);
-int				or_ft(t_battle *battle, int params[3], int size[3]);
-int				st(t_battle *battle, int params[3], int size[3]);
-int				sti(t_battle *battle, int params[3], int size[3]);
-int				sub(t_battle *battle, int params[3], int size[3]);
-int				xor_ft(t_battle *battle, int params[3], int size[3]);
-int				zjmp(t_battle *battle, int params[3], int size[3]);
+void			add(t_battle *battle, t_command *c);
+void			aff(t_battle *battle, t_command *c);
+void			and_ft(t_battle *battle, t_command *c);
+void			fork_ft(t_battle *battle, t_command *c);
+void			ld(t_battle *battle, t_command *c);
+void			ldi(t_battle *battle, t_command *c);
+void			lld(t_battle *battle, t_command *c);
+void			lldi(t_battle *battle, t_command *c);
+void			lfork(t_battle *battle, t_command *c);
+void			live(t_battle *battle, t_command *c);
+void			or_ft(t_battle *battle, t_command *c);
+void			st(t_battle *battle, t_command *c);
+void			sti(t_battle *battle, t_command *c);
+void			sub(t_battle *battle, t_command *c);
+void			xor_ft(t_battle *battle, t_command *c);
+void			zjmp(t_battle *battle, t_command *c);
 
 #endif

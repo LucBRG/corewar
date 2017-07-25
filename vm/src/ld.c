@@ -1,13 +1,11 @@
 
 #include "vm.h"
 
-int				ld(t_battle *battle, int params[3], int size[3])
+void	ld(t_battle *battle, t_command *c)
 {
-	if (size)
-		;
-	if ((CARRY = ISREG(params[1])))
-		SETREGISTRE(params[1], params[0]);
-	else
-		return (0);
-	return (1);
+	if (ISREG(c->params[1]))
+	{
+		SETREGISTRE(c->params[1], c->params[0]);
+		CARRY = !GETREGISTRE(c->params[1]);
+	}
 }

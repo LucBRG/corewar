@@ -43,7 +43,7 @@ int	main(int ac, char **av)
 	{
 		// ft_lstiter(b->process, displayprocess);
 		battle_launch(b);
-		delview(b);
+		viewfinnish(b);
 		if (b->fight.last_live)
 			ft_printf("le joueur %d(%s) a gagne\n",
 				-(b->fight.last_live->id), b->fight.last_live->name);

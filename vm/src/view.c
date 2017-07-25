@@ -66,7 +66,7 @@ t_view	*initview(t_battle *battle)
 	initscr();
 	cbreak();
 	noecho();
-	timeout(0);
+	nodelay(stdscr, TRUE);
 	if (has_colors())
 	{
     	start_color();
@@ -76,13 +76,20 @@ t_view	*initview(t_battle *battle)
 	return (view);
 };
 
-void	delview(t_battle *battle)
+void	viewfinnish(t_battle *battle)
 {
 	int i;
 
 	i = -1;
 	if (!battle->view)
 		return ;
+	nodelay(stdscr, FALSE);
+	if (battle->fight.last_live)
+	{
+		mvprintw(0, COL2_X + 10, " Le joueur %d(%s) a gagne\n ",
+			-(battle->fight.last_live->id), battle->fight.last_live->name);
+		getch();
+	}
 	curs_set(1);
     endwin();
     free(VCOLOR);

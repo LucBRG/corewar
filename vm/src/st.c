@@ -1,21 +1,18 @@
 
 #include "vm.h"
 
-int			st(t_battle *battle, int params[3], int size[3])
+void	st(t_battle *battle, t_command *c)
 {
 	uc *str;
 
-	if (size[1] == 1 && !ISREG(params[1]))
-		return (0);
-	if (size[1] == 1 && ISREG(params[1]))
-		params[1] = GETREGISTRE(params[1]);
-	if (ISREG(params[0]))
+	if (c->size[1] == 1 && !ISREG(c->params[1]))
+		return ;
+	if (c->size[1] == 1 && ISREG(c->params[1]))
+		c->params[1] = GETREGISTRE(c->params[1]);
+	if (ISREG(c->params[0]))
 	{
-		params[0] = GETREGISTRE(params[0]);
-		str = (uc*)inttochar(&params[0]);
-		setmemory(battle, SETPC(params[1] % IDX_MOD), str, sizeof(int));
+		c->params[0] = GETREGISTRE(c->params[0]);
+		str = (uc*)inttochar(&c->params[0]);
+		setmemory(battle, SETPC(c->params[1] % IDX_MOD), str, sizeof(int));
 	}
-	else
-		return (0);
-	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 11:37:02 by tferrari          #+#    #+#             */
-/*   Updated: 2017/07/24 11:52:33 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/25 16:25:57 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,18 @@
 
 #define SIZE sizeof(int)
 
-int				lldi(t_battle *battle, int params[3], int size[3])
+void	lldi(t_battle *battle, t_command *c)
 {
 	uc	str[SIZE];
 	int	i;
 
 	i = -1;
 	while (++i < 3)
-		if (size[i] == T_REG && !ISREG(params[i]))
-			return (0);
-		else if (size[i] == T_REG)
-			params[i] = GETREGISTRE(params[i]);
-	getmemory(battle, SETPC((params[0] + params[1])), str, SIZE);
-	SETREGISTRE(params[2], chartoint(str, SIZE));
-	FLAG = 0;
-	return (1);
+		if (c->size[i] == T_REG && !ISREG(c->params[i]))
+			return ;
+		else if (c->size[i] == T_REG)
+			c->params[i] = GETREGISTRE(c->params[i]);
+	getmemory(battle, SETPC((c->params[0] + c->params[1])), str, SIZE);
+	SETREGISTRE(c->params[2], chartoint(str, SIZE));
+	CARRY = !GETREGISTRE(c->params[2]);
 }
