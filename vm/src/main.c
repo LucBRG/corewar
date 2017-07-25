@@ -1,27 +1,25 @@
 
 #include "vm.h"
 
-#define NCURSES			(1 << 0)
-#define ISFLAG(l, ret)	((ft_strchr(av[i], l)) ? ret : 0)
+#define ISFLAG(l)	(!!ft_strchr(av[i], l))
 
-int	initoptions(int ac, char **av)
+void	initoptions(int ac, char **av, t_battle *battle)
 {
 	int i;
-	int options;
 
 	i = 0;
-	options = 0;
 	while (++i < ac)
 		if (av[i][0] == '-')
 		{
-			options |= ISFLAG('n', NCURSES);
+			battle->opts.ncurses = ISFLAG('n');
+			if (ISFLAG('v') && i + 1 < ac)
+				battle->opts.verbose = ft_atoi(av[i + 1]);
 		}
-	return options;
 }
 
-void getoptions(t_battle *battle, int options)
+void getoptions(t_battle *battle)
 {
-	if (options & NCURSES)
+	if (battle->opts.ncurses)
 		battle->view = initview(battle);
 }
 
@@ -33,7 +31,8 @@ int	main(int ac, char **av)
 
 	if (!(b = initbattle(ac, av)))
 		return (0);
-	getoptions(b, initoptions(ac, av));
+	initoptions(ac, av, b);
+	getoptions(b);
 	// ft_printf("%s\n", ft_string_memory(b));
 	// printf("FIGHT\t%d\n", b->bots.nb);
 	// ft_printf("%d\n", 4294904660);
