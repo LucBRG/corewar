@@ -41,19 +41,25 @@ void	printfunc(t_battle *battle, t_command *c)
 	const char	*instructions[17] = {"", "live", "ld", "st", "add", "sub",
 		"and", "or", "xor", "zjmp", "ldi", "sti", "fork", "lld", "lldi",
 		"lfor", "aff"};
+	int			i;
 
+	i = -1;
 	if (battle->view)
-		mvprintw(battle->view->height, 1, "%s %c%d %c%d %c%d",
-			instructions[c->inst],
-			TYPEVAR(0), c->params[0],
-			TYPEVAR(1), c->params[1],
-			TYPEVAR(2), c->params[2]);
-	else
-		ft_printf("%s %c%d %c%d %c%d",
-			instructions[c->inst],
-			TYPEVAR(0), c->params[0],
-			TYPEVAR(1), c->params[1],
-			TYPEVAR(2), c->params[2]);
+	{
+		mvprintw(battle->view->height, 1, "%40c", ' ');
+		mvprintw(battle->view->height, 1, "%s", instructions[c->inst]);
+		while (++i < 3)
+			if (c->size[i])
+				printw(" %c%d", TYPEVAR(i), c->params[i]);
+		if (c->inst == ZJMP)
+			printw(" %s", (CARRY) ? "OK" : "FAILED");
+	}
+	// else
+	// 	ft_printf("%s %c%d %c%d %c%d",
+	// 		instructions[c->inst],
+	// 		TYPEVAR(0), c->params[0],
+	// 		TYPEVAR(1), c->params[1],
+	// 		TYPEVAR(2), c->params[2]);
 }
 
 int		load_func(t_battle *battle)
