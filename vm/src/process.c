@@ -6,11 +6,17 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/01 14:02:24 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/24 13:29:59 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/25 18:05:49 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+int			getid()
+{
+	static int id = 0;
+	return (++id);
+}
 
 t_process newprocess(t_bot *bot, int pc)
 {
@@ -18,6 +24,7 @@ t_process newprocess(t_bot *bot, int pc)
 
 	process.pc = pc;
 	process.bot = bot;
+	process.id = getid();
 	process.stun = 0;
 	process.dead = 0;
 	process.live = 0;
@@ -38,6 +45,7 @@ t_process cpyprocess(t_process *orignal, int pc)
 
 	process.pc = pc;
 	process.bot = orignal->bot;
+	process.id = getid();
 	process.stun = 0;
 	process.dead = 0;
 	process.live = 0;
