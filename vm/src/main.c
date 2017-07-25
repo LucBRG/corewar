@@ -40,7 +40,7 @@ int	main(int ac, char **av)
 	// print_memory(b);
 	if (b->bots.nb)
 	{
-		ft_lstiter(b->process, displayprocess);
+		// ft_lstiter(b->process, displayprocess);
 		battle_launch(b);
 		viewfinnish(b);
 		if (b->fight.last_live)
