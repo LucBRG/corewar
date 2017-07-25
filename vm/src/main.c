@@ -38,10 +38,9 @@ int	main(int ac, char **av)
 	// printf("FIGHT\t%d\n", b->bots.nb);
 	// ft_printf("%d\n", 4294904660);
 	// print_memory(b);
-	ft_printf("%hd", 65511);
 	if (b->bots.nb)
 	{
-		// ft_lstiter(b->process, displayprocess);
+		ft_lstiter(b->process, displayprocess);
 		battle_launch(b);
 		viewfinnish(b);
 		if (b->fight.last_live)

@@ -59,7 +59,7 @@ void	battle_launch(t_battle *battle)
 	long long	dump;
 
 	dump = -100;
-	while (1 && dump-- != 0) // Le_programme_peut_continuer && battle->dump-- != 0
+	while (rulescycle(battle) && dump-- != 0) // Le_programme_peut_continuer && battle->dump-- != 0
 	{
 		elem = battle->process;
 		// ft_printf("\n\n", PC);
