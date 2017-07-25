@@ -37,3 +37,5 @@ int			check_ocp(char inst, char ocp)
 	};
 	return (!!ft_strchr(tab[(int)inst - 1], ocp));
 }
+
+
