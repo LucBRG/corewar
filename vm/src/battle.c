@@ -22,7 +22,7 @@ int			verif_live(t_battle *battle)
 			if (!process->live && !process->dead)
 			{
 				//printf("mise a mort de %d(%s)\n", process->bot->id, process->bot->name);
-				// process->dead = 1;
+				process->dead = 1;
 			}
 			process->live = 0;
 		}
@@ -59,7 +59,7 @@ void	battle_launch(t_battle *battle)
 	long long	dump;
 
 	dump = -100;
-	while (1 && dump-- != 0) // Le_programme_peut_continuer && battle->dump-- != 0
+	while (rulescycle(battle) && dump-- != 0) // Le_programme_peut_continuer && battle->dump-- != 0
 	{
 		elem = battle->process;
 		// ft_printf("\n\n", PC);

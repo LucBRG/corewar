@@ -1,7 +1,7 @@
 
 #include "vm.h"
 
-# define TYPEVAR(x)	((c->type[x] == REG_CODE) ? 'r' : ' ')
+# define TYPEVAR(x)	((c->type[x] == REG_CODE) ? "r" : "")
 
 // int		load_func(t_battle *battle)
 // {
@@ -44,22 +44,27 @@ void	printfunc(t_battle *battle, t_command *c)
 	int			i;
 
 	i = -1;
-	if (battle->view)
+	if (battle->opts.ncurses && battle->opts.verbose == 4)
 	{
 		mvprintw(battle->view->height, 1, "%40c", ' ');
-		mvprintw(battle->view->height, 1, "%s", instructions[c->inst]);
+		mvprintw(battle->view->height, 1, "p\t%d | %s", battle->cur_process->id,
+			instructions[c->inst]);
 		while (++i < 3)
 			if (c->size[i])
-				printw(" %c%d", TYPEVAR(i), c->params[i]);
+				printw(" %s%d", TYPEVAR(i), c->params[i]);
 		if (c->inst == ZJMP)
 			printw(" %s", (CARRY) ? "OK" : "FAILED");
 	}
-	// else
-	// 	ft_printf("%s %c%d %c%d %c%d",
-	// 		instructions[c->inst],
-	// 		TYPEVAR(0), c->params[0],
-	// 		TYPEVAR(1), c->params[1],
-	// 		TYPEVAR(2), c->params[2]);
+	else if (battle->opts.verbose == 4)
+	{
+		ft_printf("p\t%d | %s", battle->cur_process->id, instructions[c->inst]);
+		while (++i < 3)
+			if (c->size[i])
+				ft_printf(" %s%d", TYPEVAR(i), c->params[i]);
+		if (c->inst == ZJMP)
+			ft_printf(" %s", (CARRY) ? "OK" : "FAILED");
+		ft_printf("\n");
+	}
 }
 
 int		load_func(t_battle *battle)

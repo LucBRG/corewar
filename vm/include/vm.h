@@ -73,6 +73,12 @@ typedef struct	s_fight
 	t_bot		*last_live;
 }				t_fight;
 
+typedef struct	s_options
+{
+	int			ncurses : 1;
+	int			verbose : 5;
+}				t_options;
+
 typedef struct	s_battle
 {
 	uc			memory[MEM_SIZE];
@@ -84,6 +90,7 @@ typedef struct	s_battle
 	int			count;
 	t_view		*view;
 	t_fight		fight;
+	t_options	opts;
 }				t_battle;
 
 typedef struct	s_command

@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 14:00:54 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/19 17:53:06 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/25 18:13:27 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int		print_error(int err)
 	tmp = err;
 	while (++i < NB_ERR)
 	{
-		if (tmp & 1)
+		if (i && tmp & 1)
 			ft_printf("error: %s\n", error[i]);
 		tmp = tmp >> 1;
 	}
