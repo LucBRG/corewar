@@ -113,6 +113,8 @@ t_battle	*initbattle(int ac, char **av)
 	b->fight.checks = 0;
 	b->fight.cycle_to_die = CYCLE_TO_DIE;
 	b->fight.last_live = NULL;
+	b->opts.ncurses = 0;
+	b->opts.verbose = 0;
 	initbattle_func(b);
 	return (b);
 }
