@@ -2,6 +2,7 @@
 #include "vm.h"
 
 #define ISFLAG(l)	(!!ft_strchr(av[i], l))
+#define OPTS		battle->opts
 
 void	initoptions(int ac, char **av, t_battle *battle)
 {
@@ -11,7 +12,7 @@ void	initoptions(int ac, char **av, t_battle *battle)
 	while (++i < ac)
 		if (av[i][0] == '-')
 		{
-			battle->opts.ncurses = ISFLAG('n');
+			OPTS.ncurses = (!OPTS.ncurses) ? ISFLAG('n') : OPTS.ncurses;
 			if (ISFLAG('v') && i + 1 < ac)
 				battle->opts.verbose = ft_atoi(av[i + 1]);
 		}
