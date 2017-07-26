@@ -65,10 +65,10 @@ typedef struct	s_process
 
 typedef struct	s_fight
 {
-	int			loop;
-	int			limitloop;
 	int			cycle;
-	int			totalloop;
+	int			cycle_to_die;
+	int			checks;
+	int			totalcycle;
 	t_bot		*last_live;
 }				t_fight;
 
