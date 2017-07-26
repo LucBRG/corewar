@@ -63,6 +63,8 @@ void	printfunc(t_battle *battle, t_command *c)
 				ft_printf(" %s%d", TYPEVAR(i), c->params[i]);
 		if (c->inst == ZJMP)
 			ft_printf(" %s", (CARRY) ? "OK" : "FAILED");
+		if (c->inst == STI || c->inst == LDI)
+			ft_printf("\n");
 		ft_printf("\n");
 	}
 }

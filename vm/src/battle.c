@@ -22,7 +22,7 @@ int			verif_live(t_battle *battle)
 			if (!process->live && !process->dead)
 			{
 				//printf("mise a mort de %d(%s)\n", process->bot->id, process->bot->name);
-				process->dead = 1;
+				// process->dead = 1;
 			}
 			process->live = 0;
 		}
@@ -38,7 +38,7 @@ int			rulescycle(t_battle *battle)
 	if (battle->fight.loop == battle->fight.limitloop)
 	{
 		if (!(live = verif_live(battle)))
-			return (0);
+			return (1);
 		if (live >= NBR_LIVE)
 			battle->fight.limitloop -= CYCLE_DELTA;
 		if (battle->fight.cycle >= MAX_CHECKS)
