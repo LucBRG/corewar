@@ -37,7 +37,7 @@ int			rulescycle(t_battle *battle)
 	if (battle->fight.loop == battle->fight.limitloop)
 	{
 		if (!(live = verif_live(battle)))
-			return (1);
+			return (0);
 		if (live >= NBR_LIVE)
 			battle->fight.limitloop -= CYCLE_DELTA;
 		if (battle->fight.cycle >= MAX_CHECKS)
