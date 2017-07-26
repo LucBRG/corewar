@@ -13,7 +13,6 @@
 # define SETREGISTRE(x, v)	set_registre(battle->cur_process, x - 1, v)
 # define GETREGISTRE(x)		get_registre(battle->cur_process, x - 1)
 # define PC					battle->cur_process->pc
-# define ID					battle->cur_process->bot->id
 # define INST				battle->memory[PC]
 # define MEMORY				battle->memory
 # define SETPC(n)			(mod((PC + n), MEM_SIZE))
@@ -41,7 +40,7 @@ typedef struct	s_bot
 	char		*comment;
 	uc			*instructions;
 	int			nb_instructions;
-	int			loop;
+	int			nbprocess;
 }				t_bot;
 
 typedef struct	s_bots
@@ -87,7 +86,6 @@ typedef struct	s_battle
 	t_bots		bots;
 	t_list		*process;
 	t_listfunc	func;
-	int			count;
 	t_view		*view;
 	t_fight		fight;
 	t_options	opts;

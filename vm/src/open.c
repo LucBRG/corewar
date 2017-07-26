@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 14:00:54 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/25 18:13:27 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/26 11:30:56 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int		check_error(unsigned char *bot, int len)
 	error |= (!chartoint(bot + OC_NULL_1, 4)) ? 0 : ERR_OC1;
 	error |= (!chartoint(bot + OC_NULL_2, 4)) ? 0 : ERR_OC2;
 	error |= (chartoint(bot + NB_INST, 4) == len - INSTA) ? 0 : ERR_INT;
-	// error |= (chartoint(bot + NB_INST, 4) <= CHAMP_MAX_SIZE) ? 0 : ERR_SIZ;
+	error |= (chartoint(bot + NB_INST, 4) <= CHAMP_MAX_SIZE) ? 0 : ERR_SIZ;
 	return (error);
 }
 
@@ -85,7 +85,7 @@ int		print_error(int err)
 	{
 		if (i && tmp & 1)
 			ft_printf("error: %s\n", error[i]);
-		tmp = tmp >> 1;
+		tmp >>= 1;
 	}
 	return (err);
 }
@@ -118,5 +118,6 @@ t_bot	*creabot(char *path)
 	ft_memcpy(bot->comment, (bot_brut + COMMENT), COMMENT_LENGTH);
 	bot->instructions = (unsigned char*)malloc(bot->nb_instructions);
 	ft_memcpy(bot->instructions, (bot_brut + INSTA), bot->nb_instructions);
+	bot->nbprocess = 0;
 	return (bot);
 }

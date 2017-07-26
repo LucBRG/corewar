@@ -8,7 +8,7 @@ int			stun(t_battle *battle, t_command *c)
 	// ft_printf("INST = %d\n", INST);
 	if (c->inst >= 1 && c->inst <= 16)
 	{
-		battle->cur_process->stun = tab[c->inst - 1];
+		battle->cur_process->stun = tab[c->inst - 1] - 1;
 		FLAG = 1;
 	}
 	return (0);
