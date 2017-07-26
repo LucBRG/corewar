@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 13:44:30 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/25 17:01:27 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/26 11:41:51 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,13 @@ void	ft_color_mem(t_battle *battle)
 	while (elem)
 	{
 		pr = (t_process*)elem->content;
-		colorbase = (1 + pr->bot->rid) % 4;
-		if (pr->last_action[0] != -1 && pr->last_action[1] != -1)
-			setvcolor(battle, pr->last_action[0], colorbase + 8, pr->last_action[1]);
-		VCOLOR[pr->pc] = (colorbase + 4);
+		if (!pr->dead)
+		{
+			colorbase = (1 + pr->bot->rid) % 4;
+			if (pr->last_action[0] != -1 && pr->last_action[1] != -1)
+				setvcolor(battle, pr->last_action[0], colorbase + 8, pr->last_action[1]);
+			VCOLOR[pr->pc] = (colorbase + 4);
+		}
 		elem = elem->next;
 	}
 }
@@ -81,10 +84,8 @@ void	shearchprocess(t_battle *battle, WINDOW *win, t_bot *bot)
 	while (elem && posy < 15)
 	{
 		process = (t_process*)elem->content;
-		if (process->bot == bot)
-		{
+		if (process->bot == bot && !process->dead)
 			showprocess(battle, win, process, posy++);
-		}
 		elem = elem->next;
 	}
 	wrefresh(win);
@@ -104,7 +105,7 @@ void	showbot(t_battle *battle)
 		wattron(win, COLOR_PAIR(i));
 		mvwprintw(win, 1, 1, "Nom\t\t: %s", bot->name);
 		mvwprintw(win, 2, 1, "Description\t: %s", bot->comment);
-		mvwprintw(win, 4, 1, "Processus\t:");
+		mvwprintw(win, 4, 1, "%-3d Processus\t:", bot->nbprocess);
 		mvwprintw(win, 5, 4,
 			"PC\tINST\tPARAM1\t\tPARAM2\t\tPARAM3\t\tSAUT\tSTUN\tLIVE\tMEMORY");
 		shearchprocess(battle, win, bot);

@@ -1,23 +1,30 @@
-Introducing contestants...
-* Player 1, weighing 320 bytes, "Jumper !" ("en fait C forker !") !
 P    1 | st r1 73
 P    1 | st r6 -4
 P    1 | ld -1 r1
 P    1 | ld 0 r7
 P    1 | zjmp 55 OK
 P    1 | sti r1 7 1
+
 P    1 | live -1
 P    1 | sti r2 -74 -60
+
 P    1 | ld 4 r4
 P    1 | st r2 512
 P    1 | ld 48 r5
 P    1 | sti r1 -90 1
+
 P    1 | sti r1 150 1
+
 P    1 | sti r1 35 1
+
 P    1 | sti r1 33 1
+
 P    1 | sti r1 31 1
+
 P    1 | sti r1 29 1
+
 P    1 | sti r1 27 1
+
 P    1 | live -1
 P    1 | live -1
 P    1 | live -1
@@ -26,21 +33,26 @@ P    1 | live -1
 P    1 | zjmp -25 FAILED
 P    1 | xor 0 0 r3
 P    1 | sti r1 7 1
+
 P    1 | live -1
 P    1 | fork -45 (164)
 P    2 | live -1
 P    2 | live -1
 P    1 | sti r1 28 1
+
 P    2 | live -1
 P    2 | live -1
 P    2 | live -1
 P    1 | sti r1 21 9
+
 P    2 | zjmp -25 OK
 P    1 | sti r1 14 17
+
 P    2 | live -1
 P    2 | live -1
 P    2 | live -1
 P    1 | sti r1 7 25
+
 P    2 | live -1
 P    1 | live -1
 P    2 | live -1
@@ -118,9 +130,11 @@ P    1 | live -1
 P    2 | live -1
 P    2 | live -1
 P    3 | ldi -5 0 r1
+
 P    2 | live -1
 P    2 | live -1
 P    3 | sti r1 -173 0
+
 P    3 | add r3 r4 r3
 P    2 | zjmp -25 OK
 P    3 | xor 48 4 r6
@@ -136,10 +150,12 @@ P    3 | live -1
 P    2 | zjmp -25 OK
 P    2 | live -1
 P    3 | ldi -5 4 r1
+
 P    2 | live -1
 P    2 | live -1
 P    2 | live -1
 P    3 | sti r1 -173 4
+
 P    2 | live -1
 P    3 | add r3 r4 r3
 P    3 | xor 48 8 r6
@@ -154,10 +170,12 @@ P    2 | live -1
 P    3 | live -1
 P    2 | live -1
 P    3 | ldi -5 8 r1
+
 P    2 | zjmp -25 OK
 P    2 | live -1
 P    2 | live -1
 P    3 | sti r1 -173 8
+
 P    2 | live -1
 P    3 | add r3 r4 r3
 P    3 | xor 48 12 r6
@@ -173,9 +191,11 @@ P    3 | live -1
 P    2 | live -1
 P    2 | live -1
 P    3 | ldi -5 12 r1
+
 P    2 | live -1
 P    2 | zjmp -25 OK
 P    3 | sti r1 -173 12
+
 P    2 | live -1
 P    3 | add r3 r4 r3
 P    3 | xor 48 16 r6
@@ -191,10 +211,12 @@ P    3 | live -1
 P    2 | live -1
 P    2 | live -1
 P    3 | ldi -5 16 r1
+
 P    2 | live -1
 P    2 | live -1
 P    2 | live -1
 P    3 | sti r1 -173 16
+
 P    3 | add r3 r4 r3
 P    3 | xor 48 20 r6
 P    2 | zjmp -25 OK
@@ -209,10 +231,12 @@ P    2 | live -1
 P    3 | live -1
 P    2 | zjmp -25 OK
 P    3 | ldi -5 20 r1
+
 P    2 | live -1
 P    2 | live -1
 P    2 | live -1
 P    3 | sti r1 -173 20
+
 P    2 | live -1
 P    3 | add r3 r4 r3
 P    2 | live -1
@@ -228,9 +252,11 @@ P    3 | live -1
 P    2 | live -1
 P    2 | live -1
 P    3 | ldi -5 24 r1
+
 P    2 | zjmp -25 OK
 P    2 | live -1
 P    3 | sti r1 -173 24
+
 P    2 | live -1
 P    3 | add r3 r4 r3
 P    2 | live -1
@@ -250,8 +276,10 @@ P    2 | live -1
 P    2 | live -1
 P    2 | live -1
 P    3 | ldi -5 28 r1
+
 P    2 | live -1
 P    3 | sti r1 -173 28
+
 P    2 | zjmp -25 OK
 P    3 | add r3 r4 r3
 P    2 | live -1
@@ -268,9 +296,11 @@ P    2 | zjmp -25 OK
 P    2 | live -1
 P    2 | live -1
 P    3 | ldi -5 32 r1
+
 P    2 | live -1
 P    2 | live -1
 P    3 | sti r1 -173 32
+
 P    2 | live -1
 P    3 | add r3 r4 r3
 P    3 | xor 48 36 r6
@@ -286,9 +316,11 @@ P    3 | live -1
 P    2 | live -1
 P    2 | zjmp -25 OK
 P    3 | ldi -5 36 r1
+
 P    2 | live -1
 P    2 | live -1
 P    3 | sti r1 -173 36
+
 P    2 | live -1
 P    3 | add r3 r4 r3
 P    2 | live -1
@@ -305,8 +337,10 @@ P    2 | live -1
 P    2 | live -1
 P    2 | live -1
 P    3 | ldi -5 40 r1
+
 P    2 | zjmp -25 OK
 P    3 | sti r1 -173 40
+
 P    2 | live -1
 P    3 | add r3 r4 r3
 P    2 | live -1
@@ -323,9 +357,11 @@ P    3 | live -1
 P    2 | live -1
 P    2 | live -1
 P    3 | ldi -5 44 r1
+
 P    2 | live -1
 P    2 | live -1
 P    3 | sti r1 -173 44
+
 P    2 | zjmp -25 OK
 P    3 | add r3 r4 r3
 P    3 | xor 48 48 r6
@@ -341,10 +377,12 @@ P    3 | live -1
 P    2 | zjmp -25 OK
 P    2 | live -1
 P    3 | ldi -5 0 r1
+
 P    2 | live -1
 P    2 | live -1
 P    2 | live -1
 P    3 | sti r1 -173 0
+
 P    2 | live -1
 P    3 | add r3 r4 r3
 P    3 | xor 48 4 r6
@@ -359,6 +397,7 @@ P    2 | live -1
 P    3 | live -1
 P    2 | live -1
 P    3 | ldi -5 4 r1
+
 P    2 | zjmp -25 OK
 P    4 | fork -220 (25)
 P    2 | live -1
@@ -369,21 +408,27 @@ P    4 | live -1
 P    2 | live -1
 P    1 | live -1
 P    3 | sti r1 -173 4
+
 P    2 | live -1
 P    3 | add r3 r4 r3
 P    3 | xor 48 8 r6
 P    2 | live -1
 P    1 | zjmp -244 OK
 P    6 | ldi -5 0 r1
+
 P    5 | ldi -5 0 r1
+
 P    2 | live -1
 P    1 | live -1
 P    3 | zjmp 13 FAILED
 P    3 | ld 0 r7
 P    6 | sti r1 17 0
+
 P    5 | sti r1 -173 0
+
 P    2 | zjmp -25 OK
 P    1 | ldi -5 0 r1
+
 P    6 | add r3 r4 r3
 P    5 | add r3 r4 r3
 P    2 | live -1
@@ -394,6 +439,7 @@ P    2 | live -1
 P    3 | live -1
 P    2 | live -1
 P    1 | sti r1 -173 0
+
 P    6 | zjmp 511 FAILED
 P    5 | zjmp 13 FAILED
 P    2 | live -1
@@ -401,6 +447,7 @@ P    1 | add r3 r4 r3
 P    5 | ld 0 r7
 P    1 | xor 48 4 r6
 P    3 | ldi -5 8 r1
+
 P    2 | live -1
 P    5 | zjmp -37 OK
 P    1 | zjmp 13 FAILED
@@ -409,12 +456,14 @@ P    2 | zjmp -25 OK
 P    5 | live -1
 P    1 | ld 0 r7
 P    3 | sti r1 -173 8
+
 P    2 | live -1
 P    3 | add r3 r4 r3
 P    2 | live -1
 P    3 | xor 48 12 r6
 P    1 | zjmp -37 OK
 P    5 | ldi -5 4 r1
+
 P    2 | live -1
 P    1 | live -1
 P    2 | live -1
@@ -422,7 +471,9 @@ P    3 | zjmp 13 FAILED
 P    3 | ld 0 r7
 P    2 | live -1
 P    5 | sti r1 -173 4
+
 P    1 | ldi -5 4 r1
+
 P    5 | add r3 r4 r3
 P    3 | zjmp -37 OK
 P    5 | xor 48 8 r6
@@ -430,6 +481,7 @@ P    2 | zjmp -25 OK
 P    3 | live -1
 P    2 | live -1
 P    1 | sti r1 -173 4
+
 P    5 | zjmp 13 FAILED
 P    2 | live -1
 P    1 | add r3 r4 r3
@@ -437,6 +489,7 @@ P    5 | ld 0 r7
 P    1 | xor 48 8 r6
 P    2 | live -1
 P    3 | ldi -5 12 r1
+
 P    2 | live -1
 P    5 | zjmp -37 OK
 P    1 | zjmp 13 FAILED
@@ -444,11 +497,13 @@ P    2 | live -1
 P    5 | live -1
 P    1 | ld 0 r7
 P    3 | sti r1 -173 12
+
 P    3 | add r3 r4 r3
 P    2 | zjmp -25 OK
 P    3 | xor 48 16 r6
 P    1 | zjmp -37 OK
 P    5 | ldi -5 8 r1
+
 P    2 | live -1
 P    1 | live -1
 P    2 | live -1
@@ -456,7 +511,9 @@ P    3 | zjmp 13 FAILED
 P    3 | ld 0 r7
 P    2 | live -1
 P    5 | sti r1 -173 8
+
 P    1 | ldi -5 8 r1
+
 P    2 | live -1
 P    5 | add r3 r4 r3
 P    3 | zjmp -37 OK
@@ -464,6 +521,7 @@ P    5 | xor 48 12 r6
 P    2 | live -1
 P    3 | live -1
 P    1 | sti r1 -173 8
+
 P    5 | zjmp 13 FAILED
 P    2 | zjmp -25 OK
 P    1 | add r3 r4 r3
@@ -471,6 +529,7 @@ P    5 | ld 0 r7
 P    1 | xor 48 12 r6
 P    2 | live -1
 P    3 | ldi -5 16 r1
+
 P    2 | live -1
 P    5 | zjmp -37 OK
 P    1 | zjmp 13 FAILED
@@ -478,19 +537,23 @@ P    2 | live -1
 P    5 | live -1
 P    1 | ld 0 r7
 P    3 | sti r1 -173 16
+
 P    2 | live -1
 P    3 | add r3 r4 r3
 P    2 | live -1
 P    3 | xor 48 20 r6
 P    1 | zjmp -37 OK
 P    5 | ldi -5 12 r1
+
 P    1 | live -1
 P    2 | zjmp -25 OK
 P    3 | zjmp 13 FAILED
 P    3 | ld 0 r7
 P    2 | live -1
 P    5 | sti r1 -173 12
+
 P    1 | ldi -5 12 r1
+
 P    2 | live -1
 P    5 | add r3 r4 r3
 P    3 | zjmp -37 OK
@@ -499,12 +562,14 @@ P    2 | live -1
 P    3 | live -1
 P    2 | live -1
 P    1 | sti r1 -173 12
+
 P    5 | zjmp 13 FAILED
 P    2 | live -1
 P    1 | add r3 r4 r3
 P    5 | ld 0 r7
 P    1 | xor 48 16 r6
 P    3 | ldi -5 20 r1
+
 P    2 | zjmp -25 OK
 P    5 | zjmp -37 OK
 P    1 | zjmp 13 FAILED
@@ -512,19 +577,23 @@ P    2 | live -1
 P    5 | live -1
 P    1 | ld 0 r7
 P    3 | sti r1 -173 20
+
 P    2 | live -1
 P    3 | add r3 r4 r3
 P    2 | live -1
 P    3 | xor 48 24 r6
 P    1 | zjmp -37 OK
 P    5 | ldi -5 16 r1
+
 P    2 | live -1
 P    1 | live -1
 P    2 | live -1
 P    3 | zjmp 13 FAILED
 P    3 | ld 0 r7
 P    5 | sti r1 -173 16
+
 P    1 | ldi -5 16 r1
+
 P    2 | zjmp -25 OK
 P    5 | add r3 r4 r3
 P    3 | zjmp -37 OK
@@ -533,6 +602,7 @@ P    2 | live -1
 P    3 | live -1
 P    2 | live -1
 P    1 | sti r1 -173 16
+
 P    5 | zjmp 13 FAILED
 P    2 | live -1
 P    1 | add r3 r4 r3
@@ -540,18 +610,21 @@ P    5 | ld 0 r7
 P    2 | live -1
 P    1 | xor 48 20 r6
 P    3 | ldi -5 24 r1
+
 P    2 | live -1
 P    5 | zjmp -37 OK
 P    1 | zjmp 13 FAILED
 P    5 | live -1
 P    1 | ld 0 r7
 P    3 | sti r1 -173 24
+
 P    2 | zjmp -25 OK
 P    3 | add r3 r4 r3
 P    2 | live -1
 P    3 | xor 48 28 r6
 P    1 | zjmp -37 OK
 P    5 | ldi -5 20 r1
+
 P    2 | live -1
 P    1 | live -1
 P    2 | live -1
@@ -559,14 +632,17 @@ P    3 | zjmp 13 FAILED
 P    3 | ld 0 r7
 P    2 | live -1
 P    5 | sti r1 -173 20
+
 P    2 | live -1
 P    1 | ldi -5 20 r1
+
 P    5 | add r3 r4 r3
 P    3 | zjmp -37 OK
 P    5 | xor 48 24 r6
 P    3 | live -1
 P    2 | zjmp -25 OK
 P    1 | sti r1 -173 20
+
 P    2 | live -1
 P    5 | zjmp 13 FAILED
 P    1 | add r3 r4 r3
@@ -574,6 +650,7 @@ P    5 | ld 0 r7
 P    2 | live -1
 P    1 | xor 48 24 r6
 P    3 | ldi -5 28 r1
+
 P    2 | live -1
 P    5 | zjmp -37 OK
 P    2 | live -1
@@ -581,20 +658,24 @@ P    1 | zjmp 13 FAILED
 P    5 | live -1
 P    1 | ld 0 r7
 P    3 | sti r1 -173 28
+
 P    2 | live -1
 P    3 | add r3 r4 r3
 P    3 | xor 48 32 r6
 P    1 | zjmp -37 OK
 P    2 | zjmp -25 OK
 P    5 | ldi -5 24 r1
+
 P    1 | live -1
 P    2 | live -1
 P    3 | zjmp 13 FAILED
 P    2 | live -1
 P    3 | ld 0 r7
 P    5 | sti r1 -173 24
+
 P    2 | live -1
 P    1 | ldi -5 24 r1
+
 P    5 | add r3 r4 r3
 P    2 | live -1
 P    3 | zjmp -37 OK
@@ -603,6 +684,7 @@ P    4 | fork -13 (240)
 P    2 | live -1
 P    3 | live -1
 P    1 | sti r1 -173 24
+       | -> store to -173 + 24 = -149 (with pc and mod -113)
 P    7 | live -1
 P    4 | live -1
 P    5 | zjmp 13 FAILED
@@ -611,6 +693,7 @@ P    5 | ld 0 r7
 P    2 | zjmp -25 OK
 P    1 | xor 48 28 r6
 P    3 | ldi -5 32 r1
+       | -> load from -5 + 32 = 27 (with pc and mod 3991)
 P    2 | live -1
 P    5 | zjmp -37 OK
 P    2 | live -1
@@ -619,19 +702,23 @@ P    5 | live -1
 P    1 | ld 0 r7
 P    2 | live -1
 P    3 | sti r1 -173 32
+       | -> store to -173 + 32 = -141 (with pc and mod 3829)
 P    2 | live -1
 P    3 | add r3 r4 r3
 P    3 | xor 48 36 r6
 P    1 | zjmp -37 OK
 P    2 | live -1
 P    5 | ldi -5 28 r1
+       | -> load from -5 + 28 = 23 (with pc and mod 53)
 P    1 | live -1
 P    3 | zjmp 13 FAILED
 P    2 | zjmp -25 OK
 P    3 | ld 0 r7
 P    5 | sti r1 -173 28
+       | -> store to -173 + 28 = -145 (with pc and mod -109)
 P    2 | live -1
 P    1 | ldi -5 28 r1
+       | -> load from -5 + 28 = 23 (with pc and mod 53)
 P    5 | add r3 r4 r3
 P    2 | live -1
 P    3 | zjmp -37 OK
@@ -639,6 +726,7 @@ P    5 | xor 48 32 r6
 P    2 | live -1
 P    3 | live -1
 P    1 | sti r1 -173 28
+       | -> store to -173 + 28 = -145 (with pc and mod -109)
 P    2 | live -1
 P    5 | zjmp 13 FAILED
 P    1 | add r3 r4 r3
@@ -646,6 +734,7 @@ P    5 | ld 0 r7
 P    2 | live -1
 P    1 | xor 48 32 r6
 P    3 | ldi -5 36 r1
+       | -> load from -5 + 36 = 31 (with pc and mod 3995)
 P    5 | zjmp -37 OK
 P    2 | zjmp -25 OK
 P    1 | zjmp 13 FAILED
@@ -653,19 +742,23 @@ P    5 | live -1
 P    1 | ld 0 r7
 P    2 | live -1
 P    3 | sti r1 -173 36
+       | -> store to -173 + 36 = -137 (with pc and mod 3833)
 P    2 | live -1
 P    3 | add r3 r4 r3
 P    3 | xor 48 40 r6
 P    1 | zjmp -37 OK
 P    2 | live -1
 P    5 | ldi -5 32 r1
+       | -> load from -5 + 32 = 27 (with pc and mod 57)
 P    1 | live -1
 P    2 | live -1
 P    3 | zjmp 13 FAILED
 P    2 | live -1
 P    3 | ld 0 r7
 P    5 | sti r1 -173 32
+       | -> store to -173 + 32 = -141 (with pc and mod -105)
 P    1 | ldi -5 32 r1
+       | -> load from -5 + 32 = 27 (with pc and mod 57)
 P    5 | add r3 r4 r3
 P    2 | zjmp -25 OK
 P    3 | zjmp -37 OK
@@ -673,6 +766,7 @@ P    5 | xor 48 36 r6
 P    2 | live -1
 P    3 | live -1
 P    1 | sti r1 -173 32
+       | -> store to -173 + 32 = -141 (with pc and mod -105)
 P    2 | live -1
 P    5 | zjmp 13 FAILED
 P    1 | add r3 r4 r3
@@ -680,6 +774,7 @@ P    5 | ld 0 r7
 P    2 | live -1
 P    1 | xor 48 36 r6
 P    3 | ldi -5 40 r1
+       | -> load from -5 + 40 = 35 (with pc and mod 3999)
 P    2 | live -1
 P    5 | zjmp -37 OK
 P    2 | live -1
@@ -687,26 +782,31 @@ P    1 | zjmp 13 FAILED
 P    5 | live -1
 P    1 | ld 0 r7
 P    3 | sti r1 -173 40
+       | -> store to -173 + 40 = -133 (with pc and mod 3837)
 P    2 | zjmp -25 OK
 P    3 | add r3 r4 r3
 P    3 | xor 48 44 r6
 P    1 | zjmp -37 OK
 P    2 | live -1
 P    5 | ldi -5 36 r1
+       | -> load from -5 + 36 = 31 (with pc and mod 61)
 P    1 | live -1
 P    2 | live -1
 P    3 | zjmp 13 FAILED
 P    2 | live -1
 P    3 | ld 0 r7
 P    5 | sti r1 -173 36
+       | -> store to -173 + 36 = -137 (with pc and mod -101)
 P    2 | live -1
 P    1 | ldi -5 36 r1
+       | -> load from -5 + 36 = 31 (with pc and mod 61)
 P    5 | add r3 r4 r3
 P    2 | live -1
 P    3 | zjmp -37 OK
 P    5 | xor 48 40 r6
 P    3 | live -1
 P    1 | sti r1 -173 36
+       | -> store to -173 + 36 = -137 (with pc and mod -101)
 P    2 | zjmp -25 OK
 P    5 | zjmp 13 FAILED
 P    1 | add r3 r4 r3
@@ -714,6 +814,7 @@ P    5 | ld 0 r7
 P    2 | live -1
 P    1 | xor 48 40 r6
 P    3 | ldi -5 44 r1
+       | -> load from -5 + 44 = 39 (with pc and mod 4003)
 P    2 | live -1
 P    5 | zjmp -37 OK
 P    2 | live -1
@@ -722,19 +823,23 @@ P    5 | live -1
 P    2 | live -1
 P    1 | ld 0 r7
 P    3 | sti r1 -173 44
+       | -> store to -173 + 44 = -129 (with pc and mod 3841)
 P    2 | live -1
 P    3 | add r3 r4 r3
 P    3 | xor 48 48 r6
 P    1 | zjmp -37 OK
 P    5 | ldi -5 40 r1
+       | -> load from -5 + 40 = 35 (with pc and mod 65)
 P    2 | zjmp -25 OK
 P    1 | live -1
 P    3 | zjmp 13 OK
 P    2 | live -1
 P    3 | xor 48 48 r3
 P    5 | sti r1 -173 40
+       | -> store to -173 + 40 = -133 (with pc and mod -97)
 P    2 | live -1
 P    1 | ldi -5 40 r1
+       | -> load from -5 + 40 = 35 (with pc and mod 65)
 P    5 | add r3 r4 r3
 P    2 | live -1
 P    5 | xor 48 44 r6
@@ -743,12 +848,14 @@ P    2 | live -1
 P    3 | live -1
 P    2 | live -1
 P    1 | sti r1 -173 40
+       | -> store to -173 + 40 = -133 (with pc and mod -97)
 P    5 | zjmp 13 FAILED
 P    1 | add r3 r4 r3
 P    5 | ld 0 r7
 P    1 | xor 48 44 r6
 P    2 | zjmp -25 OK
 P    3 | ldi -5 0 r1
+       | -> load from -5 + 0 = -5 (with pc and mod 3797)
 P    2 | live -1
 P    5 | zjmp -37 OK
 P    1 | zjmp 13 FAILED
@@ -756,19 +863,23 @@ P    2 | live -1
 P    5 | live -1
 P    1 | ld 0 r7
 P    3 | sti r1 -173 0
+       | -> store to -173 + 0 = -173 (with pc and mod 3635)
 P    2 | live -1
 P    3 | add r3 r4 r3
 P    2 | live -1
 P    1 | zjmp -37 OK
 P    3 | xor 48 4 r6
 P    5 | ldi -5 44 r1
+       | -> load from -5 + 44 = 39 (with pc and mod 69)
 P    2 | live -1
 P    1 | live -1
 P    3 | zjmp 13 FAILED
 P    3 | ld 0 r7
 P    2 | zjmp -25 OK
 P    5 | sti r1 -173 44
+       | -> store to -173 + 44 = -129 (with pc and mod -93)
 P    1 | ldi -5 44 r1
+       | -> load from -5 + 44 = 39 (with pc and mod 69)
 P    2 | live -1
 P    5 | add r3 r4 r3
 P    5 | xor 48 48 r6
@@ -777,6 +888,7 @@ P    2 | live -1
 P    3 | live -1
 P    2 | live -1
 P    1 | sti r1 -173 44
+       | -> store to -173 + 44 = -129 (with pc and mod -93)
 P    5 | zjmp 13 OK
 P    2 | live -1
 P    1 | add r3 r4 r3
@@ -784,18 +896,21 @@ P    5 | xor 48 48 r3
 P    1 | xor 48 48 r6
 P    2 | live -1
 P    3 | ldi -5 4 r1
+       | -> load from -5 + 4 = -1 (with pc and mod 3801)
 P    5 | zjmp -207 OK
 P    1 | zjmp 13 OK
 P    2 | zjmp -25 OK
 P    5 | live -1
 P    1 | xor 48 48 r3
 P    3 | sti r1 -173 4
+       | -> store to -173 + 4 = -169 (with pc and mod 3639)
 P    2 | live -1
 P    3 | add r3 r4 r3
 P    2 | live -1
 P    3 | xor 48 8 r6
 P    1 | zjmp -207 OK
 P    5 | ldi -5 0 r1
+       | -> load from -5 + 0 = -5 (with pc and mod 3959)
 P    2 | live -1
 P    1 | live -1
 P    2 | live -1
@@ -803,7 +918,9 @@ P    3 | zjmp 13 FAILED
 P    3 | ld 0 r7
 P    2 | live -1
 P    5 | sti r1 -173 0
+       | -> store to -173 + 0 = -173 (with pc and mod 3797)
 P    1 | ldi -5 0 r1
+       | -> load from -5 + 0 = -5 (with pc and mod 3959)
 P    5 | add r3 r4 r3
 P    3 | zjmp -37 OK
 P    5 | xor 48 4 r6
@@ -811,6 +928,7 @@ P    2 | zjmp -25 OK
 P    3 | live -1
 P    2 | live -1
 P    1 | sti r1 -173 0
+       | -> store to -173 + 0 = -173 (with pc and mod 3797)
 P    5 | zjmp 13 FAILED
 P    2 | live -1
 P    1 | add r3 r4 r3
@@ -818,6 +936,7 @@ P    5 | ld 0 r7
 P    1 | xor 48 4 r6
 P    2 | live -1
 P    3 | ldi -5 8 r1
+       | -> load from -5 + 8 = 3 (with pc and mod 3805)
 P    2 | live -1
 P    5 | zjmp -37 OK
 P    1 | zjmp 13 FAILED
@@ -825,11 +944,13 @@ P    2 | live -1
 P    5 | live -1
 P    1 | ld 0 r7
 P    3 | sti r1 -173 8
+       | -> store to -173 + 8 = -165 (with pc and mod 3643)
 P    3 | add r3 r4 r3
 P    2 | zjmp -25 OK
 P    3 | xor 48 12 r6
 P    1 | zjmp -37 OK
 P    5 | ldi -5 4 r1
+       | -> load from -5 + 4 = -1 (with pc and mod 3963)
 P    2 | live -1
 P    1 | live -1
 P    7 | fork -220 (25)
@@ -843,7 +964,9 @@ P    7 | live -1
 P    4 | live -1
 P    2 | live -1
 P    5 | sti r1 -173 4
+       | -> store to -173 + 4 = -169 (with pc and mod 3801)
 P    1 | ldi -5 4 r1
+       | -> load from -5 + 4 = -1 (with pc and mod 3963)
 P    2 | live -1
 P    5 | add r3 r4 r3
 P    3 | zjmp -37 OK
@@ -851,20 +974,27 @@ P    5 | xor 48 8 r6
 P    4 | zjmp -244 OK
 P    2 | live -1
 P    9 | ldi -5 0 r1
+       | -> load from -5 + 0 = -5 (with pc and mod 272)
 P    8 | ldi -5 0 r1
+       | -> load from -5 + 0 = -5 (with pc and mod 25)
 P    3 | live -1
 P    4 | live -1
 P    1 | sti r1 -173 4
+       | -> store to -173 + 4 = -169 (with pc and mod 3801)
 P    5 | zjmp 13 FAILED
 P    2 | zjmp -25 OK
 P    1 | add r3 r4 r3
 P    5 | ld 0 r7
 P    9 | sti r1 17 0
+       | -> store to 17 + 0 = 17 (with pc and mod 300)
 P    8 | sti r1 -173 0
+       | -> store to -173 + 0 = -173 (with pc and mod -137)
 P    2 | live -1
 P    1 | xor 48 8 r6
 P    3 | ldi -5 12 r1
+       | -> load from -5 + 12 = 7 (with pc and mod 3809)
 P    4 | ldi -5 0 r1
+       | -> load from -5 + 0 = -5 (with pc and mod 25)
 P    9 | add r3 r4 r3
 P    8 | add r3 r4 r3
 P    2 | live -1
@@ -876,7 +1006,9 @@ P    1 | zjmp 13 FAILED
 P    5 | live -1
 P    1 | ld 0 r7
 P    3 | sti r1 -173 12
+       | -> store to -173 + 12 = -161 (with pc and mod 3647)
 P    4 | sti r1 -173 0
+       | -> store to -173 + 0 = -173 (with pc and mod -137)
 P    2 | live -1
 P    9 | zjmp 511 FAILED
 P    8 | zjmp 13 FAILED
@@ -888,6 +1020,7 @@ P    3 | xor 48 16 r6
 P    1 | zjmp -37 OK
 P    4 | xor 48 4 r6
 P    5 | ldi -5 8 r1
+       | -> load from -5 + 8 = 3 (with pc and mod 3967)
 P    1 | live -1
 P    2 | zjmp -25 OK
 P    8 | zjmp -37 OK
@@ -899,26 +1032,33 @@ P    2 | live -1
 P    8 | live -1
 P    4 | ld 0 r7
 P    5 | sti r1 -173 8
+       | -> store to -173 + 8 = -165 (with pc and mod 3805)
 P    2 | live -1
 P    1 | ldi -5 8 r1
+       | -> load from -5 + 8 = 3 (with pc and mod 3967)
 P    5 | add r3 r4 r3
 P    3 | zjmp -37 OK
 P    2 | live -1
 P    5 | xor 48 12 r6
 P    4 | zjmp -37 OK
 P    8 | ldi -5 4 r1
+       | -> load from -5 + 4 = -1 (with pc and mod 29)
 P    3 | live -1
 P    2 | live -1
 P    4 | live -1
 P    1 | sti r1 -173 8
+       | -> store to -173 + 8 = -165 (with pc and mod 3805)
 P    2 | live -1
 P    5 | zjmp 13 FAILED
 P    1 | add r3 r4 r3
 P    5 | ld 0 r7
 P    8 | sti r1 -173 4
+       | -> store to -173 + 4 = -169 (with pc and mod -133)
 P    1 | xor 48 12 r6
 P    3 | ldi -5 16 r1
+       | -> load from -5 + 16 = 11 (with pc and mod 3813)
 P    4 | ldi -5 4 r1
+       | -> load from -5 + 4 = -1 (with pc and mod 29)
 P    2 | zjmp -25 OK
 P    8 | add r3 r4 r3
 P    5 | zjmp -37 OK
@@ -928,8 +1068,10 @@ P    1 | zjmp 13 FAILED
 P    5 | live -1
 P    1 | ld 0 r7
 P    3 | sti r1 -173 16
+       | -> store to -173 + 16 = -157 (with pc and mod 3651)
 P    2 | live -1
 P    4 | sti r1 -173 4
+       | -> store to -173 + 4 = -169 (with pc and mod -133)
 P    8 | zjmp 13 FAILED
 P    3 | add r3 r4 r3
 P    2 | live -1
@@ -940,6 +1082,7 @@ P    1 | zjmp -37 OK
 P    4 | xor 48 8 r6
 P    2 | live -1
 P    5 | ldi -5 12 r1
+       | -> load from -5 + 12 = 7 (with pc and mod 3971)
 P    1 | live -1
 P    2 | live -1
 P    8 | zjmp -37 OK
@@ -949,27 +1092,34 @@ P    3 | ld 0 r7
 P    8 | live -1
 P    4 | ld 0 r7
 P    5 | sti r1 -173 12
+       | -> store to -173 + 12 = -161 (with pc and mod 3809)
 P    2 | zjmp -25 OK
 P    1 | ldi -5 12 r1
+       | -> load from -5 + 12 = 7 (with pc and mod 3971)
 P    5 | add r3 r4 r3
 P    2 | live -1
 P    3 | zjmp -37 OK
 P    5 | xor 48 16 r6
 P    4 | zjmp -37 OK
 P    8 | ldi -5 8 r1
+       | -> load from -5 + 8 = 3 (with pc and mod 33)
 P    2 | live -1
 P    3 | live -1
 P    4 | live -1
 P    1 | sti r1 -173 12
+       | -> store to -173 + 12 = -161 (with pc and mod 3809)
 P    2 | live -1
 P    5 | zjmp 13 FAILED
 P    1 | add r3 r4 r3
 P    5 | ld 0 r7
 P    2 | live -1
 P    8 | sti r1 -173 8
+       | -> store to -173 + 8 = -165 (with pc and mod -129)
 P    1 | xor 48 16 r6
 P    3 | ldi -5 20 r1
+       | -> load from -5 + 20 = 15 (with pc and mod 3817)
 P    4 | ldi -5 8 r1
+       | -> load from -5 + 8 = 3 (with pc and mod 33)
 P    2 | live -1
 P    8 | add r3 r4 r3
 P    5 | zjmp -37 OK
@@ -979,7 +1129,9 @@ P    5 | live -1
 P    1 | ld 0 r7
 P    2 | zjmp -25 OK
 P    3 | sti r1 -173 20
+       | -> store to -173 + 20 = -153 (with pc and mod 3655)
 P    4 | sti r1 -173 8
+       | -> store to -173 + 8 = -165 (with pc and mod -129)
 P    8 | zjmp 13 FAILED
 P    2 | live -1
 P    3 | add r3 r4 r3
@@ -990,6 +1142,7 @@ P    1 | zjmp -37 OK
 P    4 | xor 48 12 r6
 P    2 | live -1
 P    5 | ldi -5 16 r1
+       | -> load from -5 + 16 = 11 (with pc and mod 3975)
 P    1 | live -1
 P    2 | live -1
 P    8 | zjmp -37 OK
@@ -1000,26 +1153,33 @@ P    3 | ld 0 r7
 P    8 | live -1
 P    4 | ld 0 r7
 P    5 | sti r1 -173 16
+       | -> store to -173 + 16 = -157 (with pc and mod 3813)
 P    2 | live -1
 P    1 | ldi -5 16 r1
+       | -> load from -5 + 16 = 11 (with pc and mod 3975)
 P    5 | add r3 r4 r3
 P    3 | zjmp -37 OK
 P    5 | xor 48 20 r6
 P    4 | zjmp -37 OK
 P    8 | ldi -5 12 r1
+       | -> load from -5 + 12 = 7 (with pc and mod 37)
 P    2 | zjmp -25 OK
 P    3 | live -1
 P    4 | live -1
 P    1 | sti r1 -173 16
+       | -> store to -173 + 16 = -157 (with pc and mod 3813)
 P    2 | live -1
 P    5 | zjmp 13 FAILED
 P    1 | add r3 r4 r3
 P    5 | ld 0 r7
 P    2 | live -1
 P    8 | sti r1 -173 12
+       | -> store to -173 + 12 = -161 (with pc and mod -125)
 P    1 | xor 48 20 r6
 P    3 | ldi -5 24 r1
+       | -> load from -5 + 24 = 19 (with pc and mod 3821)
 P    4 | ldi -5 12 r1
+       | -> load from -5 + 12 = 7 (with pc and mod 37)
 P    2 | live -1
 P    8 | add r3 r4 r3
 P    5 | zjmp -37 OK
@@ -1030,7 +1190,9 @@ P    5 | live -1
 P    1 | ld 0 r7
 P    2 | live -1
 P    3 | sti r1 -173 24
+       | -> store to -173 + 24 = -149 (with pc and mod 3659)
 P    4 | sti r1 -173 12
+       | -> store to -173 + 12 = -161 (with pc and mod -125)
 P    8 | zjmp 13 FAILED
 P    3 | add r3 r4 r3
 P    4 | add r3 r4 r3
@@ -1040,6 +1202,7 @@ P    1 | zjmp -37 OK
 P    4 | xor 48 16 r6
 P    2 | zjmp -25 OK
 P    5 | ldi -5 20 r1
+       | -> load from -5 + 20 = 15 (with pc and mod 3979)
 P    1 | live -1
 P    2 | live -1
 P    8 | zjmp -37 OK
@@ -1050,18 +1213,22 @@ P    3 | ld 0 r7
 P    8 | live -1
 P    4 | ld 0 r7
 P    5 | sti r1 -173 20
+       | -> store to -173 + 20 = -153 (with pc and mod 3817)
 P    2 | live -1
 P    1 | ldi -5 20 r1
+       | -> load from -5 + 20 = 15 (with pc and mod 3979)
 P    5 | add r3 r4 r3
 P    2 | live -1
 P    3 | zjmp -37 OK
 P    5 | xor 48 24 r6
 P    4 | zjmp -37 OK
 P    8 | ldi -5 16 r1
+       | -> load from -5 + 16 = 11 (with pc and mod 41)
 P    2 | live -1
 P    3 | live -1
 P    4 | live -1
 P    1 | sti r1 -173 20
+       | -> store to -173 + 20 = -153 (with pc and mod 3817)
 P    5 | zjmp 13 FAILED
 P    1 | add r3 r4 r3
 P    5 | ld 0 r7

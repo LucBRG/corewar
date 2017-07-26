@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 14:40:31 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/25 16:57:48 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/26 11:17:13 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "vm.h"
 # include <ncurses.h>
 
-# define SECONDS	100000
+# define SECONDS	1000000
 
 # define HEIGHT		(64 + 2)
 # define WIDTH		(192 + 110)

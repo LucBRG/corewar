@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/20 15:26:09 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/25 16:15:29 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/26 11:20:32 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,7 @@ void	controls(t_battle *battle)
 		else if (c == '+' && SPEED < MAXSPEED)
 			SPEED += STEP;
 		else if (c == '.' && battle->view->pause)
-		{
-			next = getminstep(battle);
-			next += (!next) ? 1 : 2;
-		}
+			next = 1 + getminstep(battle);
 		tmp = 0;
 	}
 }

@@ -14,14 +14,13 @@ int			verif_live(t_battle *battle)
 	while (elem)
 	{
 		process = PROCESS;
-		// printf("%p\tlive : %d\tdead : %d\n", process, process->bot->live, process->dead);
 		if (!process->dead)
 		{
-			total += process->live;
-			// displayprocess(elem);
+			total++;
 			if (!process->live && !process->dead)
 			{
-				//printf("mise a mort de %d(%s)\n", process->bot->id, process->bot->name);
+				total--;
+				process->bot->nbprocess--;
 				process->dead = 1;
 			}
 			process->live = 0;
@@ -56,58 +55,26 @@ void	battle_launch(t_battle *battle)
 {
 	t_list		*elem;
 	int			tmp;
-	long long	dump;
 
-	dump = -100;
-	while (rulescycle(battle) && dump-- != 0) // Le_programme_peut_continuer && battle->dump-- != 0
+	while (rulescycle(battle))
 	{
 		elem = battle->process;
-		// ft_printf("\n\n", PC);
-		showallview(battle);
 		while (elem)
 		{
-			// getch();
 			if (PROCESS->stun > 0)
 				PROCESS->stun--;
-			else if (!PROCESS->dead)
+			if (!PROCESS->dead && !PROCESS->stun)
 			{
-				// int j = 0;
-				// if (ID == - 1)
-				// 	while (++j <= 16)
-				// 		ft_printf("reg %d = %x\n", j , REGISTRE(j));
-				// ft_printf("\n");
-				// ft_printf("Process not dead\n");
 				battle->cur_process = PROCESS;
-				// hexa(battle->memory, MEM_SIZE, 0);
-				// printf("\n\n");
-				// ft_printf("pc actuel = %d\n", PC);
-				// print_memory(battle);
-				// sleep(1);
 				tmp = load_func(battle);
-				// if (tmp) {
-				// 	ft_printf("ADV %d (0x%.4x -> 0x%.4x) ", tmp, PC, PC + tmp);
-				// 	hexa(&INST, tmp, -1);
-				// 	ft_printf("\n");
-				// }
-				// ft_printf("je fais avancer l'id %d de %d\n", PROCESS->id, tmp);
 				PC = SETPC(tmp);
-				// ft_printf("process id %d et stun %d tour et un ", PROCESS->id, PROCESS->stun);
-				// ft_printf("pc = %d\n\n", PC);
-				// ft_printf("stun = %d\n", PROCESS->stun);
-				// ft_printf("i = %d\n", (PC + i) % MEM_SIZE);
 			}
-			// if (loop > 999)
-			// print_memory(battle);
-			// displayprocess(elem);
-			// getchar();
 			elem = elem->next;
 		}
 		battle->fight.loop++;
 		battle->fight.totalloop++;
+		showallview(battle);
 	}
-	// ft_printf("loop = %d\n", loop);
-	if (dump != -1)
-		return ;
 	return ;
 }
 

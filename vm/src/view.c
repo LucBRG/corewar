@@ -87,7 +87,7 @@ void	viewfinnish(t_battle *battle)
 	if (battle->fight.last_live)
 	{
 		mvprintw(0, COL2_X + 10, " Le joueur %d(%s) a gagne\n ",
-			-(battle->fight.last_live->id), battle->fight.last_live->name);
+			battle->fight.last_live->id, battle->fight.last_live->name);
 		getch();
 	}
 	curs_set(1);
