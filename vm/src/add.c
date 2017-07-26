@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 17:47:46 by tferrari          #+#    #+#             */
-/*   Updated: 2017/07/26 11:09:10 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/26 18:18:09 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	add(t_battle *battle, t_command *c)
 {
-
 	if (ISREG(c->params[0]) && ISREG(c->params[1]) && ISREG(c->params[2]))
 	{
 		SETREGISTRE(c->params[2],

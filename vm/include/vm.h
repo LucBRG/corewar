@@ -22,9 +22,14 @@
 # define ISOP(x)			(INST > x && INST <= x)
 # define STUN				battle->cur_process->stun
 # define FLAG				battle->cur_process->flag
+# define OPTS				battle->opts
 
 enum{NOTHING, LIVE, LD, ST, ADD, SUB, AND, OR, XOR, ZJMP, LDI, STI, FORK, LLD,
 	LLDI, LFORK, AFF};
+
+enum{Z, R, D, I};
+
+enum{C_BLACK, C_RED, C_GREEN, C_YELLOW, C_BLUE, C_PURPLE, C_CYAN, C_GREY};
 
 typedef struct s_view	t_view;
 typedef unsigned char	uc;
@@ -76,6 +81,8 @@ typedef struct	s_options
 {
 	int			ncurses : 1;
 	int			verbose : 5;
+	int			dump : 1;
+	int			n_dump;
 }				t_options;
 
 typedef struct	s_battle
@@ -89,6 +96,7 @@ typedef struct	s_battle
 	t_view		*view;
 	t_fight		fight;
 	t_options	opts;
+	char		**env;
 }				t_battle;
 
 typedef struct	s_command
@@ -113,7 +121,7 @@ t_process		newprocess(t_bot *bot, int pc);
 int				chartoint(unsigned char *t, int len);
 char			*inttochar(int *i);
 int				mod(int a, int b);
-t_battle		*initbattle(int ac, char **av);
+t_battle		*initbattle(int ac, char **av, char **env);
 void			battle_launch(t_battle *battle);
 t_list			*addprocess(t_list **list, t_process process);
 t_process 		cpyprocess(t_process *orignal, int pc);
@@ -130,6 +138,11 @@ void			displayprocess(t_list *elem);
 void			print_memory(t_battle *b);
 char			*ft_strhexa(unsigned char *str, int len);
 t_command		getcommand(t_battle *battle, int pc);
+int				isocp(char inst);
+int				t_ind_size(t_battle *battle, char inst, int i, int pc);
+void			size_p(t_battle *battle, t_command *c, int pc);
+
+void			sound(t_battle *battle);
 
 void			add(t_battle *battle, t_command *c);
 void			aff(t_battle *battle, t_command *c);

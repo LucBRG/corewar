@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 13:44:30 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/26 11:41:51 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/26 17:52:50 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	ft_color_mem(t_battle *battle)
 		{
 			colorbase = (1 + pr->bot->rid) % 4;
 			if (pr->last_action[0] != -1 && pr->last_action[1] != -1)
-				setvcolor(battle, pr->last_action[0], colorbase + 8, pr->last_action[1]);
+				setvcolor(battle, pr->last_action[0], colorbase + 8,
+				pr->last_action[1]);
 			VCOLOR[pr->pc] = (colorbase + 4);
 		}
 		elem = elem->next;

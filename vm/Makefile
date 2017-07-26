@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+         #
+#    By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/13 16:44:11 by tferrari          #+#    #+#              #
-#    Updated: 2017/07/24 11:49:33 by dbischof         ###   ########.fr        #
+#    Updated: 2017/07/26 18:01:21 by tferrari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRC_FILE =	add.c aff.c and_ft.c battle.c debug.c fork.c getset_memory.c \
 			loadfunc.c loadmemory.c main.c open.c or_ft.c print_memory.c \
 			process.c st.c sti.c sub.c xor_ft.c zjmp.c check_ocp.c stun.c \
 			view.c showprocess.c getcommand.c showview.c controls.c \
-			getset_registre.c
+			getset_registre.c sound.c getcommand2.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILE))
 

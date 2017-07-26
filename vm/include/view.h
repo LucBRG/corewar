@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 14:40:31 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/26 11:17:13 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/26 18:25:05 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define COLOR_NOT	100
 
 enum{NOT,
-	BLUE_BACK, GREEN_BACK, RED_BACK, YELLOW_BACK, 
+	BLUE_BACK, GREEN_BACK, RED_BACK, YELLOW_BACK,
 	BLUE_PC, GREEN_PC, RED_PC, YELLOW_PC,
 	BLUE_LAST, GREEN_LAST, RED_LAST, YELLOW_LAST
 };

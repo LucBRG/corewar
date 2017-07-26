@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/20 15:26:09 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/26 11:20:32 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/26 18:17:09 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@
 #define MINSPEED	STEP
 #define MAXSPEED	500
 
-void	msgsizescreen()
+void	msgsizescreen(void)
 {
-	const char *msg[3] = {
+	const char	*msg[3] = {
 		"Agrandir la console",
 		"Hauteur : %3d -> %3d",
 		"Largeur : %3d -> %3d"
 	};
-	int y;
+	int			y;
 
 	y = LINES / 2;
 	mvaddstr(y, COLS / 2 - ft_strlen(msg[0]) / 2, msg[0]);
@@ -80,9 +80,9 @@ int		getminstep(t_battle *battle)
 
 void	controls(t_battle *battle)
 {
-	static int next = 0;
-	int c;
-	int tmp;
+	static int	next = 0;
+	int			c;
+	int			tmp;
 
 	if (next > 0)
 		if (!next--)

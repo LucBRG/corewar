@@ -1,7 +1,7 @@
 
 #include "view.h"
 
-void	init_color_view()
+void	init_color_view(void)
 {
 	curs_set(0);
 	init_color(COLOR_WHITE, 700, 700, 700);
@@ -40,7 +40,7 @@ void	initparamsview(t_battle *battle, t_view *view)
 	}
 }
 
-void	refreshall(t_battle * battle)
+void	refreshall(t_battle *battle)
 {
 	int		i;
 
@@ -60,6 +60,7 @@ void	refreshall(t_battle * battle)
 t_view	*initview(t_battle *battle)
 {
 	t_view	*view;
+
 	if (!(view = (t_view*)malloc(sizeof(t_view)))
 		|| !(view->windows = (WINDOW**)malloc(sizeof(WINDOW*) * NBOTS)))
 		return (NULL);
@@ -69,12 +70,12 @@ t_view	*initview(t_battle *battle)
 	nodelay(stdscr, TRUE);
 	if (has_colors())
 	{
-    	start_color();
+		start_color();
 		init_color_view();
 	}
 	initparamsview(battle, view);
 	return (view);
-};
+}
 
 void	viewfinnish(t_battle *battle)
 {
@@ -91,8 +92,8 @@ void	viewfinnish(t_battle *battle)
 		getch();
 	}
 	curs_set(1);
-    endwin();
-    free(VCOLOR);
+	endwin();
+	free(VCOLOR);
 	while (++i < NBOTS)
 		free(battle->view->windows[i]);
 	free(battle->view);

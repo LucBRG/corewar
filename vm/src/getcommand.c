@@ -5,39 +5,7 @@
 #define PARAMS		battle->memory[(pc + ((c->isocp) ? 2 : 1))]
 #define PARAM(n)	(OCP >> ((3 - n) * 2) & 0b11)
 
-int		isocp(char inst)
-{
-	return (inst == LD || inst == ST || inst == ADD || inst == SUB
-		|| inst == AND || inst == OR || inst == XOR || inst == LDI
-		|| inst == STI || inst == LLD || inst == LLDI);
-}
-
-int		t_ind_size(t_battle *battle, char inst, int i, int pc)
-{
-	if ((inst == LD || inst == AND || inst == OR || inst == XOR ||
-	inst == LLD) && PARAM(i) == T_DIR)
-		return (4);
-	else
-		return (PARAM(i));
-}
-
-void	size_p(t_battle *battle, t_command *c, int pc)
-{
-	int i;
-
-	i = -1;
-	if (c->inst == AFF)
-		c->size[0] = 1;
-	else if (c->inst == LIVE)
-		c->size[0] = 4;
-	else if (c->inst == ZJMP || c->inst == FORK || c->inst == LFORK)
-		c->size[0] = 2;
-	else
-		while (++i < 3)
-			c->size[i] = (PARAM(i) != 3) ? t_ind_size(battle, c->inst, i, pc) : 2;
-}
-
-void	params_p(t_battle *battle, t_command *c, int pc)
+void		params_p(t_battle *battle, t_command *c, int pc)
 {
 	int i;
 
@@ -49,7 +17,7 @@ void	params_p(t_battle *battle, t_command *c, int pc)
 		c->params[i] = (c->size[i] == 2) ? (short)(c->params[i]) : c->params[i];
 }
 
-int		getindirect(t_battle *battle, int param, int pc, int l)
+int			getindirect(t_battle *battle, int param, int pc, int l)
 {
 	int	index;
 	uc	tmp[4];
@@ -59,7 +27,7 @@ int		getindirect(t_battle *battle, int param, int pc, int l)
 	return (chartoint(tmp, 4));
 }
 
-void	getallindirect(t_battle *battle, t_command *c, int pc)
+void		getallindirect(t_battle *battle, t_command *c, int pc)
 {
 	if (c->inst == LD && c->type[0] == IND_CODE)
 		c->params[0] = getindirect(battle, c->params[0], pc, 0);
@@ -69,7 +37,7 @@ void	getallindirect(t_battle *battle, t_command *c, int pc)
 		c->params[1] = getindirect(battle, c->params[1], pc, 0);
 }
 
-void	gettype(t_command *c)
+void		gettype(t_command *c)
 {
 	int i;
 

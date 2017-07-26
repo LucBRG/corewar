@@ -1,8 +1,6 @@
 
 #include "vm.h"
 
-enum{C_BLACK, C_RED, C_GREEN, C_YELLOW, C_BLUE, C_PURPLE, C_CYAN, C_GREY};
-
 void	hexa(uc *s, int len, int color)
 {
 	int i;
@@ -12,7 +10,8 @@ void	hexa(uc *s, int len, int color)
 		if (color == -1)
 			ft_printf("%.2x ", s[i]);
 		else
-			ft_printf("\033[4%d;%dm%.2x \033[40;0m", color, (color) ? 30 : 0, s[i]);
+			ft_printf("\033[4%d;%dm%.2x \033[40;0m", color, (color)
+			? 30 : 0, s[i]);
 }
 
 void	debug(uc *s, int len)
@@ -39,14 +38,12 @@ void	displaybot(t_bot *bot)
 {
 	ft_printf("id\t\t: %x\nname\t\t: %s\ncomment\t\t: %s\ninstructions\t: %d\n",
 		bot->id, bot->name, bot->comment, bot->nb_instructions);
-	// hexa(bot->instructions, bot->nb_instructions, bot->id % 6);
-	// ft_printf("\n");
 }
 
 void	displayprocess(t_list *elem)
 {
-	int color;
-	t_process *process;
+	int			color;
+	t_process	*process;
 
 	if (!elem)
 	{
@@ -56,7 +53,8 @@ void	displayprocess(t_list *elem)
 	process = (t_process*)elem->content;
 	color = -process->bot->id % 6;
 	ft_printf("\033[3%dm", color);
-	ft_printf("process\t: %p\npc\t: %d\nstun\t: %d\n", process, process->pc, process->stun);
+	ft_printf("process\t: %p\npc\t: %d\nstun\t: %d\n", process,
+	process->pc, process->stun);
 	hexa((uc*)process->registre, REG_NUMBER * REG_SIZE, color);
 	ft_printf("\n");
 	ft_printf("\033[3%dm", color);

@@ -1,7 +1,7 @@
 
 #include "vm.h"
 
-# define TYPEVAR(x)	((c->type[x] == REG_CODE) ? "r" : "")
+#define TYPEVAR(x)	((c->type[x] == REG_CODE) ? "r" : "")
 
 void	printfunc(t_battle *battle, t_command *c)
 {
@@ -34,8 +34,8 @@ void	printfunc(t_battle *battle, t_command *c)
 
 int		load_func(t_battle *battle)
 {
-	int pc;
-	t_command command;
+	int			pc;
+	t_command	command;
 
 	pc = PC;
 	command = getcommand(battle, pc);

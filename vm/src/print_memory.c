@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_memory.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 17:45:54 by tferrari          #+#    #+#             */
-/*   Updated: 2017/07/19 15:30:28 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/26 17:58:19 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,15 @@ void			print_memory(t_battle *battle)
 	i = -1;
 	while (++i < MEM_SIZE)
 	{
-		// if (battle->memory[i] > 0)
-			ft_printf("\e[38;5;%dm%.2x "RST, ((battle->print_mem[i] == 0) ? 255 : battle->print_mem[i] % 255),
-			battle->memory[i]);
-		// else
-			// ft_printf(RST"%.2x", b->print_mem[i]);
+		ft_printf("\e[38;5;%dm%.2x "RST, ((battle->print_mem[i] == 0) ? 255 :
+		battle->print_mem[i] % 255), battle->memory[i]);
+		if (OPTS.dump && i % 32 == 0)
+			ft_printf("\n");
 	}
 	ft_printf("\n");
-	// ft_printf("\nreg 9 = %.2x\n", REGISTRE(9));
-	// ft_printf("id = %d\n", battle->bot->id);
 }
 
-void	ft_octethexa(char *src, char o)
+void			ft_octethexa(char *src, char o)
 {
 	char q1;
 	char q2;
@@ -44,7 +41,7 @@ void	ft_octethexa(char *src, char o)
 	src[1] = HEXA(q2);
 }
 
-char	*ft_strhexa(unsigned char *str, int len)
+char			*ft_strhexa(unsigned char *str, int len)
 {
 	int		i;
 	char	*mem;

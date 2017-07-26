@@ -6,19 +6,20 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/01 14:02:24 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/26 12:10:15 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/26 17:59:34 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int			getid()
+int			getid(void)
 {
 	static int id = 0;
+
 	return (++id);
 }
 
-t_process newprocess(t_bot *bot, int pc)
+t_process	newprocess(t_bot *bot, int pc)
 {
 	t_process process;
 
@@ -39,7 +40,7 @@ t_process newprocess(t_bot *bot, int pc)
 	return (process);
 }
 
-t_process cpyprocess(t_process *orignal, int pc)
+t_process	cpyprocess(t_process *orignal, int pc)
 {
 	t_process process;
 
