@@ -1,7 +1,7 @@
 
 #include "vm.h"
 
-#define ISFLAG(l)	(!!ft_strchr(av[i], l))
+#define IFFLAG(l)		(!!ft_strstr(av[i], l))
 
 void	initoptions(int ac, char **av, t_battle *battle)
 {
@@ -11,25 +11,25 @@ void	initoptions(int ac, char **av, t_battle *battle)
 	while (++i < ac)
 		if (av[i][0] == '-')
 		{
-			battle->opts.ncurses = ISFLAG('n');
-			if (ISFLAG('v') && i + 1 < ac)
-				battle->opts.verbose = ft_atoi(av[i + 1]);
+			OPTS.ncurses = (!OPTS.ncurses) ? IFFLAG("n") : OPTS.ncurses;
+			if (IFFLAG("v") && i + 1 < ac)
+				OPTS.verbose = ft_atoi(av[i + 1]);
+			if ((OPTS.dump = IFFLAG("dump")) && i + 1 < ac)
+				OPTS.n_dump = ft_atoi(av[i + 1]);
 		}
 }
 
-void getoptions(t_battle *battle)
+void	getoptions(t_battle *battle)
 {
 	if (battle->opts.ncurses)
 		battle->view = initview(battle);
 }
 
-int	main(int ac, char **av)
+int		main(int ac, char **av, char **en)
 {
-	int			i;
 	t_battle	*b;
-	i = -1;
 
-	if (!(b = initbattle(ac, av)))
+	if (!(b = initbattle(ac, av, en)))
 		return (0);
 	initoptions(ac, av, b);
 	getoptions(b);
@@ -41,5 +41,7 @@ int	main(int ac, char **av)
 			ft_printf("le joueur %d(%s) a gagne\n",
 				b->fight.last_live->id, b->fight.last_live->name);
 	}
+	if (b->opts.dump)
+		print_memory(b);
 	return (0);
 }

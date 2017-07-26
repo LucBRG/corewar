@@ -22,6 +22,8 @@ int			verif_live(t_battle *battle)
 				total--;
 				process->bot->nbprocess--;
 				process->dead = 1;
+				if (OPTS.ncurses)
+					sound(battle);
 			}
 			process->live = 0;
 		}
@@ -34,24 +36,28 @@ int			rulescycle(t_battle *battle)
 {
 	int			live;
 
-	if (battle->fight.loop == battle->fight.limitloop)
+	if (OPTS.dump)
+		OPTS.n_dump--;
+	if (OPTS.dump && OPTS.n_dump <= 0)
+		return (0);
+	if (battle->fight.cycle == battle->fight.cycle_to_die)
 	{
 		if (!(live = verif_live(battle)))
 			return (0);
 		if (live >= NBR_LIVE)
-			battle->fight.limitloop -= CYCLE_DELTA;
-		if (battle->fight.cycle >= MAX_CHECKS)
+			battle->fight.cycle_to_die -= CYCLE_DELTA;
+		if (battle->fight.checks >= MAX_CHECKS)
 		{
-			battle->fight.cycle = 0;
-			battle->fight.limitloop--;
+			battle->fight.checks = 0;
+			battle->fight.cycle_to_die--;
 		}
-		battle->fight.loop = 0;
-		battle->fight.cycle++;
+		battle->fight.cycle = 0;
+		battle->fight.checks++;
 	}
 	return (1);
 }
 
-void	battle_launch(t_battle *battle)
+void		battle_launch(t_battle *battle)
 {
 	t_list		*elem;
 	int			tmp;
@@ -71,8 +77,8 @@ void	battle_launch(t_battle *battle)
 			}
 			elem = elem->next;
 		}
-		battle->fight.loop++;
-		battle->fight.totalloop++;
+		battle->fight.cycle++;
+		battle->fight.totalcycle++;
 		showallview(battle);
 	}
 	return ;
@@ -98,21 +104,23 @@ void		initbattle_func(t_battle *battle)
 	battle->func[15] = aff;
 }
 
-t_battle	*initbattle(int ac, char **av)
+t_battle	*initbattle(int ac, char **av, char **en)
 {
 	t_battle	*b;
 
 	if (!(b = malloc(sizeof(t_battle))))
 		return (NULL);
+	b->env = en;
 	b->bots = loadbots(ac, av);
 	if (!(b->process = loadmemory(b)))
 		return (NULL);
 	b->view = NULL;
-	b->fight.loop = 0;
-	b->fight.totalloop = 0;
 	b->fight.cycle = 0;
-	b->fight.limitloop = CYCLE_TO_DIE;
+	b->fight.totalcycle = 0;
+	b->fight.checks = 0;
+	b->fight.cycle_to_die = CYCLE_TO_DIE;
 	b->fight.last_live = NULL;
 	initbattle_func(b);
+	ft_bzero(&b->opts, sizeof(b->opts));
 	return (b);
 }

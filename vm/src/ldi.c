@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ldi.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 10:43:46 by tferrari          #+#    #+#             */
-/*   Updated: 2017/07/26 11:10:53 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/07/26 18:09:36 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,12 @@ void	ldi(t_battle *battle, t_command *c)
 	int	i;
 
 	i = -1;
-	// ft_printf("param 3 = %d\n", params[2]);
 	while (++i < 3)
 		if (c->size[i] == REG_CODE && !ISREG(c->params[i]))
 			return ;
 		else if (i < 2 && c->type[i] == REG_CODE)
 			c->params[i] = GETREGISTRE(c->params[i]);
-	getmemory(battle, SETPC((c->params[0] + c->params[1]) % IDX_MOD), str, SIZE);
+	getmemory(battle, SETPC((c->params[0] + c->params[1]) % IDX_MOD),
+	str, SIZE);
 	SETREGISTRE(c->params[2], chartoint(str, SIZE));
-	// ft_printf("ldi reg = %d et valeur reg = %x\n",params[2], REGISTRE(params[2]));
 }

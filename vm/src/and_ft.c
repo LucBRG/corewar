@@ -13,5 +13,4 @@ void	and_ft(t_battle *battle, t_command *c)
 			c->params[i] = GETREGISTRE(c->params[i]);
 	SETREGISTRE(c->params[2], c->params[0] & c->params[1]);
 	CARRY = !GETREGISTRE(c->params[2]);
-
 }

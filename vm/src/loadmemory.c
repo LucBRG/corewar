@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 16:53:41 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/20 17:49:21 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/07/26 18:06:52 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ t_list		*loadmemory(t_battle *b)
 	while (++i < b->bots.nb)
 	{
 		index_bot = (j + i * space);
-		// ft_printf("passe");
 		if (!addprocess(&list, newprocess(b->bots.tab[i], index_bot)))
 			return (NULL);
 		b->cur_process = (t_process*)list->content;

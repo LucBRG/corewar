@@ -12,11 +12,8 @@
 #define IDR		C(I, D, R)
 #define IRZ		C(I, R, Z)
 
-enum{Z, R, D, I};
-
 int			check_ocp(char inst, char ocp)
 {
-	// ft_printf("ocp = %x, RIZ = %x\n", ocp, C(R, I, Z));
 	const char	tab[16][10] = {
 				{0},
 				{C(D, R, Z), IRZ, 0},
@@ -35,7 +32,6 @@ int			check_ocp(char inst, char ocp)
 				{0},
 				{0},
 	};
+
 	return (!!ft_strchr(tab[(int)inst - 1], ocp));
 }
-
-
