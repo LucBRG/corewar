@@ -11,7 +11,7 @@ void	initoptions(int ac, char **av, t_battle *battle)
 	while (++i < ac)
 		if (av[i][0] == '-')
 		{
-			OPTS.ncurses = (!OPTS.ncurses) ? IFFLAG("n") : OPTS.ncurses;
+			OPTS.ncurses = (!OPTS.ncurses) ? IFFLAG("c") : OPTS.ncurses;
 			if (IFFLAG("v") && i + 1 < ac)
 				OPTS.verbose = ft_atoi(av[i + 1]);
 			if ((OPTS.dump = IFFLAG("dump")) && i + 1 < ac)

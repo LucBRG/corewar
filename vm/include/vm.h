@@ -74,6 +74,7 @@ typedef struct	s_fight
 	int			cycle_to_die;
 	int			checks;
 	int			totalcycle;
+	int			first_cycle;
 	t_bot		*last_live;
 }				t_fight;
 
