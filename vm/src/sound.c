@@ -7,7 +7,7 @@ void	sound(t_battle *battle)
 	// int			tmp;
 	static char	*tab[] = {
 						"/usr/bin/afplay",
-						"/Users/tferrari/Documents/Corewar/vm/sound/0437.mp3",
+						"/sound/0437.mp3",
 						NULL
 	};
 
