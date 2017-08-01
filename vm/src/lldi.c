@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 11:37:02 by tferrari          #+#    #+#             */
-/*   Updated: 2017/07/26 15:54:30 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/08/01 15:34:24 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 void	lldi(t_battle *battle, t_command *c)
 {
-	uc	str[SIZE];
-	int	i;
+	t_uc	str[SIZE];
+	int		i;
 
 	i = -1;
 	while (++i < 3)

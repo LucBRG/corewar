@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   loadbots.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/08/01 15:30:57 by tferrari          #+#    #+#             */
+/*   Updated: 2017/08/01 15:30:59 by tferrari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "vm.h"
 
@@ -24,14 +35,15 @@ int		checkid(t_bots *bots, int id)
 
 int		getuniqid(char **av, int i, t_bots *bots)
 {
-	static int id = 0;
-	int	idtmp;
+	static int	id = 0;
+	int			idtmp;
 
 	idtmp = getidparam(av, i);
 	if (idtmp)
 		return (idtmp);
 	else
-		while (!checkid(bots, --id));
+		while (!checkid(bots, --id))
+			;
 	return (id);
 }
 

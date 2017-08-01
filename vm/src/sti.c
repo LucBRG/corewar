@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 15:32:11 by tferrari          #+#    #+#             */
-/*   Updated: 2017/08/01 14:40:15 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/08/01 15:34:01 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	sti(t_battle *battle, t_command *c)
 {
-	uc	*str;
-	int	i;
+	t_uc	*str;
+	int		i;
 
 	i = -1;
 	while (++i < 3)
