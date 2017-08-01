@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   getcommand.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/08/01 15:29:20 by tferrari          #+#    #+#             */
+/*   Updated: 2017/08/01 15:29:32 by tferrari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "vm.h"
 
@@ -19,8 +30,8 @@ void		params_p(t_battle *battle, t_command *c, int pc)
 
 int			getindirect(t_battle *battle, int param, int pc, int l)
 {
-	int	index;
-	uc	tmp[4];
+	int		index;
+	t_uc	tmp[4];
 
 	index = (l) ? ((pc + param) % IDX_MOD) : (pc + param);
 	getmemory(battle, index, tmp, 4);
