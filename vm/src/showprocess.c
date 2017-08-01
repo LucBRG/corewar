@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 13:44:30 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/26 17:52:50 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/08/01 13:27:33 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	showbot(t_battle *battle)
 		win = battle->view->windows[i];
 		bot = battle->bots.tab[i - 1];
 		wattron(win, COLOR_PAIR(i));
-		mvwprintw(win, 1, 1, "Nom\t\t: %s", bot->name);
+		mvwprintw(win, 1, 1, "Nom\t\t: %s (%d)", bot->name, bot->id);
 		mvwprintw(win, 2, 1, "Description\t: %s", bot->comment);
 		mvwprintw(win, 4, 1, "%-3d Processus\t:", bot->nbprocess);
 		mvwprintw(win, 5, 4,
