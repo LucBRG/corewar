@@ -45,8 +45,8 @@ void	showallview(t_battle *battle)
 	box(battle->view->windows[1], ACS_VLINE, ACS_HLINE);
 	mvprintw(0, 10, " Speed : %d/s    Total cycle : %6d Cycle : "
 		"%4d    Limit : %4d    Check : %4d ",
-		battle->view->speed, battle->fight.totalcycle, battle->fight.checks,
-		battle->fight.cycle_to_die, battle->fight.cycle);
+		battle->view->speed, battle->fight.totalcycle, battle->fight.cycle,
+		battle->fight.cycle_to_die, battle->fight.checks);
 	mvprintw(0, COL2_X + 10, " Dernier joueur rapporte vivant : %s ",
 		(battle->fight.last_live) ? battle->fight.last_live->name : "");
 	controls(battle);

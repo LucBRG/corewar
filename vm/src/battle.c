@@ -16,7 +16,7 @@ int			verif_live(t_battle *battle)
 		process = PROCESS;
 		if (!process->dead)
 		{
-			total++;
+			total += process->live;
 			if (!process->live && !process->dead)
 			{
 				total--;
@@ -40,20 +40,22 @@ int			rulescycle(t_battle *battle)
 		OPTS.n_dump--;
 	if (OPTS.dump && OPTS.n_dump <= 0)
 		return (0);
-	if (battle->fight.cycle == battle->fight.cycle_to_die &&
-		battle->fight.totalcycle > battle->fight.cycle_to_die)
+	if (battle->fight.cycle >= battle->fight.cycle_to_die)
 	{
-		if (!(live = verif_live(battle)))
-			return (0);
-		if (live >= NBR_LIVE)
-			battle->fight.cycle_to_die -= CYCLE_DELTA;
-		if (battle->fight.checks >= MAX_CHECKS)
+		if (battle->fight.totalcycle > battle->fight.cycle_to_die)
 		{
-			battle->fight.checks = 0;
-			battle->fight.cycle_to_die--;
+			if (!(live = verif_live(battle)))
+				return (0);
+			if (live >= NBR_LIVE)
+				battle->fight.cycle_to_die -= CYCLE_DELTA;
+			if (battle->fight.checks >= MAX_CHECKS)
+			{
+				battle->fight.checks = 0;
+				battle->fight.cycle_to_die--;
+			}
+			battle->fight.checks++;
 		}
 		battle->fight.cycle = 0;
-		battle->fight.checks++;
 	}
 	return (1);
 }
