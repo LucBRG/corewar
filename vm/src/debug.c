@@ -6,13 +6,13 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/01 15:29:06 by tferrari          #+#    #+#             */
-/*   Updated: 2017/08/01 15:29:08 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/08/01 15:38:31 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	hexa(uc *s, int len, int color)
+void	hexa(t_uc *s, int len, int color)
 {
 	int i;
 
@@ -25,7 +25,7 @@ void	hexa(uc *s, int len, int color)
 			? 30 : 0, s[i]);
 }
 
-void	debug(uc *s, int len)
+void	debug(t_uc *s, int len)
 {
 	int i;
 
@@ -66,7 +66,7 @@ void	displayprocess(t_list *elem)
 	ft_printf("\033[3%dm", color);
 	ft_printf("process\t: %p\npc\t: %d\nstun\t: %d\n", process,
 	process->pc, process->stun);
-	hexa((uc*)process->registre, REG_NUMBER * REG_SIZE, color);
+	hexa((t_uc*)process->registre, REG_NUMBER * REG_SIZE, color);
 	ft_printf("\n");
 	ft_printf("\033[3%dm", color);
 	displaybot(process->bot);

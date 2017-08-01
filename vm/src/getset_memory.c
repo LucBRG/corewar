@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/01 15:29:54 by tferrari          #+#    #+#             */
-/*   Updated: 2017/08/01 15:30:07 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/08/01 15:39:07 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int			mod(int a, int b)
 	return (ret);
 }
 
-int			setmemory(t_battle *battle, int index, uc *s, int len)
+int			setmemory(t_battle *battle, int index, t_uc *s, int len)
 {
 	int i;
 
@@ -42,7 +42,7 @@ int			setmemory(t_battle *battle, int index, uc *s, int len)
 	return (1);
 }
 
-t_uc		*getmemory(t_battle *battle, int index, uc *buff, int len)
+t_uc		*getmemory(t_battle *battle, int index, t_uc *buff, int len)
 {
 	int i;
 

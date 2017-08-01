@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/01 15:27:13 by tferrari          #+#    #+#             */
-/*   Updated: 2017/08/01 15:27:14 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/08/01 16:28:59 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int			verif_live(t_battle *battle)
 				total--;
 				process->bot->nbprocess--;
 				process->dead = 1;
-				if (OPTS.ncurses)
-					sound(battle);
+				// if (OPTS.ncurses)
+				// 	sound(battle);
 			}
 			process->live = 0;
 		}

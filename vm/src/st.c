@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/01 15:32:52 by tferrari          #+#    #+#             */
-/*   Updated: 2017/08/01 15:32:57 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/08/01 15:39:28 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	st(t_battle *battle, t_command *c)
 	if (ISREG(c->params[0]))
 	{
 		c->params[0] = GETREGISTRE(c->params[0]);
-		str = (uc*)inttochar(&c->params[0]);
+		str = (t_uc*)inttochar(&c->params[0]);
 		setmemory(battle, SETPC(c->params[1] % IDX_MOD), str, sizeof(int));
 	}
 }

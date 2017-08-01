@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/01 15:32:30 by tferrari          #+#    #+#             */
-/*   Updated: 2017/08/01 15:32:31 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/08/01 15:40:19 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	showmemory(t_battle *battle)
 	i = 0;
 	ft_memcpy(VCOLOR, battle->print_mem, MEM_SIZE);
 	ft_color_mem(battle);
-	tmp = ft_strhexa((uc*)battle->memory, MEM_SIZE);
+	tmp = ft_strhexa((t_uc*)battle->memory, MEM_SIZE);
 	len = ft_strlen(tmp);
 	wmove(VIEWMEM, 1, 2);
 	while (i < len)

@@ -6,7 +6,7 @@
 /*   By: zaz <zaz@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2017/06/26 14:43:45 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/08/01 16:11:19 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,3 @@ t_op	g_op_tab[17] =
 	{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0},
 	{"", 0, {0, 0, 0}, 0, 0, "", 0, 0}
 };
-
-
-// last arg = si 1 alors dir code sur 2 octects
-// last arg = si 0 alors dir code sur 4 octects

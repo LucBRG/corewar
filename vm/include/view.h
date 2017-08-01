@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 14:40:31 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/26 18:25:05 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/08/01 15:45:55 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ enum{NOT,
 	BLUE_LAST, GREEN_LAST, RED_LAST, YELLOW_LAST
 };
 
-typedef struct s_battle t_battle;
+typedef struct s_battle	t_battle;
 
 typedef struct	s_view {
 	WINDOW		**windows;
@@ -54,14 +54,14 @@ typedef struct	s_view {
 	int			screendown;
 }				t_view;
 
-t_view	*initview(t_battle *battle);
-void	viewfinnish(t_battle *battle);
-void	showallview(t_battle *battle);
-void	ft_color_mem(t_battle *battle);
-void	color_pc(t_battle *battle);
-void	showbot(t_battle *battle);
-void	controls(t_battle *battle);
-void	refreshall(t_battle *battle);
-void	setvcolor(t_battle *battle, int index, int color, int len);
+t_view			*initview(t_battle *battle);
+void			viewfinnish(t_battle *battle);
+void			showallview(t_battle *battle);
+void			ft_color_mem(t_battle *battle);
+void			color_pc(t_battle *battle);
+void			showbot(t_battle *battle);
+void			controls(t_battle *battle);
+void			refreshall(t_battle *battle);
+void			setvcolor(t_battle *battle, int index, int color, int len);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 13:44:30 by dbischof          #+#    #+#             */
-/*   Updated: 2017/08/01 13:27:33 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/08/01 15:40:31 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	showprocess(t_battle *battle, WINDOW *win, t_process *process, int posy)
 	i = -1;
 	c = getcommand(battle, process->pc);
 	ft_bzero(tmp, 10);
-	getmemory(battle, process->pc, (uc*)tmp, 2);
-	tmp2 = ft_strhexa((uc*)tmp, 10);
+	getmemory(battle, process->pc, (t_uc*)tmp, 2);
+	tmp2 = ft_strhexa((t_uc*)tmp, 10);
 	mvwprintw(win, posy, 1, "%-3c%.2x\t%-4s\t",
 		((process->carry) ? 'v' : 'x'), c.inst,
 		((c.error) ? "" : instructions[c.inst]));
