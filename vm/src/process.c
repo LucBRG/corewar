@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/01 14:02:24 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/26 17:59:34 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/08/01 14:41:14 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_process	cpyprocess(t_process *orignal, int pc)
 	process.live = 0;
 	process.carry = orignal->carry;
 	ft_memcpy(process.registre, orignal->registre, REG_NUMBER * REG_SIZE);
+	// ft_printf("r1 = %d\n", orignal->registre[0]);
 	process.flag = 0;
 	process.last_action[0] = -1;
 	process.last_action[1] = -1;

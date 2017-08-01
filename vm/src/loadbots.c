@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   loadbots.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/31 14:14:51 by dbischof          #+#    #+#             */
-/*   Updated: 2017/08/01 14:56:56 by dbischof         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "vm.h"
 
@@ -19,7 +8,7 @@ int		getidparam(char **av, int i)
 	id = 0;
 	if (i - 2 >= 0 && ft_strequ(av[i - 2], "-n"))
 		id = ft_atoi(av[i - 1]);
-	return (id);	
+	return (id);
 }
 
 int		checkid(t_bots *bots, int id)
