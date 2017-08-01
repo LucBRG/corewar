@@ -40,7 +40,8 @@ int			rulescycle(t_battle *battle)
 		OPTS.n_dump--;
 	if (OPTS.dump && OPTS.n_dump <= 0)
 		return (0);
-	if (battle->fight.cycle == battle->fight.cycle_to_die)
+	if (battle->fight.cycle == battle->fight.cycle_to_die &&
+		battle->fight.totalcycle > battle->fight.cycle_to_die)
 	{
 		if (!(live = verif_live(battle)))
 			return (0);
