@@ -8,6 +8,7 @@ void	sound(t_battle *battle)
 	static char	*tab[] = {
 						"/usr/bin/afplay",
 						"sound/0437.mp3",
+
 						NULL
 	};
 
