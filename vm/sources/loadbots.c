@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loadbots.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/01 15:30:57 by tferrari          #+#    #+#             */
-/*   Updated: 2017/08/01 15:30:59 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/08/01 17:15:15 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,19 @@ int		checkid(t_bots *bots, int id)
 	return (1);
 }
 
-int		getuniqid(char **av, int i, t_bots *bots)
+void	getuniqid(t_bots *bots)
 {
 	static int	id = 0;
-	int			idtmp;
+	int			i;
 
-	idtmp = getidparam(av, i);
-	if (idtmp)
-		return (idtmp);
-	else
-		while (!checkid(bots, --id))
-			;
-	return (id);
+	i = -1;
+	while (++i < bots->nb)
+		if (!bots->tab[i]->id)
+		{
+			while (!checkid(bots, --id))
+				;
+			bots->tab[i]->id = id;
+		}
 }
 
 int		checkids(t_bots *bots)
@@ -76,11 +77,12 @@ t_bots	loadbots(int ac, char **av)
 		if (av[i][0] != '-' && (tmp = creabot(av[i])))
 		{
 			bots.tab[bots.nb] = tmp;
-			bots.tab[bots.nb]->id = getuniqid(av, i, &bots);
+			bots.tab[bots.nb]->id = getidparam(av, i);
 			bots.tab[bots.nb]->rid = bots.nb;
 			bots.nb++;
 		}
 	}
+	getuniqid(&bots);
 	if (!checkids(&bots))
 	{
 		ft_printf("error id\n");

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+         #
+#    By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/13 16:44:11 by tferrari          #+#    #+#              #
-#    Updated: 2017/07/26 18:01:21 by tferrari         ###   ########.fr        #
+#    Updated: 2017/08/01 17:07:17 by dbischof         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME = corewar
 
-SRC_DIR = src
+SRC_DIR = sources
 
 SRC_FILE =	add.c aff.c and_ft.c battle.c debug.c fork.c getset_memory.c \
 			intchar.c ld.c ldi.c lfork.c live.c lld.c lldi.c loadbots.c \
@@ -29,18 +29,15 @@ OBJS_DIR = obj
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(SRC_FILE:.c=.o))
 
-INC = -I../libft/includes -Iinclude
+INC = -I ../libft/includes -I ./includes
 
-LFT = -L./../libft -lft
+LFT = -L ../libft -lft
 
-all : libft $(NAME)
+all : $(NAME)
 
 $(NAME): $(OBJS)
 	@gcc -Wall -Werror -Wextra $(LFT) -lncurses -o $(NAME) $(OBJS)
 	@echo "\033[32mexecutable corewar(a.out) créé\033[0m"
-
-libft:
-	make -C ../libft/
 
 $(OBJS_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJS_DIR)
@@ -49,13 +46,15 @@ $(OBJS_DIR)/%.o: $(SRC_DIR)/%.c
 
 clean:
 	@rm -rf $(OBJS_DIR)
-	@make -C ../Libft clean
 	@echo "\033[31mFichier objet de corewar supprimé\033[0m"
 
 fclean: clean
 	@rm -f $(NAME)
-	@rm -f ../libft/libft.a
 	@echo "\033[31mLibft.a supprimé\033[0m"
 	@echo "\033[31mcorewar supprimé\033[0m"
 
 re: fclean all
+
+norme:
+	@norminette ./sources/
+	@norminette ./includes/

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mdeglain <mdeglain@student.42.fr>          +#+  +:+       +#+         #
+#    By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 11:02:03 by mdeglain          #+#    #+#              #
-#    Updated: 2017/06/14 16:50:15 by lbrugero         ###   ########.fr        #
+#    Updated: 2017/08/01 16:57:38 by dbischof         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,15 +49,11 @@ WHITE = \e[1;37m
 
 .PHONY: all libft clean fclean re norme
 
-all: libft $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) $(LIB) $(OBJ) -o $@
 	@printf "$(RED)[:D $(NAME) READY :D]$(NO_C)"
-
-libft:
-	@make -C $(LIB_PATH)
-	@printf "$(GREEN)[/!\ libft READY /!\]$(NO_C)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
@@ -65,19 +61,15 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 
 clean:
 	@rm -rf $(OBJ_PATH)
-	@make clean -C $(LIB_PATH)
 	@printf "$(PURPLE)[-_-|cleaned|-_-]$(NO_C)"
 
 fclean: clean
 	@rm -f $(NAME)
-	@make fclean -C $(LIB_PATH)
 	@printf "$(LBLUE)[...|fcleaned|...]$(NO_C)"
 
 re: fclean all
 	@printf "$(WHITE)[En Taro Tassadar]$(NO_C)"
 
 norme:
-	@clear
-	@make norme -C ../libft
-	@norminette ./sources/*.c
-	@norminette ./includes/*.h
+	@norminette ./sources/
+	@norminette ./includes/
