@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 14:00:54 by dbischof          #+#    #+#             */
-/*   Updated: 2017/07/26 11:30:56 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/08/21 15:14:29 by dbischof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,6 @@ t_bot	*creabot(char *path)
 	bot->instructions = (unsigned char*)malloc(bot->nb_instructions);
 	ft_memcpy(bot->instructions, (bot_brut + INSTA), bot->nb_instructions);
 	bot->nbprocess = 0;
+	ft_memdel((void**)&bot_brut);
 	return (bot);
 }
