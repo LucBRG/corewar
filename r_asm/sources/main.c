@@ -21,6 +21,8 @@ static void	init_struct(t_asm *env)
 	i = -1;
 	while (++i < REG_NUMBER)
 		env->reg[i] = -1;
+	ft_bzero(env->prog_name, PROG_NAME_LENGTH + 1);
+	ft_bzero(env->comment, COMMENT_LENGTH + 1);
 }
 
 static void	free_struct(t_asm *env)
