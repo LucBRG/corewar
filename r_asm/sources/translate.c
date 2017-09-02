@@ -14,10 +14,10 @@
 
 static void	write_progsize(t_asm *env, int fd)
 {
-	t_arg			*lst;
+	t_arg		*lst;
 	unsigned int	size;
-	int				i;
-	char			c;
+	int		i;
+	char		c;
 
 	lst = env->args;
 	size = 0;
@@ -41,7 +41,7 @@ static void	write_progsize(t_asm *env, int fd)
 
 static void	write_comment(t_asm *env, int fd)
 {
-	int				i;
+	int		i;
 	unsigned char	c;
 
 	i = 0;
@@ -54,8 +54,8 @@ static void	write_comment(t_asm *env, int fd)
 
 static void	write_header(t_asm *env, int fd)
 {
-	int				i;
-	int				nb;
+	int		i;
+	int		nb;
 	unsigned char	c;
 
 	i = 3;
@@ -82,7 +82,7 @@ static void	write_header(t_asm *env, int fd)
 static void	write_core(t_asm *env, int fd)
 {
 	t_arg	*lst;
-	int		line;
+	int	line;
 
 	lst = env->args;
 	line = 0;
@@ -105,13 +105,13 @@ static void	write_core(t_asm *env, int fd)
 
 char		*translate(t_asm *env, char *str)
 {
-	int				fd;
-	char			*name;
-	int				len;
+	int	fd;
+	char	*name;
+	int	len;
 
 	len = ft_strlen(str);
-	name = ft_strnew(len);
-	name = ft_strncpy(name, str, len - 1);
+	name = ft_strnew(len+2);
+	name = ft_strncpy(name, str, len-1);
 	name = ft_strcat(name, "cor");
 	fd = open(name, O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	write_header(env, fd);
