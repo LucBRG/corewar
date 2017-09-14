@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/01 15:31:29 by tferrari          #+#    #+#             */
-/*   Updated: 2017/08/21 15:14:39 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/09/14 16:17:00 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int		main(int ac, char **av, char **en)
 {
 	t_battle	*b;
 
+	if (ac == 1)
+		return (help());
 	if (!(b = initbattle(ac, av, en)))
 		return (0);
 	initoptions(ac, av, b);

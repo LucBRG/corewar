@@ -6,7 +6,7 @@
 /*   By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/01 15:25:16 by dbischof          #+#    #+#             */
-/*   Updated: 2017/08/01 15:34:20 by dbischof         ###   ########.fr       */
+/*   Updated: 2017/09/14 16:17:05 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ int				t_ind_size(t_battle *battle, char inst, int i, int pc);
 void			size_p(t_battle *battle, t_command *c, int pc);
 
 void			sound(t_battle *battle);
+int				help();
 
 void			add(t_battle *battle, t_command *c);
 void			aff(t_battle *battle, t_command *c);
