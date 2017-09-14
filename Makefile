@@ -6,13 +6,13 @@
 #    By: dbischof <dbischof@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/13 16:44:11 by tferrari          #+#    #+#              #
-#    Updated: 2017/08/01 17:18:26 by dbischof         ###   ########.fr        #
+#    Updated: 2017/09/14 16:27:01 by lbrugero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY: libft
 
-ASM = r_asm
+ASM = asm
 
 VM = vm
 
