@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 17:45:54 by tferrari          #+#    #+#             */
-/*   Updated: 2017/07/26 17:58:19 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/09/14 17:00:41 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void			print_memory(t_battle *battle)
 	i = -1;
 	while (++i < MEM_SIZE)
 	{
+		if (OPTS.dump && i % 32 == 0 && i > 0)
+			ft_printf("\n");
 		ft_printf("\e[38;5;%dm%.2x "RST, ((battle->print_mem[i] == 0) ? 255 :
 		battle->print_mem[i] % 255), battle->memory[i]);
-		if (OPTS.dump && i % 32 == 0)
-			ft_printf("\n");
 	}
 	ft_printf("\n");
 }
