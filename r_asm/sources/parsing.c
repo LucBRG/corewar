@@ -72,7 +72,7 @@ static void	parse_header(t_asm *env)
 			copy_header(env->comment, env,
 				ft_strlen(COMMENT_CMD_STRING), 2);
 		else
-			show_err(3, env->i);
+			show_err2(7, env->i);
 		env->i++;
 		env->header_len++;
 	}

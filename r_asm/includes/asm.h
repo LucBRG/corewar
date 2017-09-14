@@ -61,6 +61,7 @@ typedef	struct		s_op
 int					cor_strchr(const char *s, int c);
 int					parsing_asm(t_asm *env, t_file *file);
 void				show_err(int id, int line);
+void				show_err2(int id, int line);
 t_arg				*arg_create(void);
 void				arg_delete(t_arg **head);
 void				arg_add(t_arg **head, t_arg *arg);

@@ -51,7 +51,7 @@ void		show_err2(int id, int line)
 		ft_putnbr_fd(line + 1, 2);
 	}
 	else if (id == 7)
-		ft_putstr_fd("Need .name and .comment attribute", 2);
+		ft_putstr_fd("Void/Missing name or/and comment", 2);
 	else if (id == 8)
 	{
 		ft_putstr_fd("Bad number of argument: line ", 2);
