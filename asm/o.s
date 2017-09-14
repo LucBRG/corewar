@@ -1,1 +1,0 @@
-/Users/tferrari/Downloads/corewar (1)/champs/examples/turtle.s
