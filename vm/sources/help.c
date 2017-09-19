@@ -6,13 +6,13 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 16:02:13 by tferrari          #+#    #+#             */
-/*   Updated: 2017/09/14 16:23:03 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/09/19 15:54:13 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		help()
+int		help(void)
 {
 	ft_printf("Usage: ./corewar [-dump -c -v -n] <champion1.cor>\n");
 	ft_printf("#### TEXT OUTPUT MODE ######################################\n");

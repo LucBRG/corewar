@@ -6,7 +6,7 @@
 #    By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/13 16:44:11 by tferrari          #+#    #+#              #
-#    Updated: 2017/09/14 16:11:31 by tferrari         ###   ########.fr        #
+#    Updated: 2017/09/19 15:51:47 by tferrari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ all : $(NAME)
 
 $(NAME): $(OBJS)
 	@gcc -Wall -Werror -Wextra $(LFT) -lncurses -o $(NAME) $(OBJS)
-	@echo "\033[32mexecutable corewar(a.out) créé\033[0m"
+	@echo "\033[32mexecutable corewar créé\033[0m"
 
 $(OBJS_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJS_DIR)
@@ -50,7 +50,6 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "\033[31mLibft.a supprimé\033[0m"
 	@echo "\033[31mcorewar supprimé\033[0m"
 
 re: fclean all
